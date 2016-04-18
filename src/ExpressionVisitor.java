@@ -13,8 +13,8 @@ public class ExpressionVisitor extends VisitorBase {
     }
 
 
-    public void inAMinusExpr(AMinusExpr node){
-        if(!node.visited){
+    public void inAMinusExpr(AMinusExpr node) {
+        if (!node.visited) {
             node.getLeft().apply(this);
             emit(" - ");
             node.getRight().apply(this);
@@ -24,8 +24,8 @@ public class ExpressionVisitor extends VisitorBase {
 
     }
 
-    public void inAPlusExpr(APlusExpr node){
-        if(!node.visited){
+    public void inAPlusExpr(APlusExpr node) {
+        if (!node.visited) {
             node.getLeft().apply(this);
             emit(" + ");
             node.getRight().apply(this);
@@ -33,103 +33,142 @@ public class ExpressionVisitor extends VisitorBase {
         }
     }
 
-    public void outADivideExpr(ADivideExpr node){
-        node.getLeft().apply(this);
-        emit(" / ");
-        node.getRight().apply(this);
+    public void outADivideExpr(ADivideExpr node) {
+        if (!node.visited) {
+            node.getLeft().apply(this);
+            emit(" / ");
+            node.getRight().apply(this);
+            node.visited = true;
+        }
 
     }
 
-    public void outAMultExpr(AMultExpr node){
-        node.getLeft().apply(this);
-        emit(" * ");
-        node.getRight().apply(this);
+    public void outAMultExpr(AMultExpr node) {
+        if (!node.visited) {
+            node.getLeft().apply(this);
+            emit(" * ");
+            node.getRight().apply(this);
+            node.visited = true;
+        }
 
     }
 
-    public void outAModExpr(AModExpr node){
-        node.getLeft().apply(this);
-        emit(" % ");
-        node.getRight().apply(this);
+    public void outAModExpr(AModExpr node) {
+        if (!node.visited) {
+            node.getLeft().apply(this);
+            emit(" % ");
+            node.getRight().apply(this);
+            node.visited = true;
+        }
 
     }
 
-    public void outAOrExpr(AOrExpr node){
-        node.getLeft().apply(this);
-        emit(" || ");
-        node.getRight().apply(this);
+    public void outAOrExpr(AOrExpr node) {
+        if (!node.visited) {
+            node.getLeft().apply(this);
+            emit(" || ");
+            node.getRight().apply(this);
+            node.visited = true;
+        }
 
     }
 
-    public void outAAndExpr(AAndExpr node){
-        node.getLeft().apply(this);
-        emit(" && ");
-        node.getRight().apply(this);
+    public void outAAndExpr(AAndExpr node) {
+        if (!node.visited) {
+            node.getLeft().apply(this);
+            emit(" && ");
+            node.getRight().apply(this);
+            node.visited = true;
+        }
 
     }
 
-    public void outAEqualsExpr(AEqualsExpr node){
-        node.getLeft().apply(this);
-        emit(" == ");
-        node.getRight().apply(this);
+    public void outAEqualsExpr(AEqualsExpr node) {
+        if (!node.visited) {
+            node.getLeft().apply(this);
+            emit(" == ");
+            node.getRight().apply(this);
+            node.visited = true;
+        }
 
     }
 
-    public void outANotequalsExpr(ANotequalsExpr node){
-        node.getLeft().apply(this);
-        emit(" != ");
-        node.getRight().apply(this);
+    public void outANotequalsExpr(ANotequalsExpr node) {
+        if (!node.visited) {
+            node.getLeft().apply(this);
+            emit(" != ");
+            node.getRight().apply(this);
+            node.visited = true;
+        }
 
     }
 
-    public void outAGreaterExpr(AGreaterExpr node){
-        node.getLeft().apply(this);
-        emit(" > ");
-        node.getRight().apply(this);
+    public void outAGreaterExpr(AGreaterExpr node) {
+        if (!node.visited) {
+            node.getLeft().apply(this);
+            emit(" > ");
+            node.getRight().apply(this);
+            node.visited = true;
+        }
 
     }
 
-    public void outALessExpr(ALessExpr node){
-        node.getLeft().apply(this);
-        emit(" < ");
-        node.getRight().apply(this);
+    public void outALessExpr(ALessExpr node) {
+        if (!node.visited) {
+            node.getLeft().apply(this);
+            emit(" < ");
+            node.getRight().apply(this);
+            node.visited = true;
+        }
 
     }
 
-    public void outAGreaterequalsExpr(AGreaterequalsExpr node){
-        node.getLeft().apply(this);
-        emit(" >= ");
-        node.getRight().apply(this);
+    public void outAGreaterequalsExpr(AGreaterequalsExpr node) {
+        if (!node.visited) {
+            node.getLeft().apply(this);
+            emit(" >= ");
+            node.getRight().apply(this);
+            node.visited = true;
+        }
 
     }
 
-    public void outALessequalsExpr(ALessequalsExpr node){
-        node.getLeft().apply(this);
-        emit(" <= ");
-        node.getRight().apply(this);
+    public void outALessequalsExpr(ALessequalsExpr node) {
+        if (!node.visited) {
+            node.getLeft().apply(this);
+            emit(" <= ");
+            node.getRight().apply(this);
+            node.visited = true;
+        }
     }
 
-    public void outAUnaryExpr(AUnaryExpr node){
-        emit("(-");
-        node.apply(this);
-        emit(")");
+    public void outAUnaryExpr(AUnaryExpr node) {
+        if (!node.visited) {
+            emit("(-");
+            node.apply(this);
+            emit(")");
+            node.visited = true;
+        }
     }
 
-    public void outANotExpr(ANotExpr node){
-        emit("!");
-        node.apply(this);
-        emit(" ");
+    public void outANotExpr(ANotExpr node) {
+        if (!node.visited) {
+            emit("!");
+            node.apply(this);
+            emit(" ");
+            node.visited = true;
+        }
     }
 
-    public void outAValExpr(AValExpr node){
-        if(!node.visited){
+    public void outAValExpr(AValExpr node) {
+        if (!node.visited) {
             emit(node.getVal().toString());
             node.visited = true;
         }
 
     }
 
-    public void outAIdExpr(AIdExpr node){
+    public void outAIdExpr(AIdExpr node) {
         emit(node.getId().getText());
     }
 }
