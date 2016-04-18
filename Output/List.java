@@ -1,3 +1,4 @@
-public class List{public void add(){
+public class List{
+public void add(){
 }
 }

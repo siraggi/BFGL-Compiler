@@ -32,9 +32,9 @@ public class TopVisitor extends VisitorBase{
             fw = new FileWriter(file.getAbsoluteFile());
             bw = new BufferedWriter(fw);
 
-            emit("public class " + className + "{");
+            emitnl("public class " + className + "{");
             node.apply(new ClassBodyVisitor(bw, typeTable, superTable));
-            emit("}");
+            emitnl("}");
 
             bw.close();
         }

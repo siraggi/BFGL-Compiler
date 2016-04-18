@@ -7,23 +7,30 @@ import java.util.Hashtable;
  * Created by august on 18/04/16.
  */
 public class ExpressionVisitor extends VisitorBase {
+
     public ExpressionVisitor(BufferedWriter bw, Hashtable<Node, String> typeTable, Hashtable<String, String> superTable) {
         super(bw, typeTable, superTable);
     }
 
 
-    public void outAMinusExpr(AMinusExpr node){
-        node.getLeft().apply(this);
-        emit(" - ");
-        node.getRight().apply(this);
+    public void inAMinusExpr(AMinusExpr node){
+        if(!node.visited){
+            node.getLeft().apply(this);
+            emit(" - ");
+            node.getRight().apply(this);
+            node.visited = true;
+        }
+
 
     }
 
-    public void outAPlusExpr(APlusExpr node){
-        node.getLeft().apply(this);
-        emit(" + ");
-        node.getRight().apply(this);
-
+    public void inAPlusExpr(APlusExpr node){
+        if(!node.visited){
+            node.getLeft().apply(this);
+            emit(" + ");
+            node.getRight().apply(this);
+            node.visited = true;
+        }
     }
 
     public void outADivideExpr(ADivideExpr node){
@@ -115,7 +122,11 @@ public class ExpressionVisitor extends VisitorBase {
     }
 
     public void outAValExpr(AValExpr node){
-        emit(node.getVal().toString());
+        if(!node.visited){
+            emit(node.getVal().toString());
+            node.visited = true;
+        }
+
     }
 
     public void outAIdExpr(AIdExpr node){

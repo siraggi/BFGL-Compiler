@@ -11,6 +11,8 @@ public abstract class Node implements Switchable, Cloneable
 {
     private Node parent;
 
+    public boolean visited = false;
+
     @Override
     public abstract Object clone();
 
