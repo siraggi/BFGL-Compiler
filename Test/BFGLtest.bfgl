@@ -1,0 +1,37 @@
+Main begin
+    dcl Player p to new Player()
+
+    dcl list of num ll
+
+    ll.add()
+
+    dcl num i
+
+
+
+    for i upto 6 do
+        p.pol
+    end
+
+end
+
+class Player is TestClass begin
+    dcl num lop
+end
+
+class TestClass begin
+    dcl num pol
+
+
+    dcl func q() begin
+        return 5 / 7
+    end
+end
+
+class List begin
+
+    dcl func add() begin
+
+    end
+
+end
