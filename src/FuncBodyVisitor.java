@@ -17,35 +17,35 @@ public class FuncBodyVisitor extends VisitorBase {
     public void outAVarPdcl(AVarPdcl node){
         switch (node.getType().toString().trim()){
             case("num"):
-                emitnl("public float " + node.getId().getText() + ";"); break;
+                emitnl("float " + node.getId().getText() + ";"); break;
             case("text"):
-                emitnl("public String " + node.getId().getText() + ";"); break;
+                emitnl("String " + node.getId().getText() + ";"); break;
             case("bool"):
-                emitnl("public bool " + node.getId().getText() + ";"); break;
+                emitnl("bool " + node.getId().getText() + ";"); break;
             default:
-                emitnl("public " + node.getType().toString().trim() + " " + node.getId().getText() + ";"); break;
+                emitnl(node.getType().toString().trim() + " " + node.getId().getText() + ";"); break;
         }
     }
 
     public void outAVarasgPdcl(AVarasgPdcl node){
         switch (node.getType().toString().trim()){
             case("num"):
-                emit("public float " + node.getId().getText() + " = ");
+                emit("float " + node.getId().getText() + " = ");
                 node.apply(new ExpressionVisitor(bw, typeTable, superTable));
                 emitnl(";");
                 break;
             case("text"):
-                emitnl("public String " + node.getId().getText() + " = ");
+                emit("String " + node.getId().getText() + " = ");
                 node.apply(new ExpressionVisitor(bw, typeTable, superTable));
                 emitnl(";");
                 break;
             case("bool"):
-                emitnl("public bool " + node.getId().getText() + " = ");
+                emit("bool " + node.getId().getText() + " = ");
                 node.apply(new ExpressionVisitor(bw, typeTable, superTable));
                 emitnl(";");
                 break;
             default:
-                emitnl("public " + node.getType().toString().trim() + " " + node.getId().getText() + " = ");
+                emit(node.getType().toString().trim() + " " + node.getId().getText() + " = ");
                 node.apply(new ExpressionVisitor(bw, typeTable, superTable));
                 emitnl(";");
                 break;

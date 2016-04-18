@@ -23,7 +23,7 @@ public class ClassBodyVisitor extends VisitorBase {
             case("text"):
                 emitnl("public String " + node.getId().getText() + ";"); break;
             case("bool"):
-                emitnl("public bool " + node.getId().getText() + ";"); break;
+                emitnl("public boolean " + node.getId().getText() + ";"); break;
             default:
                 emitnl("public " + node.getType().toString().trim() + " " + node.getId().getText() + ";"); break;
         }
@@ -33,7 +33,16 @@ public class ClassBodyVisitor extends VisitorBase {
         emit("public " + (typeTable.get(node) == null? "void" : typeTable.get(node)) + " " + node.getId().getText() + "(");
 
         for (Node p : node.getParams()){
-            emit(((AFormalParam)p).getType().toString() + " ");
+            switch (((AFormalParam)p).getType().toString().trim()){
+                case("num "):
+                    emit("float "); break;
+                case("text"):
+                    emit("String "); break;
+                case("bool"):
+                    emit("boolean "); break;
+                default:
+                    emit(((AFormalParam)p).getType().toString().trim() + " "); break;
+            }
             emit(((AFormalParam)p).getId().getText());
 
             if(!p.equals(node.getParams().getLast())){
