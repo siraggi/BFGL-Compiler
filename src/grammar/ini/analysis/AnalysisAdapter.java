@@ -154,6 +154,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAMultiParam(AMultiParam node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseAFormalParam(AFormalParam node)
     {
         defaultCase(node);

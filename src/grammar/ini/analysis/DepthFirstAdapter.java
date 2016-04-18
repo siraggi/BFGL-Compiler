@@ -383,6 +383,30 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAEmptyReturn(node);
     }
 
+    public void inAMultiParam(AMultiParam node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMultiParam(AMultiParam node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMultiParam(AMultiParam node)
+    {
+        inAMultiParam(node);
+        {
+            List<PParam> copy = new ArrayList<PParam>(node.getParam());
+            for(PParam e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        outAMultiParam(node);
+    }
+
     public void inAFormalParam(AFormalParam node)
     {
         defaultIn(node);
@@ -404,13 +428,6 @@ public class DepthFirstAdapter extends AnalysisAdapter
         if(node.getId() != null)
         {
             node.getId().apply(this);
-        }
-        {
-            List<PParam> copy = new ArrayList<PParam>(node.getParam());
-            for(PParam e : copy)
-            {
-                e.apply(this);
-            }
         }
         outAFormalParam(node);
     }

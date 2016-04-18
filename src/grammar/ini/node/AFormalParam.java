@@ -4,16 +4,11 @@ package grammar.ini.node;
 
 import grammar.ini.analysis.Analysis;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
-
 @SuppressWarnings("nls")
 public final class AFormalParam extends PParam
 {
     private PType _type_;
     private TId _id_;
-    private final LinkedList<PParam> _param_ = new LinkedList<PParam>();
 
     public AFormalParam()
     {
@@ -22,15 +17,12 @@ public final class AFormalParam extends PParam
 
     public AFormalParam(
         @SuppressWarnings("hiding") PType _type_,
-        @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") List<?> _param_)
+        @SuppressWarnings("hiding") TId _id_)
     {
         // Constructor
         setType(_type_);
 
         setId(_id_);
-
-        setParam(_param_);
 
     }
 
@@ -39,8 +31,7 @@ public final class AFormalParam extends PParam
     {
         return new AFormalParam(
             cloneNode(this._type_),
-            cloneNode(this._id_),
-            cloneList(this._param_));
+            cloneNode(this._id_));
     }
 
     @Override
@@ -99,39 +90,12 @@ public final class AFormalParam extends PParam
         this._id_ = node;
     }
 
-    public LinkedList<PParam> getParam()
-    {
-        return this._param_;
-    }
-
-    public void setParam(List<?> list)
-    {
-        for(PParam e : this._param_)
-        {
-            e.parent(null);
-        }
-        this._param_.clear();
-
-        for(Object obj_e : list)
-        {
-            PParam e = (PParam) obj_e;
-            if(e.parent() != null)
-            {
-                e.parent().removeChild(e);
-            }
-
-            e.parent(this);
-            this._param_.add(e);
-        }
-    }
-
     @Override
     public String toString()
     {
         return ""
             + toString(this._type_)
-            + toString(this._id_)
-            + toString(this._param_);
+            + toString(this._id_);
     }
 
     @Override
@@ -147,11 +111,6 @@ public final class AFormalParam extends PParam
         if(this._id_ == child)
         {
             this._id_ = null;
-            return;
-        }
-
-        if(this._param_.remove(child))
-        {
             return;
         }
 
@@ -172,24 +131,6 @@ public final class AFormalParam extends PParam
         {
             setId((TId) newChild);
             return;
-        }
-
-        for(ListIterator<PParam> i = this._param_.listIterator(); i.hasNext();)
-        {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
-                    i.set((PParam) newChild);
-                    newChild.parent(this);
-                    oldChild.parent(null);
-                    return;
-                }
-
-                i.remove();
-                oldChild.parent(null);
-                return;
-            }
         }
 
         throw new RuntimeException("Not a child.");

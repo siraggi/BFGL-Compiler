@@ -25,6 +25,7 @@ public interface Analysis extends Switch
     void caseAClassBody(AClassBody node);
     void caseAIdReturn(AIdReturn node);
     void caseAEmptyReturn(AEmptyReturn node);
+    void caseAMultiParam(AMultiParam node);
     void caseAFormalParam(AFormalParam node);
     void caseAInherit(AInherit node);
     void caseANumType(ANumType node);

@@ -392,6 +392,31 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAEmptyReturn(node);
     }
 
+    public void inAMultiParam(AMultiParam node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMultiParam(AMultiParam node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMultiParam(AMultiParam node)
+    {
+        inAMultiParam(node);
+        {
+            List<PParam> copy = new ArrayList<PParam>(node.getParam());
+            Collections.reverse(copy);
+            for(PParam e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        outAMultiParam(node);
+    }
+
     public void inAFormalParam(AFormalParam node)
     {
         defaultIn(node);
@@ -406,14 +431,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAFormalParam(AFormalParam node)
     {
         inAFormalParam(node);
-        {
-            List<PParam> copy = new ArrayList<PParam>(node.getParam());
-            Collections.reverse(copy);
-            for(PParam e : copy)
-            {
-                e.apply(this);
-            }
-        }
         if(node.getId() != null)
         {
             node.getId().apply(this);

@@ -1450,11 +1450,11 @@ public class Parser
         tidNode3 = (TId)nodeArrayList3.get(0);
         {
             // Block
-        PParam pparamNode4;
-        pparamNode4 = (PParam)nodeArrayList5.get(0);
-	if(pparamNode4 != null)
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        listNode4 = (LinkedList)nodeArrayList5.get(0);
+	if(listNode4 != null)
 	{
-	  listNode5.add(pparamNode4);
+	  listNode5.addAll(listNode4);
 	}
         }
         pbodyNode6 = (PBody)nodeArrayList8.get(0);
@@ -3112,21 +3112,25 @@ public class Parser
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        {
+            // Block
         PParam pparamNode1;
         {
             // Block
         PType ptypeNode2;
         TId tidNode3;
-        LinkedList<Object> listNode4 = new LinkedList<Object>();
         ptypeNode2 = (PType)nodeArrayList1.get(0);
         tidNode3 = (TId)nodeArrayList2.get(0);
-        {
-            // Block
-        }
 
-        pparamNode1 = new AFormalParam(ptypeNode2, tidNode3, listNode4);
+        pparamNode1 = new AFormalParam(ptypeNode2, tidNode3);
         }
-	nodeList.add(pparamNode1);
+	if(pparamNode1 != null)
+	{
+	  listNode4.add(pparamNode1);
+	}
+        }
+	nodeList.add(listNode4);
         return nodeList;
     }
 
@@ -3141,27 +3145,31 @@ public class Parser
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        LinkedList<Object> listNode5 = new LinkedList<Object>();
+        {
+            // Block
         PParam pparamNode1;
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
         {
             // Block
         PType ptypeNode2;
         TId tidNode3;
-        LinkedList<Object> listNode5 = new LinkedList<Object>();
         ptypeNode2 = (PType)nodeArrayList1.get(0);
         tidNode3 = (TId)nodeArrayList2.get(0);
-        {
-            // Block
-        PParam pparamNode4;
-        pparamNode4 = (PParam)nodeArrayList4.get(0);
-	if(pparamNode4 != null)
+
+        pparamNode1 = new AFormalParam(ptypeNode2, tidNode3);
+        }
+        listNode4 = (LinkedList)nodeArrayList4.get(0);
+	if(pparamNode1 != null)
 	{
-	  listNode5.add(pparamNode4);
+	  listNode5.add(pparamNode1);
+	}
+	if(listNode4 != null)
+	{
+	  listNode5.addAll(listNode4);
 	}
         }
-
-        pparamNode1 = new AFormalParam(ptypeNode2, tidNode3, listNode5);
-        }
-	nodeList.add(pparamNode1);
+	nodeList.add(listNode5);
         return nodeList;
     }
 
@@ -3693,11 +3701,11 @@ public class Parser
         LinkedList<Object> listNode2 = new LinkedList<Object>();
         {
             // Block
-        PParam pparamNode1;
-        pparamNode1 = (PParam)nodeArrayList1.get(0);
-	if(pparamNode1 != null)
+        LinkedList<Object> listNode1 = new LinkedList<Object>();
+        listNode1 = (LinkedList)nodeArrayList1.get(0);
+	if(listNode1 != null)
 	{
-	  listNode2.add(pparamNode1);
+	  listNode2.addAll(listNode1);
 	}
         }
 	nodeList.add(listNode2);
@@ -3717,16 +3725,16 @@ public class Parser
         {
             // Block
         LinkedList<Object> listNode1 = new LinkedList<Object>();
-        PParam pparamNode2;
+        LinkedList<Object> listNode2 = new LinkedList<Object>();
         listNode1 = (LinkedList)nodeArrayList1.get(0);
-        pparamNode2 = (PParam)nodeArrayList2.get(0);
+        listNode2 = (LinkedList)nodeArrayList2.get(0);
 	if(listNode1 != null)
 	{
 	  listNode3.addAll(listNode1);
 	}
-	if(pparamNode2 != null)
+	if(listNode2 != null)
 	{
-	  listNode3.add(pparamNode2);
+	  listNode3.addAll(listNode2);
 	}
         }
 	nodeList.add(listNode3);

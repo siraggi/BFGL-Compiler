@@ -44,7 +44,7 @@ public class ClassBodyVisitor extends VisitorBase {
         emit(")");
         emitnl("{");
 
-        //DO SOMETHING
+        node.apply(new FuncBodyVisitor(bw, typeTable, superTable));
 
         emitnl("}");
     }
