@@ -2,102 +2,59 @@
  * Created by august on 14/04/16.
  */
 
-import grammar.ini.analysis.*;
 import grammar.ini.node.*;
 
 import java.io.*;
 import java.util.*;
 
-public class JavaCodeGenerator extends DepthFirstAdapter {
+public class JavaCodeGenerator {
 
-    private Hashtable<Node, String> typeTable;
-    private Hashtable<String, String> superTable;
     private File file;
-    private FileWriter fw;
-    private BufferedWriter bw;
+    private File outDir;
 
 
-    public JavaCodeGenerator(Hashtable<Node, String> typeTable, Hashtable<String, String> superTable) throws IOException {
-        this.typeTable = typeTable;
-        this.superTable = superTable;
-        file = new File("Output/Main.java");
-        if (!file.exists()){
-            file.createNewFile();
-        }
-        fw = new FileWriter(file.getAbsoluteFile());
-        bw = new BufferedWriter(fw);
-    }
+    public JavaCodeGenerator(Hashtable<Node, String> typeTable, Hashtable<String, String> superTable, Node node) throws IOException {
 
-    //emitfunctions
-    private void emit(String s){
+        outDir = new File("Output/");
 
-        try {
-            bw.write(s);
-            bw.newLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void emitComment(String s){
-        try {
+        for(File file: outDir.listFiles()) file.delete();
 
-            bw.write("//" + s);
-            bw.newLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void skip(int i){
+        addLibrary("Main", "Main");
+        addLibrary("Scene", "Scene");
 
-    }
-
-
-
-    //Prog, inject slick and others libraries here
-    public void inAProg(AProg node){
-        emit("public class Main{");
-        emit("public static void main(String[] args){");
-
-        emit("}");
-        emit("}");
 
         node.apply(new TopVisitor(typeTable, superTable));
     }
 
-    public void outAProg(AProg node){
-        try {
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private static void addLibrary(String in, String out) throws IOException {
+        FileInputStream instream = null;
+        FileOutputStream outstream = null;
+
+        try{
+            File infile = new File("Library", in);
+            File outfile = new File("Output", out + ".java");
+
+            instream = new FileInputStream(infile);
+            outstream = new FileOutputStream(outfile);
+
+            byte[] buffer = new byte[1024];
+
+            int length;
+    	    /*copying the contents from input stream to
+    	     * output stream using read and write methods
+    	     */
+            while ((length = instream.read(buffer)) > 0){
+                outstream.write(buffer, 0, length);
+            }
+
+            //Closing the input/output file streams
+            instream.close();
+            outstream.close();
+
+            System.out.println("File copied successfully!!");
+
+        }catch(IOException ioe){
+            ioe.printStackTrace();
         }
     }
-
-    //main
-    public void inAMainPdcl(AMainPdcl node){
-    }
-
-    public void outAMainPdcl(AMainPdcl node){
-
-    }
-
-
-    //class
-
-    //funcs
-
-    //dcls
-
-    //assignments
-
-    //conditionals
-
-
-
-
-
-
-
-
-
-
 }

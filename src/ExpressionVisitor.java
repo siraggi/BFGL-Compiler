@@ -33,7 +33,7 @@ public class ExpressionVisitor extends VisitorBase {
         }
     }
 
-    public void outADivideExpr(ADivideExpr node) {
+    public void inADivideExpr(ADivideExpr node) {
         if (!node.visited) {
             node.getLeft().apply(this);
             emit(" / ");
@@ -43,7 +43,7 @@ public class ExpressionVisitor extends VisitorBase {
 
     }
 
-    public void outAMultExpr(AMultExpr node) {
+    public void inAMultExpr(AMultExpr node) {
         if (!node.visited) {
             node.getLeft().apply(this);
             emit(" * ");
@@ -53,7 +53,7 @@ public class ExpressionVisitor extends VisitorBase {
 
     }
 
-    public void outAModExpr(AModExpr node) {
+    public void inAModExpr(AModExpr node) {
         if (!node.visited) {
             node.getLeft().apply(this);
             emit(" % ");
@@ -63,7 +63,7 @@ public class ExpressionVisitor extends VisitorBase {
 
     }
 
-    public void outAOrExpr(AOrExpr node) {
+    public void inAOrExpr(AOrExpr node) {
         if (!node.visited) {
             node.getLeft().apply(this);
             emit(" || ");
@@ -73,7 +73,7 @@ public class ExpressionVisitor extends VisitorBase {
 
     }
 
-    public void outAAndExpr(AAndExpr node) {
+    public void inAAndExpr(AAndExpr node) {
         if (!node.visited) {
             node.getLeft().apply(this);
             emit(" && ");
@@ -83,7 +83,7 @@ public class ExpressionVisitor extends VisitorBase {
 
     }
 
-    public void outAEqualsExpr(AEqualsExpr node) {
+    public void inAEqualsExpr(AEqualsExpr node) {
         if (!node.visited) {
             node.getLeft().apply(this);
             emit(" == ");
@@ -93,7 +93,7 @@ public class ExpressionVisitor extends VisitorBase {
 
     }
 
-    public void outANotequalsExpr(ANotequalsExpr node) {
+    public void inANotequalsExpr(ANotequalsExpr node) {
         if (!node.visited) {
             node.getLeft().apply(this);
             emit(" != ");
@@ -103,7 +103,7 @@ public class ExpressionVisitor extends VisitorBase {
 
     }
 
-    public void outAGreaterExpr(AGreaterExpr node) {
+    public void inAGreaterExpr(AGreaterExpr node) {
         if (!node.visited) {
             node.getLeft().apply(this);
             emit(" > ");
@@ -113,7 +113,7 @@ public class ExpressionVisitor extends VisitorBase {
 
     }
 
-    public void outALessExpr(ALessExpr node) {
+    public void inALessExpr(ALessExpr node) {
         if (!node.visited) {
             node.getLeft().apply(this);
             emit(" < ");
@@ -123,7 +123,7 @@ public class ExpressionVisitor extends VisitorBase {
 
     }
 
-    public void outAGreaterequalsExpr(AGreaterequalsExpr node) {
+    public void inAGreaterequalsExpr(AGreaterequalsExpr node) {
         if (!node.visited) {
             node.getLeft().apply(this);
             emit(" >= ");
@@ -133,7 +133,7 @@ public class ExpressionVisitor extends VisitorBase {
 
     }
 
-    public void outALessequalsExpr(ALessequalsExpr node) {
+    public void inALessequalsExpr(ALessequalsExpr node) {
         if (!node.visited) {
             node.getLeft().apply(this);
             emit(" <= ");
@@ -142,16 +142,16 @@ public class ExpressionVisitor extends VisitorBase {
         }
     }
 
-    public void outAUnaryExpr(AUnaryExpr node) {
+    public void inAUnaryExpr(AUnaryExpr node) {
         if (!node.visited) {
+            node.visited = true;
             emit("(-");
             node.apply(this);
             emit(")");
-            node.visited = true;
         }
     }
 
-    public void outANotExpr(ANotExpr node) {
+    public void inANotExpr(ANotExpr node) {
         if (!node.visited) {
             emit("!");
             node.apply(this);
@@ -160,7 +160,7 @@ public class ExpressionVisitor extends VisitorBase {
         }
     }
 
-    public void outAValExpr(AValExpr node) {
+    public void inAValExpr(AValExpr node) {
         if (!node.visited) {
             emit(node.getVal().toString());
             node.visited = true;
@@ -168,7 +168,84 @@ public class ExpressionVisitor extends VisitorBase {
 
     }
 
-    public void outAIdExpr(AIdExpr node) {
-        emit(node.getId().getText());
+    public void inAIdExpr(AIdExpr node) {
+        if(!node.visited){
+            emit(node.getId().getText());
+            node.visited = true;
+        }
+    }
+
+    public void inAClassCall(AClassCall node){
+        if(!node.visited){
+            node.visited = true;
+
+            if(node.getFirst() instanceof AFuncCall){
+                AFuncCall f = (AFuncCall) node.getFirst();
+                emit(f.getId().getText());
+                emit("(");
+
+                for (Node p : f.getParams()){
+                    p.apply(this);
+
+                    if(!p.equals(f.getParams().getLast())){
+                        emit(", ");
+                    }
+                }
+
+                emit(")");
+            }else if(node.getFirst() instanceof AVarCall){
+                AVarCall v = (AVarCall)node.getFirst();
+
+                emit(v.getId().getText());
+            }
+
+            emit(".");
+
+            for(Node n : node.getRest()){
+                if(n instanceof AFuncCall){
+                    AFuncCall f = (AFuncCall) n;
+                    emit(f.getId().getText());
+                    emit("(");
+
+                    for (Node p : f.getParams()){
+                        p.apply(this);
+
+                        if(!p.equals(f.getParams().getLast())){
+                            emit(", ");
+                        }
+                    }
+
+                    emit(")");
+                }else if(n instanceof AVarCall){
+                    AVarCall v = (AVarCall) n;
+
+                    emit(v.getId().getText());
+                }
+
+                if(n != node.getRest().getLast()){
+                    emit(".");
+                }
+            }
+        }
+    }
+
+    public void inAFuncCall(AFuncCall node){
+        if(!node.visited){
+            node.visited = true;
+
+            emit(node.getId().getText());
+            emit("(");
+
+            for (Node p : node.getParams()){
+                p.apply(this);
+
+                if(!p.equals(node.getParams().getLast())){
+                    emit(", ");
+                }
+            }
+
+            emit(")");
+        }
+
     }
 }

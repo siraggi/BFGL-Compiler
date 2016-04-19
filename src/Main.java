@@ -3,11 +3,10 @@ import grammar.ini.lexer.LexerException;
 import grammar.ini.node.Start;
 import grammar.ini.parser.Parser;
 import grammar.ini.parser.ParserException;
+import sun.misc.IOUtils;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PushbackReader;
+import java.io.*;
+import java.nio.file.Files;
 
 
 public class Main {
@@ -17,9 +16,12 @@ public class Main {
     {
         TypeChecker typeChecker = new TypeChecker();
         File file = new File("Test", "BFGLtest.bfgl");
+        //addLibrary(file);
+
         PushbackReader pushbackReader = new PushbackReader(new FileReader(file));
         Parser parser = new Parser(new Lexer(pushbackReader));
         Start tree = parser.parse();
+
         tree.apply(typeChecker);
 
         if(!typeChecker.ErrorList.isEmpty()){
@@ -29,8 +31,39 @@ public class Main {
             }
         }
         else{
-            JavaCodeGenerator javaCodeGenerator = new JavaCodeGenerator(typeChecker.typeTable, typeChecker.superTable);
-            tree.apply(javaCodeGenerator);
+            new JavaCodeGenerator(typeChecker.typeTable, typeChecker.superTable, tree);
+        }
+    }
+
+    private static void addLibrary(File file) throws IOException {
+        FileInputStream instream = null;
+        FileOutputStream outstream = null;
+
+        try{
+            File infile = new File("Library", "GameClasses");
+            File outfile = file;
+
+            instream = new FileInputStream(infile);
+            outstream = new FileOutputStream(outfile, true);
+
+            byte[] buffer = new byte[1024];
+
+            int length;
+    	    /*copying the contents from input stream to
+    	     * output stream using read and write methods
+    	     */
+            while ((length = instream.read(buffer)) > 0){
+                outstream.write(buffer, 0, length);
+            }
+
+            //Closing the input/output file streams
+            instream.close();
+            outstream.close();
+
+            System.out.println("File copied successfully!!");
+
+        }catch(IOException ioe){
+            ioe.printStackTrace();
         }
     }
 }

@@ -1,3 +1,4 @@
-public class Player extends TestClass {
-public float lop;
+public class Player extends Sprite {
+public void update(){
+}
 }

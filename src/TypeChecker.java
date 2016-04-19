@@ -85,7 +85,7 @@ public class TypeChecker extends DepthFirstAdapter{
     }
     
     private void addType(Node node, String type){
-        typeTable.put(node, type.trim());
+        typeTable.put(node, (type != null ? type.trim() : "null"));
     }
 
     private String getType(String id){
@@ -127,9 +127,10 @@ public class TypeChecker extends DepthFirstAdapter{
                                 type = typeTable.get(symStack.get(i - 1).get(id));
                             }
                         }
-                        else
+                        else{
+                            ErrorList.add("ERROR line " + lineAndPos.getLine(tempNode) + " pos " + lineAndPos.getPos(tempNode) + " : Recursive call not allowed.");
                             type = ERRORTYPE;
-                        ErrorList.add("ERROR line " + lineAndPos.getLine(tempNode) + " pos " + lineAndPos.getPos(tempNode) + " : Recursive call not allowed.");
+                        }
 
                     }
                     else

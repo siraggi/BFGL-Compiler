@@ -1,8 +1,5 @@
 import grammar.ini.analysis.DepthFirstAdapter;
-import grammar.ini.node.AFormalParam;
-import grammar.ini.node.AFuncPdcl;
-import grammar.ini.node.AVarPdcl;
-import grammar.ini.node.Node;
+import grammar.ini.node.*;
 
 import java.io.BufferedWriter;
 import java.util.Hashtable;
@@ -54,6 +51,29 @@ public class ClassBodyVisitor extends VisitorBase {
         emitnl("{");
 
         node.apply(new FuncBodyVisitor(bw, typeTable, superTable));
+
+        emitnl("");
+        emitnl("}");
+    }
+
+    public void inAEventPdcl(AEventPdcl node){
+        String name = "event";
+
+        switch (node.getId().getText()){
+            case("onUpdate"):
+                name = "update()"; break;
+            case("onCollision"):
+                name = "collision()"; break;
+            case("onInput"):
+                name = "input()"; break;
+            case("onConstruct"):
+                name = "construct()"; break;
+        }
+        emitnl("public void " + name + "{");
+
+        for(Node n : node.getBody()){
+            n.apply(this);
+        }
 
         emitnl("}");
     }
