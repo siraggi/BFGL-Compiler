@@ -1,3 +1,4 @@
+import grammar.ini.GlobalCheck;
 import grammar.ini.node.*;
 
 import java.io.BufferedWriter;
@@ -169,9 +170,17 @@ public class ExpressionVisitor extends VisitorBase {
     }
 
     public void inAIdExpr(AIdExpr node) {
+        GlobalCheck gc = new GlobalCheck(node.getId().getText(), node);
+
         if(!node.visited){
-            emit(node.getId().getText());
             node.visited = true;
+            getRoot(node).apply(gc);
+
+            if(gc.global)
+                emit("Global." + node.getId().getText());
+            else
+                emit(node.getId().getText());
+
         }
     }
 
@@ -247,5 +256,15 @@ public class ExpressionVisitor extends VisitorBase {
             emit(")");
         }
 
+    }
+
+    private Node getRoot(Node node){
+        Node root = node;
+
+        while (root.parent() != null){
+            root = root.parent();
+        }
+
+        return root;
     }
 }

@@ -1,12 +1,18 @@
+dcl num gl
+
 Main begin
 
 end
 
-class Player is Sprite begin
-    onUpdate() do
+class Player begin
+
+    dcl num abe
+
+    onConstruct() do
+        set abe to gl
         dcl text bos to "Bosseso"
     end
 end
 class Sprite begin
-
+    dcl num gl
 end

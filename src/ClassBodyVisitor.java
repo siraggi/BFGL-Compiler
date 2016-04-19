@@ -9,8 +9,12 @@ import java.util.Hashtable;
  */
 public class ClassBodyVisitor extends VisitorBase {
 
-    public ClassBodyVisitor(BufferedWriter bw, Hashtable<Node, String> typeTable, Hashtable<String, String> superTable){
+    private String className;
+
+    public ClassBodyVisitor(BufferedWriter bw, Hashtable<Node, String> typeTable, Hashtable<String, String> superTable, String className){
         super(bw, typeTable, superTable);
+
+        this.className = className;
     }
 
     public void outAVarPdcl(AVarPdcl node){
@@ -67,12 +71,13 @@ public class ClassBodyVisitor extends VisitorBase {
             case("onInput"):
                 name = "input()"; break;
             case("onConstruct"):
-                name = "construct()"; break;
+                name = className + "()"; break;
         }
+
         emitnl("public void " + name + "{");
 
         for(Node n : node.getBody()){
-            n.apply(this);
+            n.apply(new FuncBodyVisitor(bw, typeTable, superTable));
         }
 
         emitnl("}");
