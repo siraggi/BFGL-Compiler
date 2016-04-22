@@ -33,6 +33,9 @@ public class Main {
         else{
             new JavaCodeGenerator(typeChecker.typeTable, typeChecker.superTable, tree);
         }
+
+        AntExecutor AEx = new AntExecutor();
+        AEx.executeAntTask("src/CompileBFGL.xml", "compileJARs");
     }
 
     private static void addLibrary(File file) throws IOException {
