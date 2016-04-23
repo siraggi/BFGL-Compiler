@@ -1,0 +1,69 @@
+<project name="BFGL-Compiler">
+
+        <property name="winLib" value="Library/windows"/>
+        <property name="osxLib" value="Library/osx"/>
+        <property name="slickLib" value="Library/SlickLib"/>
+        <property name="nameOfTheGame" value="hax"/>
+        <property name="targetSystem" value="win"/>
+
+        <path id="classPath">
+                <fileset dir="Library/SlickLib">
+                        <include name="*.jar"/>
+                </fileset>
+        </path>
+
+
+
+
+        <target name="clean">
+                <delete dir="CompiledGame"/>
+        </target>
+        <target name="cleanCompOUT">
+                <delete dir="CompiledGame/compilationOUT"/>
+        </target>
+        <target name="init" depends="clean">
+                <mkdir dir="CompiledGame"/>
+                <mkdir dir="CompiledGame/compilationOUT"/>
+        </target>
+
+
+        <target name="compile" depends="init">
+                <javac srcdir="Output" destdir="CompiledGame/compilationOUT" includeantruntime="true" verbose="true">
+                        <classpath refid="classPath"/>
+                </javac>
+        </target>
+
+
+        <target name="TargetSystem">
+                <If>
+                        <equals arg1="${targetSystem}" arg2="osx"/>
+                        <then>
+                                <copy todir="CompiledGame">
+                                        <fileset dir="Library/osx">
+                                                <include name="*.dll"/>
+                                        </fileset>
+                                </copy>
+                        </then>
+                        <else>
+                                <copy todir="CompiledGame">
+                                        <fileset dir="Library/windows">
+                                                <include name="*.dll"/>
+                                        </fileset>
+                                </copy>
+                        </else>
+                </If>
+        </target>
+
+        <target name="jar" depends="compile">
+                <jar destfile="CompiledGame/${nameOfTheGame}.jar" basedir="CompiledGame" includes="*.class"/>
+                <!--- <antcall target="TargetSystem"/> -->
+
+                <antcall target="cleanCompOUT"/>
+        </target>
+
+        <target name="run" depends="jar">
+                <java jar="CompiledGame/${nameOfTheGame}.jar" classname="Main" fork="true"/>
+        </target>
+
+
+</project>
