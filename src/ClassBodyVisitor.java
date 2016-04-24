@@ -1,4 +1,3 @@
-import grammar.ini.analysis.DepthFirstAdapter;
 import grammar.ini.node.*;
 
 import java.io.BufferedWriter;
@@ -29,7 +28,6 @@ public class ClassBodyVisitor extends VisitorBase {
                 emitnl("public " + node.getType().toString().trim() + " " + node.getId().getText() + ";"); break;
         }
     }
-
     public void outAFuncPdcl(AFuncPdcl node){
         emit("public " + (typeTable.get(node) == null? "void" : typeTable.get(node)) + " " + node.getId().getText() + "(");
 

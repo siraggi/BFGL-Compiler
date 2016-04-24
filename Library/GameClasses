@@ -1,3 +1,63 @@
+class Math begin
+    dcl func roundUp(num numToBeRounded) begin
+
+    return
+
+    dcl func roundDown(num numToBeRounded) begin
+
+    return
+
+    dcl func round(num numToBeRounded) begin
+
+    return
+
+    dcl func sqrt(num numToSqr) begin
+
+    return
+
+    dcl func pwr(num howMuchToPower) begin
+
+    return
+
+    dcl func getRandomNum(num lowerBound, num upperBound) begin
+
+    return
+end
+
+class GameContainer begin
+    num deltatime
+
+    dcl func GetSystemTime() begin
+
+    return
+
+    num width
+    num height
+
+    dcl list of Sprite Sprites
+
+    dcl string pathToBackGround
+
+end
+
+class Timer begin
+    dcl num interval
+
+    dcl func Start() begin
+
+    return
+
+    dcl func Stop() begin
+
+    return
+
+    dcl func Reset() begin
+
+    return
+end
+class Input begin
+
+end
 
 class Sprite begin
 
