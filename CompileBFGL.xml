@@ -1,4 +1,4 @@
-<project name="BFGL-Compiler">
+<project name="BFGL-Compiler" >
 
         <property name="winLib" value="Library/windows"/>
         <property name="osxLib" value="Library/osx"/>
@@ -28,7 +28,7 @@
 
 
         <target name="compile" depends="init">
-                <javac srcdir="Output" destdir="CompiledGame/compilationOUT" includeantruntime="true" verbose="true">
+                <javac fork="true" srcdir="Output" destdir="CompiledGame/compilationOUT" includeantruntime="true" verbose="true">
                         <classpath refid="classPath"/>
                 </javac>
         </target>

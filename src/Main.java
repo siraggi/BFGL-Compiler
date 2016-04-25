@@ -35,7 +35,7 @@ public class Main {
         }
 
         AntExecutor AEx = new AntExecutor();
-        AEx.executeAntTask("src/CompileBFGL.xml", "compileJARs");
+        AEx.executeAntTask("CompileBFGL.xml", "run");
     }
 
     private static void addLibrary(File file) throws IOException {

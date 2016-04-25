@@ -18,6 +18,5 @@ class Enemy is Sprite begin
     dcl num gl
 
 
-    end
 
 end

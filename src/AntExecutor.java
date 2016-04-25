@@ -33,6 +33,7 @@ public class AntExecutor {
         Project project = new Project();
         File buildFile = new File(buildXmlFileFullPath);
         project.setUserProperty("ant.file", buildFile.getAbsolutePath());
+        project.setProperty("java.home", "C:\\Program Files\\Java\\jdk1.8.0_73");
         project.addBuildListener(consoleLogger);
 
         // Capture event for Ant script build start / stop / failure
