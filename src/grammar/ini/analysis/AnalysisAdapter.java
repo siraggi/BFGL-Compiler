@@ -166,6 +166,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseABaseBase(ABaseBase node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseAInherit(AInherit node)
     {
         defaultCase(node);
@@ -346,6 +352,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAThisVal(AThisVal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseAConstrVal(AConstrVal node)
     {
         defaultCase(node);
@@ -509,6 +521,18 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseTDcl(TDcl node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTThis(TThis node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTTbase(TTbase node)
     {
         defaultCase(node);
     }

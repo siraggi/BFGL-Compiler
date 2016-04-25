@@ -62,13 +62,13 @@ public class ClassBodyVisitor extends VisitorBase {
         String name = "event";
 
         switch (node.getId().getText()){
-            case("onUpdate"):
+            case("OnUpdate"):
                 name = "update()"; break;
-            case("onCollision"):
+            case("OnCollision"):
                 name = "collision()"; break;
-            case("onInput"):
+            case("OnInput"):
                 name = "input()"; break;
-            case("onConstruct"):
+            case("OnConstruct"):
                 name = className + "()"; break;
         }
 

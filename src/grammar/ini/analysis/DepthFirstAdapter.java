@@ -432,6 +432,30 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAFormalParam(node);
     }
 
+    public void inABaseBase(ABaseBase node)
+    {
+        defaultIn(node);
+    }
+
+    public void outABaseBase(ABaseBase node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseABaseBase(ABaseBase node)
+    {
+        inABaseBase(node);
+        {
+            List<PExpr> copy = new ArrayList<PExpr>(node.getParams());
+            for(PExpr e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        outABaseBase(node);
+    }
+
     public void inAInherit(AInherit node)
     {
         defaultIn(node);
@@ -1126,6 +1150,27 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getBoolval().apply(this);
         }
         outABoolVal(node);
+    }
+
+    public void inAThisVal(AThisVal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAThisVal(AThisVal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAThisVal(AThisVal node)
+    {
+        inAThisVal(node);
+        if(node.getThis() != null)
+        {
+            node.getThis().apply(this);
+        }
+        outAThisVal(node);
     }
 
     public void inAConstrVal(AConstrVal node)

@@ -27,6 +27,7 @@ public interface Analysis extends Switch
     void caseAEmptyReturn(AEmptyReturn node);
     void caseAMultiParam(AMultiParam node);
     void caseAFormalParam(AFormalParam node);
+    void caseABaseBase(ABaseBase node);
     void caseAInherit(AInherit node);
     void caseANumType(ANumType node);
     void caseABoolType(ABoolType node);
@@ -57,6 +58,7 @@ public interface Analysis extends Switch
     void caseANumVal(ANumVal node);
     void caseATextVal(ATextVal node);
     void caseABoolVal(ABoolVal node);
+    void caseAThisVal(AThisVal node);
     void caseAConstrVal(AConstrVal node);
     void caseAVardclStmt(AVardclStmt node);
     void caseAAssignmentStmt(AAssignmentStmt node);
@@ -86,6 +88,8 @@ public interface Analysis extends Switch
     void caseTAnd(TAnd node);
     void caseTSet(TSet node);
     void caseTDcl(TDcl node);
+    void caseTThis(TThis node);
+    void caseTTbase(TTbase node);
     void caseTOf(TOf node);
     void caseTTo(TTo node);
     void caseTNew(TNew node);
