@@ -1,4 +1,4 @@
-import com.javafx.tools.doclets.internal.toolkit.util.DocFinder;
+
 import grammar.ini.node.AClassPdcl;
 import grammar.ini.node.AInherit;
 import grammar.ini.node.AProg;
@@ -99,9 +99,9 @@ public class TopVisitor extends VisitorBase{
             fw = new FileWriter(global.getAbsoluteFile());
             bw = new BufferedWriter(fw);
 
-            bw.write("public final class Global {}");
+            bw.write("public final class Global {");
             bw.newLine();
-            bw.write("private Global(){");
+            bw.write("private Global(){ }");
             bw.newLine();
 
             fr = new FileReader(dump);
@@ -109,12 +109,12 @@ public class TopVisitor extends VisitorBase{
 
             String s;
             while ((s = br.readLine()) != null){
-                bw.write(s);
+                bw.write("static " + s);
                 bw.newLine();
             }
 
             bw.write("}");
-
+            bw.close();
         }
         catch (IOException e){
             e.printStackTrace();

@@ -16,7 +16,7 @@ public class Main {
     {
         TypeChecker typeChecker = new TypeChecker();
         File file = new File("Test", "BFGLtest.bfgl");
-        //addLibrary(file);
+        addLibrary(file);
 
         PushbackReader pushbackReader = new PushbackReader(new FileReader(file));
         Parser parser = new Parser(new Lexer(pushbackReader));
@@ -32,10 +32,11 @@ public class Main {
         }
         else{
             new JavaCodeGenerator(typeChecker.typeTable, typeChecker.superTable, tree);
+            AntExecutor AEx = new AntExecutor();
+            AEx.executeAntTask("CompileBFGL.xml", "run");
         }
 
-        AntExecutor AEx = new AntExecutor();
-        AEx.executeAntTask("CompileBFGL.xml", "run");
+
     }
 
     private static void addLibrary(File file) throws IOException {
