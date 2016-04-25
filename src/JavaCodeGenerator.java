@@ -26,7 +26,7 @@ public class JavaCodeGenerator {
         node.apply(new TopVisitor(typeTable, superTable));
     }
 
-    private static void addLibrary(String in, String out) throws IOException {
+    public static void addLibrary(String in, String out) throws IOException {
         FileInputStream instream = null;
         FileOutputStream outstream = null;
 

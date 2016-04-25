@@ -1,12 +1,10 @@
+import com.javafx.tools.doclets.internal.toolkit.util.DocFinder;
 import grammar.ini.node.AClassPdcl;
 import grammar.ini.node.AInherit;
 import grammar.ini.node.AProg;
 import grammar.ini.node.Node;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Hashtable;
 
 /**
@@ -71,18 +69,19 @@ public class TopVisitor extends VisitorBase{
     }
 
     public void inAProg(AProg node){
-        File file;
+        File dump;
+        File global;
         FileWriter fw;
+        FileReader fr;
 
-
-        file = new File("Output/global");
+        dump = new File("Output/global");
 
         try{
-            if (!file.exists()){
-                file.createNewFile();
+            if (!dump.exists()){
+                dump.createNewFile();
             }
 
-            fw = new FileWriter(file.getAbsoluteFile());
+            fw = new FileWriter(dump.getAbsoluteFile());
             bw = new BufferedWriter(fw);
 
             for(Node n : node.getGlobaldcl()){
@@ -90,13 +89,36 @@ public class TopVisitor extends VisitorBase{
             }
 
             bw.close();
+
+            global = new File("Output/Global.java");
+
+            if (!global.exists()){
+                global.createNewFile();
+            }
+
+            fw = new FileWriter(global.getAbsoluteFile());
+            bw = new BufferedWriter(fw);
+
+            bw.write("public final class Global {}");
+            bw.newLine();
+            bw.write("private Global(){");
+            bw.newLine();
+
+            fr = new FileReader(dump);
+            BufferedReader br = new BufferedReader(fr);
+
+            String s;
+            while ((s = br.readLine()) != null){
+                bw.write(s);
+                bw.newLine();
+            }
+
+            bw.write("}");
+
         }
         catch (IOException e){
             e.printStackTrace();
         }
-
-
-
     }
 
     public void inAClassPdcl(AClassPdcl node){
