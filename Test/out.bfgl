@@ -1,23 +1,12 @@
-dcl num gl
-dcl num gl2
-
 Main begin
-
+    Player player = new Player()
 end
 
 class Player is Sprite begin
 
-    dcl num abe
+    OnInput() do
 
-    onConstruct() do
-        set abe to gl
-        dcl text bos to "Bosseso"
     end
-end
-class Enemy is Sprite begin
-    dcl num gl
-
-
 
 end
 class Math begin
@@ -46,7 +35,7 @@ class Math begin
     end
 end
 
-class GameContainer begin
+class Game begin
     dcl num deltatime
 
     dcl func GetSystemTime() begin
@@ -77,8 +66,18 @@ class Timer begin
 
     end
 end
-class Input begin
 
+class Input begin
+    dcl Keyboard key
+end
+
+class Keyboard begin
+    dcl Key w
+    dcl Key
+end
+
+class Key begin
+    dcl bool isPressed
 end
 
 class Sprite begin
