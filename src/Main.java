@@ -4,6 +4,7 @@ import grammar.ini.node.Start;
 import grammar.ini.parser.Parser;
 import grammar.ini.parser.ParserException;
 import sun.misc.IOUtils;
+import static java.nio.file.StandardCopyOption.*;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -40,6 +41,7 @@ public class Main {
 
     private static File addLibrary(File file) throws IOException {
         File outFile = new File("Test", "out.bfgl");
+
         FileInputStream instream = null;
         FileOutputStream outstream = null;
 
@@ -47,7 +49,7 @@ public class Main {
             File infile = new File("Library", "GameClasses");
 
 
-            Files.copy(file.toPath(), outFile.toPath());
+            Files.copy(file.toPath(), outFile.toPath(), REPLACE_EXISTING);
 
             instream = new FileInputStream(infile);
             outstream = new FileOutputStream(outFile, true);

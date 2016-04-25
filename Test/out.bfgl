@@ -1,4 +1,25 @@
+dcl num gl
+dcl num gl2
 
+Main begin
+
+end
+
+class Player is Sprite begin
+
+    dcl num abe
+
+    onConstruct() do
+        set abe to gl
+        dcl text bos to "Bosseso"
+    end
+end
+class Enemy is Sprite begin
+    dcl num gl
+
+
+
+end
 class Math begin
     dcl func roundUp(num numToBeRounded) begin
 
