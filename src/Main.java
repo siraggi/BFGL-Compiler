@@ -16,9 +16,8 @@ public class Main {
     {
         TypeChecker typeChecker = new TypeChecker();
         File file = new File("Test", "BFGLtest.bfgl");
-        //addLibrary(file);
 
-        PushbackReader pushbackReader = new PushbackReader(new FileReader(file));
+        PushbackReader pushbackReader = new PushbackReader(new FileReader(addLibrary(file)));
         Parser parser = new Parser(new Lexer(pushbackReader));
         Start tree = parser.parse();
 
@@ -38,16 +37,19 @@ public class Main {
         AEx.executeAntTask("CompileBFGL.xml", "run");
     }
 
-    private static void addLibrary(File file) throws IOException {
+    private static File addLibrary(File file) throws IOException {
+        File outFile = new File("Test", "out.bfgl");
         FileInputStream instream = null;
         FileOutputStream outstream = null;
 
         try{
             File infile = new File("Library", "GameClasses");
-            File outfile = file;
+
+
+            Files.copy(file.toPath(), outFile.toPath());
 
             instream = new FileInputStream(infile);
-            outstream = new FileOutputStream(outfile, true);
+            outstream = new FileOutputStream(outFile, true);
 
             byte[] buffer = new byte[1024];
 
@@ -68,5 +70,7 @@ public class Main {
         }catch(IOException ioe){
             ioe.printStackTrace();
         }
+
+        return outFile;
     }
 }
