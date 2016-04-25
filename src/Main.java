@@ -31,10 +31,11 @@ public class Main {
         }
         else{
             new JavaCodeGenerator(typeChecker.typeTable, typeChecker.superTable, tree);
+            AntExecutor AEx = new AntExecutor();
+            AEx.executeAntTask("CompileBFGL.xml", "run");
         }
 
-        AntExecutor AEx = new AntExecutor();
-        AEx.executeAntTask("CompileBFGL.xml", "run");
+
     }
 
     private static File addLibrary(File file) throws IOException {

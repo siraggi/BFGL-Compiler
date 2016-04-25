@@ -1,38 +1,39 @@
+
 class Math begin
     dcl func roundUp(num numToBeRounded) begin
 
-    return
+    end
 
     dcl func roundDown(num numToBeRounded) begin
 
-    return
+    end
 
     dcl func round(num numToBeRounded) begin
 
-    return
+    end
 
     dcl func sqrt(num numToSqr) begin
 
-    return
+    end
 
     dcl func pwr(num howMuchToPower) begin
 
-    return
+    end
 
     dcl func getRandomNum(num lowerBound, num upperBound) begin
 
-    return
+    end
 end
 
 class GameContainer begin
-    num deltatime
+    dcl num deltatime
 
     dcl func GetSystemTime() begin
 
-    return
+    end
 
-    num width
-    num height
+    dcl num width
+    dcl num height
 
     dcl list of Sprite Sprites
 
@@ -49,16 +50,18 @@ class Timer begin
 
     dcl func Stop() begin
 
-    return
+    end
 
     dcl func Reset() begin
 
-    return
+    end
 end
 class Input begin
 
 end
 
 class Sprite begin
+    dcl func update() begin
 
+    end
 end
