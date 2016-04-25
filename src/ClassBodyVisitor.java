@@ -33,7 +33,7 @@ public class ClassBodyVisitor extends VisitorBase {
 
         for (Node p : node.getParams()){
             switch (((AFormalParam)p).getType().toString().trim()){
-                case("num "):
+                case("num"):
                     emit("float "); break;
                 case("text"):
                     emit("String "); break;
