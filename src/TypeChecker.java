@@ -381,6 +381,26 @@ public class TypeChecker extends DepthFirstAdapter{
         addType(node, node.getId().getText());
     }
 
+    public void outAThisVal(AThisVal node){
+        addType(node, getClassName(node));
+    }
+
+    private String getClassName(Node node){
+        String s = ERRORTYPE;
+        Node currentNode = node;
+
+        while (currentNode != null && !(currentNode.parent() instanceof AClassPdcl)){
+            currentNode = currentNode.parent();
+        }
+
+        if(currentNode instanceof AClassPdcl){
+            AClassPdcl dcl = (AClassPdcl)currentNode;
+            s = dcl.getId().getText().trim();
+        }
+
+        return s;
+    }
+
     public void outAValExpr(AValExpr node){
         if(typeTable.get(node.getVal()) != null)
             addType(node, typeTable.get(node.getVal()));
