@@ -33,7 +33,7 @@ public class Main {
         else{
             new JavaCodeGenerator(typeChecker.typeTable, typeChecker.superTable, tree);
             AntExecutor AEx = new AntExecutor();
-            AEx.executeAntTask("CompileBFGL.xml", "run");
+            AEx.executeAntTask("CompileBFGL.xml", "jar");
         }
 
 

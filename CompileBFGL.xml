@@ -55,14 +55,26 @@
         </target>
 
         <target name="jar" depends="compile">
-                <jar destfile="CompiledGame/${nameOfTheGame}.jar" basedir="CompiledGame" includes="*.class"/>
+                <jar destfile="CompiledGame/${nameOfTheGame}.jar" basedir="CompiledGame/CompilationOUT" includes="*.class">
+                        <zipgroupfileset dir="Library" includes="*.jar"/>
+                        <zipgroupfileset dir="Library/SlickLib" includes="*.jar"/>
+                        <manifest>
+                                <attribute name="Main-Class" value="Main"/>
+                        </manifest>
+                </jar>
                 <!--- <antcall target="TargetSystem"/> -->
 
-                <antcall target="cleanCompOUT"/>
+                <copy todir="CompiledGame">
+                        <fileset dir="Library/windows">
+                                <include name="*.dll"/>
+                        </fileset>
+                </copy>
+
+               <antcall target="cleanCompOUT"/>
         </target>
 
         <target name="run" depends="jar">
-                <java jar="CompiledGame/${nameOfTheGame}.jar" classname="Main" fork="true"/>
+                <java jar="CompiledGame/${nameOfTheGame}.jar" fork="true"/>
         </target>
 
 

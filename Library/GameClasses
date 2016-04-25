@@ -37,7 +37,7 @@ class GameContainer begin
 
     dcl list of Sprite Sprites
 
-    dcl string pathToBackGround
+    dcl text pathToBackground
 
 end
 
