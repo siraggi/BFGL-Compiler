@@ -60,7 +60,6 @@ public class ClassBodyVisitor extends VisitorBase {
 
     public void outAFuncPdcl(AFuncPdcl node){
         emit("public " + (typeTable.get(node) == null? "void" : typeTable.get(node)) + " " + node.getId().getText() + "(");
-
         for (Node p : node.getParams()){
             switch (((AFormalParam)p).getType().toString().trim()){
                 case("num"):

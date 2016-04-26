@@ -3,11 +3,14 @@ import grammar.ini.node.Node;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Hashtable;
+import java.util.List;
 
 /**
  * Created by august on 18/04/16.
  */
+
 public class VisitorBase extends DepthFirstAdapter {
     protected BufferedWriter bw;
     protected Hashtable<Node, String> typeTable;
@@ -57,5 +60,15 @@ public class VisitorBase extends DepthFirstAdapter {
         }
 
         return root;
+    }
+
+    protected boolean checkIfStatic(String nameOfClass){
+        List<String> StaticClasses = Arrays.asList("Game", "Math", "Timer", "Input", "Keyboard", "Key", "Sprite", "List");
+        for (String staticClass : StaticClasses) {
+            if (nameOfClass.equals(staticClass)){
+                return true;
+            }
+        }
+        return false;
     }
 }

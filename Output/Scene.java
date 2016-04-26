@@ -21,7 +21,9 @@ public class Scene extends BasicGame{
     }
 
     public void init(GameContainer gc) throws SlickException {
-Player player = Player ;
+Player player =  new Player();
+
+
     }
 
     public void update(GameContainer gc, int delta) throws SlickException {
