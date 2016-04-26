@@ -28,6 +28,36 @@ public class ClassBodyVisitor extends VisitorBase {
                 emitnl("public " + node.getType().toString().trim() + " " + node.getId().getText() + ";"); break;
         }
     }
+
+    public void outAVarasgPdcl(AVarasgPdcl node) {
+        if(!node.visited){
+            node.visited = true;
+
+            switch (node.getType().toString().trim()) {
+                case ("num"):
+                    emit("float " + node.getId().getText() + " = ");
+                    node.apply(new ExpressionVisitor(bw, typeTable, superTable));
+                    emitnl(";");
+                    break;
+                case ("text"):
+                    emit("String " + node.getId().getText() + " = ");
+                    node.apply(new ExpressionVisitor(bw, typeTable, superTable));
+                    emitnl(";");
+                    break;
+                case ("bool"):
+                    emit("bool " + node.getId().getText() + " = ");
+                    node.apply(new ExpressionVisitor(bw, typeTable, superTable));
+                    emitnl(";");
+                    break;
+                default:
+                    emit(node.getType().toString().trim() + " " + node.getId().getText() + " = ");
+                    node.apply(new ExpressionVisitor(bw, typeTable, superTable));
+                    emitnl(";");
+                    break;
+            }
+        }
+    }
+
     public void outAFuncPdcl(AFuncPdcl node){
         emit("public " + (typeTable.get(node) == null? "void" : typeTable.get(node)) + " " + node.getId().getText() + "(");
 

@@ -61,8 +61,6 @@ public class FuncBodyVisitor extends VisitorBase {
                     break;
             }
         }
-
-
     }
 
     public void inAAssignmentStmt(AAssignmentStmt node) {
@@ -111,6 +109,18 @@ public class FuncBodyVisitor extends VisitorBase {
         emit("for(" + node.getId().getText() + " ; " + node.getId().getText() + " < ");
         node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
         emitnl(" ; " + node.getId().getText() + "++){");
+
+        for(Node n : node.getStmt()){
+            n.apply(this);
+        }
+
+        emitnl("}");
+    }
+
+    public void inAFordownStmt(AFordownStmt node){
+        emit("for(" + node.getId().getText() + " ; " + node.getId().getText() + " > ");
+        node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
+        emitnl(" ; " + node.getId().getText() + "--){");
 
         for(Node n : node.getStmt()){
             n.apply(this);
