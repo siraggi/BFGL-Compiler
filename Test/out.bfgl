@@ -12,6 +12,7 @@ class Test begin
 
     OnConstruct() do
         base()
+        
     end
 
 end
