@@ -39,16 +39,13 @@ public class VisitorBase extends DepthFirstAdapter {
     }
 
     protected void AddNameSpaces(){
-        emitnl("import java.lang;");
-        emitnl("import java.util;");
-        emitnl("import java.io;");
-        emitnl("import java.util.regex;");
-        emitnl("import java.text;");
-        emitnl("import java.swing;");
-        emitnl("import java.awt;");
-        emitnl("import java.nio;");
-        emitnl("import java.math;");
-        emitnl("import java.applet;");
-        emitnl("import org.newdawn.slick;");
+        emitnl("import java.lang.*;");
+        emitnl("import java.util.*;");
+        emitnl("import java.io.*;");
+        emitnl("import java.text.*;");
+        emitnl("import java.awt.*;");
+        emitnl("import java.nio.*;");
+        emitnl("import java.math.*;");
+        emitnl("import org.newdawn.slick.*;");
     }
 }

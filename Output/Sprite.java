@@ -1,11 +1,11 @@
-import java.lang;
-import java.util;
-import java.io;
-import java.util.regex;
-import java.text;
-import java.swing;
-import java.awt.event;
-import java.nio;
+import java.lang.*;
+import java.util.*;
+import java.io.*;
+import java.text.*;
+import java.awt.*;
+import java.nio.*;
+import java.math.*;
+import org.newdawn.slick.*;
 public class Sprite{
 public void update(){
 

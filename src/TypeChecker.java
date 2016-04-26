@@ -408,7 +408,7 @@ public class TypeChecker extends DepthFirstAdapter {
         Node currentNode = node;
         AClassPdcl dcl = null;
 
-        while (currentNode != null && !(currentNode.parent() instanceof AClassPdcl)) {
+        while (currentNode != null && !(currentNode instanceof AClassPdcl)) {
             currentNode = currentNode.parent();
         }
 
