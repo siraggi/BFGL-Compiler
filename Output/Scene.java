@@ -25,14 +25,14 @@ public class Scene extends BasicGame{
     }
 
     public void update(GameContainer gc, int delta) throws SlickException {
-        for(Sprite s : Global.game.Sprites) {
-            s.update();
-        }
+        //for(Sprite s : Global.game.Sprites) {
+        //    s.update();
+        //}
     }
 
     public void render(GameContainer gc, Graphics g) throws SlickException {
         for(Sprite s : Global.game.Sprites) {
-            g.draw(new Rectangle(5,5,5,5));
+            g.draw(new Rectangle(50, 50, 50, 50));
         }
     }
 

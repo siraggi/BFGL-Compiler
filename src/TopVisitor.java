@@ -145,7 +145,7 @@ public class TopVisitor extends VisitorBase{
             if(!sceneFile.exists()){
                 throw new IOException("Scene library not copied! fatal error");
             }
-            lines = Files.readAllLines(sceneFile.toPath());
+            //lines = Files.readAllLines(sceneFile.toPath());
         }
         catch (IOException ioerr){
 

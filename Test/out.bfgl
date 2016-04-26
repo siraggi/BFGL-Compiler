@@ -1,4 +1,4 @@
-dcl Game game
+dcl Game game to new Game()
 
 Main begin
     dcl Player player to new Player()

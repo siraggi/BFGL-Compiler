@@ -161,12 +161,52 @@ public class ExpressionVisitor extends VisitorBase {
         }
     }
 
-    public void inAValExpr(AValExpr node) {
+
+
+    public void inAConstrVal(AConstrVal node){
+        if(!node.visited){
+            node.visited = true;
+
+            emit(" new " + node.getId().getText() + "(");
+
+            for (Node p : node.getParam()){
+                p.apply(this);
+
+                if(!p.equals(node.getParam().getLast())){
+                    emit(", ");
+                }
+            }
+
+            emit(")");
+        }
+    }
+
+    public void inANumVal(ANumVal node) {
         if (!node.visited) {
-            emit(node.getVal().toString());
+            emit(node.getNumval().getText());
             node.visited = true;
         }
+    }
 
+    public void inATextVal(ATextVal node) {
+        if (!node.visited) {
+            emit(node.getTextval().getText());
+            node.visited = true;
+        }
+    }
+
+    public void inABoolVal(ABoolVal node) {
+        if (!node.visited) {
+            emit(node.getBoolval().getText());
+            node.visited = true;
+        }
+    }
+
+    public void inAThisVal(AThisVal node) {
+        if (!node.visited) {
+            emit(node.getThis().getText());
+            node.visited = true;
+        }
     }
 
     public void inAIdExpr(AIdExpr node) {
@@ -255,6 +295,7 @@ public class ExpressionVisitor extends VisitorBase {
 
             emit(")");
         }
-
     }
+
+
 }

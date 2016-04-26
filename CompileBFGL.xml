@@ -4,7 +4,7 @@
         <property name="osxLib" value="Library/osx"/>
         <property name="slickLib" value="Library/SlickLib"/>
         <property name="nameOfTheGame" value="hax"/>
-        <property name="targetSystem" value="win"/>
+        <property name="targetSystem" value="osx"/>
 
         <path id="classPath">
                 <fileset dir="Library/SlickLib">
@@ -65,8 +65,8 @@
                 <!--- <antcall target="TargetSystem"/> -->
 
                 <copy todir="CompiledGame">
-                        <fileset dir="Library/windows">
-                                <include name="*.dll"/>
+                        <fileset dir="Library/macosx">
+                                <include name="*.dylib"/>
                         </fileset>
                 </copy>
 

@@ -1,1 +1,1 @@
-Game game;
+Game game =  new Game();
