@@ -1,11 +1,12 @@
+dcl list of Sprite Sprites
 Main begin
-    Player player = new Player()
+    dcl Player player to new Player()
 end
 
 class Player is Sprite begin
 
-    OnInput() do
-
+    OnInput(Input key) do
+    Sprites.add()
     end
 
 end

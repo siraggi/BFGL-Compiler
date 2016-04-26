@@ -1,11 +1,12 @@
+dcl list of Sprite Sprites
 Main begin
-    Player player = new Player()
+    dcl Player player to new Player()
 end
 
 class Player is Sprite begin
 
-    OnInput() do
-
+    OnInput(Input key) do
+    Sprites.add()
     end
 
 end
@@ -72,8 +73,6 @@ class Input begin
 end
 
 class Keyboard begin
-    dcl Key w
-    dcl Key
 end
 
 class Key begin
@@ -82,6 +81,12 @@ end
 
 class Sprite begin
     dcl func update() begin
+
+    end
+end
+
+class List begin
+    dcl func add() begin
 
     end
 end

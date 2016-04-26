@@ -62,131 +62,6 @@ class Input begin
 end
 
 class Keyboard begin
-    dcl Key VOID
-            dcl Key ESCAPE
-            dcl Key _1
-            dcl Key _2
-            dcl Key _3
-            dcl Key _4
-            dcl Key _5
-            dcl Key _6
-            dcl Key _7
-            dcl Key _8
-            dcl Key _9
-            dcl Key _0
-            dcl Key MINUS
-            dcl Key EQUALS
-            dcl Key BACK
-            dcl Key TAB
-            dcl Key Q
-            dcl Key W
-            dcl Key E
-            dcl Key R
-            dcl Key T
-            dcl Key Y
-            dcl Key U
-            dcl Key I
-            dcl Key O
-            dcl Key P
-            dcl Key LBRACKET
-            dcl Key RBRACKET
-            dcl Key RETURN
-            dcl Key LCONTROL
-            dcl Key A
-            dcl Key S
-            dcl Key D
-            dcl Key F
-            dcl Key G
-            dcl Key H
-            dcl Key J
-            dcl Key K
-            dcl Key L
-            dcl Key SEMICOLON
-            dcl Key APOSTROPHE
-            dcl Key GRAVE
-            dcl Key LSHIFT
-            dcl Key BACKSLASH
-            dcl Key Z
-            dcl Key X
-            dcl Key C
-            dcl Key V
-            dcl Key B
-            dcl Key N
-            dcl Key M
-            dcl Key COMMA
-            dcl Key PERIOD
-            dcl Key SLASH
-            dcl Key RSHIFT
-            dcl Key MULTIPLY
-            dcl Key LALT
-            dcl Key SPACE
-            dcl Key CAPITAL
-            dcl Key F1
-            dcl Key F2
-            dcl Key F3
-            dcl Key F4
-            dcl Key F5
-            dcl Key F6
-            dcl Key F7
-            dcl Key F8
-            dcl Key F9
-            dcl Key F10
-            dcl Key NUMLOCK
-            dcl Key SCROLL
-            dcl Key NUMPAD7
-            dcl Key NUMPAD8
-            dcl Key NUMPAD9
-            dcl Key SUBTRACT
-            dcl Key NUMPAD4
-            dcl Key NUMPAD5
-            dcl Key NUMPAD6
-            dcl Key ADD
-            dcl Key NUMPAD1
-            dcl Key NUMPAD2
-            dcl Key NUMPAD3
-            dcl Key NUMPAD0
-            dcl Key DECIMAL
-            dcl Key F11
-            dcl Key F12
-            dcl Key F13
-            dcl Key F14
-            dcl Key F15
-            dcl Key KANA
-            dcl Key CONVERT
-            dcl Key NOCONVERT
-            dcl Key YEN
-            dcl Key NUMPADEQUAL
-            dcl Key CIRCUMFLEX
-            dcl Key AT
-            dcl Key COLON
-            dcl Key UNDERLINE
-            dcl Key KANJI
-            dcl Key STOP
-            dcl Key AX
-            dcl Key UNLABELED
-            dcl Key NUMPADENTER
-            dcl Key RCONTROL
-            dcl Key NUMPADCOMMA
-            dcl Key DIVIDE
-            dcl Key SYSRQ
-            dcl Key RALT
-            dcl Key PAUSE
-            dcl Key HOME
-            dcl Key UP
-            dcl Key PAGEUP
-            dcl Key LEFT
-            dcl Key RIGHT
-            dcl Key END
-            dcl Key DOWN
-            dcl Key PAGEDOWN
-            dcl Key INSERT
-            dcl Key DELETE
-            dcl Key LWIN
-            dcl Key RWIN
-            dcl Key APPS
-            dcl Key POWER
-            dcl Key SLEEP
-            dcl Key UNKNOWN
 end
 
 class Key begin
@@ -195,6 +70,12 @@ end
 
 class Sprite begin
     dcl func update() begin
+
+    end
+end
+
+class List begin
+    dcl func add() begin
 
     end
 end
