@@ -137,13 +137,31 @@ public class TopVisitor extends VisitorBase{
 
     public void inAMainPdcl(AMainPdcl node){
         File sceneFile = new File("Output/Scene.java");
-        int lineToInjectAt = 0;
-        BufferedWriter bw;
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(sceneFile)));
+        File tempSceneFile = new File("Output/tempSceneFile.java");
+
 
         try {
+            List<String> lines = Files.readAllLines(sceneFile.toPath());
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tempSceneFile)));
+            tempSceneFile.createNewFile();
             if(!sceneFile.exists()){
                 throw new IOException("Scene library not copied! fatal error");
+            }
+
+            for (int linepos  = 0; linepos < lines.size(); linepos++) {
+
+                if (lines.get(linepos).contains("TAGPUTMAINHERE")){
+                    node.apply(new FuncBodyVisitor(bw, typeTable, superTable));
+                }
+                else{
+                    bw.write(lines.get(linepos));
+                    bw.newLine();
+                }
+            }
+            Files.deleteIfExists(sceneFile.toPath());
+            bw.close();
+            if (!(tempSceneFile.renameTo(new File("Output/Scene.java")))){
+                throw new IOException("Could not rename scene.java!");
             }
 
         }
