@@ -136,16 +136,16 @@ public class TopVisitor extends VisitorBase{
     }
 
     public void inAMainPdcl(AMainPdcl node){
-        File sceneFile;
+        File sceneFile = new File("Output/Scene.java");
         int lineToInjectAt = 0;
-        sceneFile = new File("Output/Scene.java");
+        BufferedWriter bw;
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(sceneFile)));
 
         try {
-            List<String> lines;
             if(!sceneFile.exists()){
                 throw new IOException("Scene library not copied! fatal error");
             }
-            lines = Files.readAllLines(sceneFile.toPath());
+
         }
         catch (IOException ioerr){
 
