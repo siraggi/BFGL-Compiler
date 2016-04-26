@@ -49,5 +49,6 @@ public class VisitorBase extends DepthFirstAdapter {
         emitnl("import java.nio;");
         emitnl("import java.math;");
         emitnl("import java.applet;");
+        emitnl("import org.newdawn.slick;");
     }
 }
