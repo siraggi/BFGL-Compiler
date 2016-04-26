@@ -45,7 +45,9 @@ public class VisitorBase extends DepthFirstAdapter {
         emitnl("import java.util.regex;");
         emitnl("import java.text;");
         emitnl("import java.swing;");
-        emitnl("import java.awt.event;");
+        emitnl("import java.awt;");
         emitnl("import java.nio;");
+        emitnl("import java.math;");
+        emitnl("import java.applet;");
     }
 }

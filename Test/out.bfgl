@@ -10,6 +10,10 @@ class Test begin
         dcl num abe to player.test
     end
 
+    OnConstruct() do
+        base()
+    end
+
 end
 
 class Player is Sprite begin
