@@ -1,10 +1,19 @@
 dcl list of Sprite Sprites
 Main begin
     dcl Player player to new Player()
+    player.test
+end
+
+class Test begin
+    dcl Player player to new Player()
+    dcl func test123() begin
+        dcl num abe to player.test
+    end
+
 end
 
 class Player is Sprite begin
-
+    dcl num test to 5
     OnInput(Input key) do
     Sprites.add()
     end

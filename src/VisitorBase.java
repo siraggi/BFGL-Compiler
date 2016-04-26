@@ -37,4 +37,15 @@ public class VisitorBase extends DepthFirstAdapter {
             e.printStackTrace();
         }
     }
+
+    protected void AddNameSpaces(){
+        emitnl("import java.lang;");
+        emitnl("import java.util;");
+        emitnl("import java.io;");
+        emitnl("import java.util.regex;");
+        emitnl("import java.text;");
+        emitnl("import java.swing;");
+        emitnl("import java.awt.event;");
+        emitnl("import java.nio;");
+    }
 }

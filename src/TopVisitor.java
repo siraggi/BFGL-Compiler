@@ -31,6 +31,8 @@ public class TopVisitor extends VisitorBase{
             fw = new FileWriter(file.getAbsoluteFile());
             bw = new BufferedWriter(fw);
 
+            AddNameSpaces();
+
             emitnl("public class " + className + "{");
             node.apply(new ClassBodyVisitor(bw, typeTable, superTable, name));
             emitnl("}");
@@ -56,6 +58,9 @@ public class TopVisitor extends VisitorBase{
 
             fw = new FileWriter(file.getAbsoluteFile());
             bw = new BufferedWriter(fw);
+
+            AddNameSpaces();
+
 
             emitnl("public class " + className + " extends " + inherit + "{");
             node.apply(new ClassBodyVisitor(bw, typeTable, superTable, name));
@@ -84,6 +89,8 @@ public class TopVisitor extends VisitorBase{
             fw = new FileWriter(dump.getAbsoluteFile());
             bw = new BufferedWriter(fw);
 
+
+
             for(Node n : node.getGlobaldcl()){
                 n.apply(new FuncBodyVisitor(bw, typeTable, superTable));
             }
@@ -98,7 +105,7 @@ public class TopVisitor extends VisitorBase{
 
             fw = new FileWriter(global.getAbsoluteFile());
             bw = new BufferedWriter(fw);
-
+            AddNameSpaces();
             bw.write("public final class Global {");
             bw.newLine();
             bw.write("private Global(){ }");
@@ -109,7 +116,7 @@ public class TopVisitor extends VisitorBase{
 
             String s;
             while ((s = br.readLine()) != null){
-                bw.write("static " + s);
+                bw.write("public static " + s);
                 bw.newLine();
             }
 
@@ -127,4 +134,6 @@ public class TopVisitor extends VisitorBase{
         else
             newCLass(node.getId().getText(), ((AInherit)node.getInherit()).getType().toString(), node, node.getId().getText());
     }
+
+
 }
