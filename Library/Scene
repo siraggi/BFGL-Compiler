@@ -12,12 +12,12 @@ import org.newdawn.slick.Color;
 
 public class Scene extends BasicGame{
 
-    public ArrayList<Sprite> Sprites;
+   // public ArrayList<Sprite> Sprites;
 
     public Scene(String gamename)
     {
     		super(gamename);
-    		Sprites = new ArrayList<>();
+    		//Sprites = new ArrayList<>();
     }
 
     public void init(GameContainer gc) throws SlickException {
@@ -25,13 +25,13 @@ public class Scene extends BasicGame{
     }
 
     public void update(GameContainer gc, int delta) throws SlickException {
-        for(Sprite s : Sprites) {
+        for(Sprite s : Global.game.Sprites) {
             s.update();
         }
     }
 
     public void render(GameContainer gc, Graphics g) throws SlickException {
-        for(Sprite s : Sprites) {
+        for(Sprite s : Global.game.Sprites) {
             g.draw(new Rectangle(5,5,5,5));
         }
     }
