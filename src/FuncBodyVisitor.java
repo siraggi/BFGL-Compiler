@@ -136,4 +136,58 @@ public class FuncBodyVisitor extends VisitorBase {
 
         }
     }
+
+    public void inAClassCall(AClassCall node){
+        if(!node.visited){
+            node.visited = true;
+
+            if(node.getFirst() instanceof AFuncCall){
+                AFuncCall f = (AFuncCall) node.getFirst();
+                emit(f.getId().getText());
+                emit("(");
+
+                for (Node p : f.getParams()){
+                    p.apply(this);
+
+                    if(!p.equals(f.getParams().getLast())){
+                        emit(", ");
+                    }
+                }
+
+                emit(")");
+            }else if(node.getFirst() instanceof AVarCall){
+                AVarCall v = (AVarCall)node.getFirst();
+
+                emit(v.getId().getText());
+            }
+
+            emit(".");
+
+            for(Node n : node.getRest()){
+                if(n instanceof AFuncCall){
+                    AFuncCall f = (AFuncCall) n;
+                    emit(f.getId().getText());
+                    emit("(");
+
+                    for (Node p : f.getParams()){
+                        p.apply(this);
+
+                        if(!p.equals(f.getParams().getLast())){
+                            emit(", ");
+                        }
+                    }
+
+                    emit(")");
+                }else if(n instanceof AVarCall){
+                    AVarCall v = (AVarCall) n;
+
+                    emit(v.getId().getText());
+                }
+
+                if(n != node.getRest().getLast()){
+                    emit(".");
+                }
+            }
+        }
+    }
 }
