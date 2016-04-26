@@ -1,11 +1,11 @@
 
-import grammar.ini.node.AClassPdcl;
-import grammar.ini.node.AInherit;
-import grammar.ini.node.AProg;
-import grammar.ini.node.Node;
+import com.sun.jndi.toolkit.url.Uri;
+import grammar.ini.node.*;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.Hashtable;
+import java.util.List;
 
 /**
  * Created by august on 18/04/16.
@@ -135,5 +135,20 @@ public class TopVisitor extends VisitorBase{
             newCLass(node.getId().getText(), ((AInherit)node.getInherit()).getType().toString(), node, node.getId().getText());
     }
 
+    public void inAMainPdcl(AMainPdcl node){
+        File sceneFile;
+        int lineToInjectAt = 0;
+        sceneFile = new File("Output/Scene.java");
 
+        try {
+            List<String> lines;
+            if(!sceneFile.exists()){
+                throw new IOException("Scene library not copied! fatal error");
+            }
+            lines = Files.readAllLines(sceneFile.toPath());
+        }
+        catch (IOException ioerr){
+
+        }
+    }
 }

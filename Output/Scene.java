@@ -21,7 +21,7 @@ public class Scene extends BasicGame{
     }
 
     public void init(GameContainer gc) throws SlickException {
-        /* PUT MAIN HERE */
+        /*TAGPUTMAINHERE*/
     }
 
     public void update(GameContainer gc, int delta) throws SlickException {
