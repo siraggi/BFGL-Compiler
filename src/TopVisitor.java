@@ -130,7 +130,11 @@ public class TopVisitor extends VisitorBase{
 
     public void inAClassPdcl(AClassPdcl node){
         if (checkIfStatic(node.getId().getText())){
-
+            try {
+                addLibrary(node.getId().getText(), node.getId().getText());
+            }
+            catch (IOException ioerr){
+            }
         }
         else{
             if(node.getInherit() == null)
