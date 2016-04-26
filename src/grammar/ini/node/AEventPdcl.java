@@ -13,6 +13,7 @@ public final class AEventPdcl extends PPdcl
 {
     private TId _id_;
     private final LinkedList<PParam> _params_ = new LinkedList<PParam>();
+    private PBase _base_;
     private final LinkedList<PStmt> _body_ = new LinkedList<PStmt>();
 
     public AEventPdcl()
@@ -23,12 +24,15 @@ public final class AEventPdcl extends PPdcl
     public AEventPdcl(
         @SuppressWarnings("hiding") TId _id_,
         @SuppressWarnings("hiding") List<?> _params_,
+        @SuppressWarnings("hiding") PBase _base_,
         @SuppressWarnings("hiding") List<?> _body_)
     {
         // Constructor
         setId(_id_);
 
         setParams(_params_);
+
+        setBase(_base_);
 
         setBody(_body_);
 
@@ -40,6 +44,7 @@ public final class AEventPdcl extends PPdcl
         return new AEventPdcl(
             cloneNode(this._id_),
             cloneList(this._params_),
+            cloneNode(this._base_),
             cloneList(this._body_));
     }
 
@@ -100,6 +105,31 @@ public final class AEventPdcl extends PPdcl
         }
     }
 
+    public PBase getBase()
+    {
+        return this._base_;
+    }
+
+    public void setBase(PBase node)
+    {
+        if(this._base_ != null)
+        {
+            this._base_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._base_ = node;
+    }
+
     public LinkedList<PStmt> getBody()
     {
         return this._body_;
@@ -132,6 +162,7 @@ public final class AEventPdcl extends PPdcl
         return ""
             + toString(this._id_)
             + toString(this._params_)
+            + toString(this._base_)
             + toString(this._body_);
     }
 
@@ -147,6 +178,12 @@ public final class AEventPdcl extends PPdcl
 
         if(this._params_.remove(child))
         {
+            return;
+        }
+
+        if(this._base_ == child)
+        {
+            this._base_ = null;
             return;
         }
 
@@ -184,6 +221,12 @@ public final class AEventPdcl extends PPdcl
                 oldChild.parent(null);
                 return;
             }
+        }
+
+        if(this._base_ == oldChild)
+        {
+            setBase((PBase) newChild);
+            return;
         }
 
         for(ListIterator<PStmt> i = this._body_.listIterator(); i.hasNext();)

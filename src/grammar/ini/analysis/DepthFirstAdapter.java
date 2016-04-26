@@ -233,6 +233,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
                 e.apply(this);
             }
         }
+        if(node.getBase() != null)
+        {
+            node.getBase().apply(this);
+        }
         {
             List<PStmt> copy = new ArrayList<PStmt>(node.getBody());
             for(PStmt e : copy)

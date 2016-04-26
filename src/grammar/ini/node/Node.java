@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class Node implements Switchable, Cloneable
 {
     private Node parent;
-    public boolean visited;
+    public boolean visited = false;
 
     @Override
     public abstract Object clone();

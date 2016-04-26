@@ -235,6 +235,10 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
                 e.apply(this);
             }
         }
+        if(node.getBase() != null)
+        {
+            node.getBase().apply(this);
+        }
         {
             List<PParam> copy = new ArrayList<PParam>(node.getParams());
             Collections.reverse(copy);
