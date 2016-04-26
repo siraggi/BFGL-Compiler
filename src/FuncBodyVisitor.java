@@ -1,3 +1,4 @@
+import grammar.ini.GlobalCheck;
 import grammar.ini.node.*;
 
 import java.io.BufferedWriter;
@@ -132,7 +133,7 @@ public class FuncBodyVisitor extends VisitorBase {
     public void inAListPdcl(AListPdcl node){
         if (!node.visited){
             node.visited = true;
-            emitnl(" ArrayList<" + node.getType().toString().trim() + "> " + node.getId().getText() + " = new ArrayList<>();");
+            emitnl("ArrayList<" + node.getType().toString().trim() + "> " + node.getId().getText() + " = new ArrayList<>();");
 
         }
     }
@@ -143,6 +144,14 @@ public class FuncBodyVisitor extends VisitorBase {
 
             if(node.getFirst() instanceof AFuncCall){
                 AFuncCall f = (AFuncCall) node.getFirst();
+
+                GlobalCheck gc = new GlobalCheck(f.getId().getText(), f);
+
+                getRoot(node).apply(gc);
+
+                if(gc.global)
+                    emit("Global.");
+
                 emit(f.getId().getText());
                 emit("(");
 
@@ -158,27 +167,20 @@ public class FuncBodyVisitor extends VisitorBase {
             }else if(node.getFirst() instanceof AVarCall){
                 AVarCall v = (AVarCall)node.getFirst();
 
+                GlobalCheck gc = new GlobalCheck(v.getId().getText(), v);
+
+                getRoot(node).apply(gc);
+
+                if(gc.global)
+                    emit("Global.");
+
                 emit(v.getId().getText());
             }
 
             emit(".");
 
             for(Node n : node.getRest()){
-                if(n instanceof AFuncCall){
-                    AFuncCall f = (AFuncCall) n;
-                    emit(f.getId().getText());
-                    emit("(");
-
-                    for (Node p : f.getParams()){
-                        p.apply(this);
-
-                        if(!p.equals(f.getParams().getLast())){
-                            emit(", ");
-                        }
-                    }
-
-                    emit(")");
-                }else if(n instanceof AVarCall){
+                if(n instanceof AVarCall){
                     AVarCall v = (AVarCall) n;
 
                     emit(v.getId().getText());

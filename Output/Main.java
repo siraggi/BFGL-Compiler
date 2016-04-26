@@ -10,7 +10,7 @@ public class Main {
 		try
 		{
 			AppGameContainer appgc;
-			appgc = new AppGameContainer(new Scene("fak u - Game"));
+			appgc = new AppGameContainer(new Scene("BFGL - Game"));
 			appgc.setDisplayMode(640, 480, false);
 			appgc.start();
 		}

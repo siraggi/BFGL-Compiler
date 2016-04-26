@@ -257,14 +257,4 @@ public class ExpressionVisitor extends VisitorBase {
         }
 
     }
-
-    private Node getRoot(Node node){
-        Node root = node;
-
-        while (root.parent() != null){
-            root = root.parent();
-        }
-
-        return root;
-    }
 }

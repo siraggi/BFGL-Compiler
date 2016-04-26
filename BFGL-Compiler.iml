@@ -11,5 +11,7 @@
     <orderEntry type="library" name="ant" level="project" />
     <orderEntry type="library" name="ant-launcher" level="project" />
     <orderEntry type="library" name="slick" level="project" />
+    <orderEntry type="library" name="ant" level="project" />
+    <orderEntry type="library" name="ant-launcher" level="project" />
   </component>
 </module>

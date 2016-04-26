@@ -1,5 +1,20 @@
-Main begin
+dcl Game game
 
+Main begin
+    dcl Player player to new Player()
+end
+
+class Player is Sprite begin
+
+    OnConstruct() do
+        base(10, 10, 10, 10)
+
+
+    end
+
+    dcl func asd() begin
+        game.Sprites.add(this)
+    end
 end
 
 class Math begin
@@ -78,7 +93,7 @@ class Sprite begin
 end
 
 class List begin
-    dcl func add() begin
+    dcl func add(Sprite sprite) begin
 
     end
 end

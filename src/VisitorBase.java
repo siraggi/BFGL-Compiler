@@ -48,4 +48,14 @@ public class VisitorBase extends DepthFirstAdapter {
         emitnl("import java.math.*;");
         emitnl("import org.newdawn.slick.*;");
     }
+
+    protected Node getRoot(Node node){
+        Node root = node;
+
+        while (root.parent() != null){
+            root = root.parent();
+        }
+
+        return root;
+    }
 }

@@ -110,4 +110,12 @@ public class ClassBodyVisitor extends VisitorBase {
 
         emitnl("}");
     }
+
+    public void inAListPdcl(AListPdcl node){
+        if (!node.visited){
+            node.visited = true;
+            emitnl("ArrayList<" + node.getType().toString().trim() + "> " + node.getId().getText() + " = new ArrayList<>();");
+
+        }
+    }
 }

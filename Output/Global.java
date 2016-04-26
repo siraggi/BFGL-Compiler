@@ -8,4 +8,5 @@ import java.math.*;
 import org.newdawn.slick.*;
 public final class Global {
 private Global(){ }
+public static Game game;
 }

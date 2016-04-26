@@ -75,7 +75,7 @@ class Sprite begin
 end
 
 class List begin
-    dcl func add() begin
+    dcl func add(Sprite sprite) begin
 
     end
 end

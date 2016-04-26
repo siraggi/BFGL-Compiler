@@ -30,7 +30,11 @@ public class Scene extends BasicGame{
         }
     }
 
-    public void render(GameContainer gc, Graphics g){}
+    public void render(GameContainer gc, Graphics g) throws SlickException {
+        for(Sprite s : Sprites) {
+            g.draw(new Rectangle(5,5,5,5));
+        }
+    }
 
 
 

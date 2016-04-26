@@ -9,6 +9,13 @@ import java.util.Stack;
  * Created by august on 24/03/16.
  */
 public class TableFiller extends DepthFirstAdapter {
+    private static final String BOOL = "bool";
+    private static final String NUM = "num";
+    private static final String TEXT = "text";
+    private static final String LIST = "List";
+    private static final String VOID = "void";
+    private static final String ERRORTYPE = "9";
+
 
     public Stack<Hashtable<String, Node>> symStack;
     public Hashtable<String, Node> symbolTable;
@@ -103,7 +110,7 @@ public class TableFiller extends DepthFirstAdapter {
     public void outAListPdcl(AListPdcl node){
         if(dotCall){
             addSymbol(node.getId().getText(), node);
-            addType(node, node.getType().toString());
+            addType(node, LIST);
         }
 
     }
