@@ -406,12 +406,17 @@ public class TypeChecker extends DepthFirstAdapter {
 
     private AClassPdcl getClassDcl(Node node) {
         Node currentNode = node;
+        AClassPdcl dcl = null;
 
         while (currentNode != null && !(currentNode.parent() instanceof AClassPdcl)) {
             currentNode = currentNode.parent();
         }
 
-        return (AClassPdcl) currentNode;
+        if(currentNode instanceof AClassPdcl){
+            dcl = (AClassPdcl) currentNode;
+        }
+
+        return dcl;
     }
 
     private String getClassName(Node node) {
