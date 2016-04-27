@@ -1,5 +1,4 @@
 
-import com.sun.jndi.toolkit.url.Uri;
 import grammar.ini.node.*;
 
 import java.io.*;
@@ -131,7 +130,7 @@ public class TopVisitor extends VisitorBase{
     public void inAClassPdcl(AClassPdcl node){
         if (checkIfStatic(node.getId().getText())){
             try {
-                addLibrary(node.getId().getText(), node.getId().getText());
+                addLibrary(node.getId().getText() + "BFGL", node.getId().getText());
             }
             catch (IOException ioerr){
             }
