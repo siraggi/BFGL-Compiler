@@ -63,7 +63,6 @@ end
 
 class Keyboard begin
 
-        dcl Key VOID to new Key()
         dcl Key ESCAPE to new Key()
         dcl Key num1 to new Key()
         dcl Key num2 to new Key()
@@ -143,12 +142,10 @@ class Keyboard begin
         dcl Key PAUSE to new Key()
         dcl Key HOME to new Key()
         dcl Key UP to new Key()
-        dcl Key PAGEUP to new Key()
         dcl Key LEFT to new Key()
         dcl Key RIGHT to new Key()
         dcl Key END to new Key()
         dcl Key DOWN to new Key()
-        dcl Key PAGEDOWN to new Key()
         dcl Key INSERT to new Key()
         dcl Key DELETE to new Key()
         dcl Key LWIN to new Key()
