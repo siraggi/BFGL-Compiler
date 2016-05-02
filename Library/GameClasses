@@ -63,7 +63,6 @@ end
 
 class Keyboard begin
 
-        dcl Key any to new Key()
         dcl Key VOID to new Key()
         dcl Key ESCAPE to new Key()
         dcl Key num1 to new Key()

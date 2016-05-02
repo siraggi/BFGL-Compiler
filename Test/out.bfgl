@@ -15,7 +15,7 @@ class Player is Sprite begin
     end
 
     OnUpdate() do
-        if input.key.W.isPressed then
+        if input.key.D.isPressed then
             set posX to posX + 10
         end
     end
@@ -29,7 +29,7 @@ end
 
 class Block is Sprite begin
     OnConstruct() do
-        base(300, 200, 10, 10, "kk")
+        base(300, 200, 10, 10, "Block")
 
         game.Sprites.add(this)
     end
