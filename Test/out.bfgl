@@ -3,21 +3,35 @@ dcl InputBFGL input to new InputBFGL()
 
 Main begin
     dcl Player player to new Player()
-    dcl Player player2 to new Player()
+    dcl Block block to new Block()
 end
 
 class Player is Sprite begin
 
     OnConstruct() do
-        base(200, 200, 100, 10)
+        base(200, 200, 100, 10, "Player")
 
         game.Sprites.add(this)
     end
 
     OnUpdate() do
         if input.key.W.isPressed then
-            set x to x + 10
+            set posX to posX + 10
         end
+    end
+
+    OnCollision(Sprite other) do
+        if other.id = "Block" then
+            set posX to 0
+        end
+    end
+end
+
+class Block is Sprite begin
+    OnConstruct() do
+        base(300, 200, 10, 10, "kk")
+
+        game.Sprites.add(this)
     end
 end
 class Math begin
@@ -184,19 +198,25 @@ class Key begin
 end
 
 class Sprite begin
-    dcl num x
-    dcl num y
+    dcl num posX
+    dcl num posY
     dcl num sizeX
     dcl num sizeY
+    dcl text id
 
-    OnConstruct(num xx, num yy, num sizeXX, num sizeYY) do
-        set x to xx
-        set y to yy
+    OnConstruct(num xx, num yy, num sizeXX, num sizeYY, text ID) do
+        set posX to xx
+        set posY to yy
         set sizeX to sizeXX
         set sizeY to sizeYY
+        set id to ID
     end
 
     dcl func update() begin
+
+    end
+
+    dcl func collision(Sprite other) begin
 
     end
 end

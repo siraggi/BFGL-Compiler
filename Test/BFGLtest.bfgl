@@ -3,20 +3,34 @@ dcl InputBFGL input to new InputBFGL()
 
 Main begin
     dcl Player player to new Player()
-    dcl Player player2 to new Player()
+    dcl Block block to new Block()
 end
 
 class Player is Sprite begin
 
     OnConstruct() do
-        base(200, 200, 100, 10)
+        base(200, 200, 100, 10, "Player")
 
         game.Sprites.add(this)
     end
 
     OnUpdate() do
         if input.key.W.isPressed then
-            set x to x + 10
+            set posX to posX + 10
         end
+    end
+
+    OnCollision(Sprite other) do
+        if other.id = "Block" then
+            set posX to 0
+        end
+    end
+end
+
+class Block is Sprite begin
+    OnConstruct() do
+        base(300, 200, 10, 10, "Block")
+
+        game.Sprites.add(this)
     end
 end

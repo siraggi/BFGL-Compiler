@@ -163,19 +163,25 @@ class Key begin
 end
 
 class Sprite begin
-    dcl num x
-    dcl num y
+    dcl num posX
+    dcl num posY
     dcl num sizeX
     dcl num sizeY
+    dcl text id
 
-    OnConstruct(num xx, num yy, num sizeXX, num sizeYY) do
-        set x to xx
-        set y to yy
+    OnConstruct(num xx, num yy, num sizeXX, num sizeYY, text ID) do
+        set posX to xx
+        set posY to yy
         set sizeX to sizeXX
         set sizeY to sizeYY
+        set id to ID
     end
 
     dcl func update() begin
+
+    end
+
+    dcl func collision(Sprite other) begin
 
     end
 end

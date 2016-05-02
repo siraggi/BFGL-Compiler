@@ -618,29 +618,33 @@ public class TypeChecker extends DepthFirstAdapter {
     }
 
     public void outANotequalsExpr(ANotequalsExpr node) {
-        if (compareType(node.getLeft(), NUM)) {
-            if (compareType(node.getRight(), NUM)) {
+        String type = typeTable.get(node.getLeft());
+
+        if (compareType(node.getLeft(), type)) {
+            if (compareType(node.getRight(), type)) {
                 addType(node, BOOL);
             } else {
-                ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : " + node.getRight().toString() + ", is not of type " + NUM + ".");
+                ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : " + node.getRight().toString() + ", is not of type " + type + ".");
                 addType(node, ERRORTYPE);
             }
         } else {
-            ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : " + node.getLeft().toString() + ", is not of type " + NUM + ".");
+            ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : " + node.getLeft().toString() + ", is not of type " + type + ".");
             addType(node, ERRORTYPE);
         }
     }
 
     public void outAEqualsExpr(AEqualsExpr node) {
-        if (compareType(node.getLeft(), NUM)) {
-            if (compareType(node.getRight(), NUM)) {
+        String type = typeTable.get(node.getLeft());
+
+        if (compareType(node.getLeft(), type)) {
+            if (compareType(node.getRight(), type)) {
                 addType(node, BOOL);
             } else {
-                ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : " + node.getRight().toString() + ", is not of type " + NUM + ".");
+                ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : " + node.getRight().toString() + ", is not of type " + type + ".");
                 addType(node, ERRORTYPE);
             }
         } else {
-            ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : " + node.getLeft().toString() + ", is not of type " + NUM + ".");
+            ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : " + node.getLeft().toString() + ", is not of type " + type + ".");
             addType(node, ERRORTYPE);
         }
     }

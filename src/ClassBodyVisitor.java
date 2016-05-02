@@ -95,8 +95,28 @@ public class ClassBodyVisitor extends VisitorBase {
                 name = "update()";
                 emitnl("public void " + name + "{");break;
             case("OnCollision"):
-                name = "collision()";
-                emitnl("public void " + name + "{");break;
+                name = "collision";
+                emit("public void " + name + "(");
+
+                for (Node p : node.getParams()){
+                    switch (((AFormalParam)p).getType().toString().trim()){
+                        case("num"):
+                            emit("float "); break;
+                        case("text"):
+                            emit("String "); break;
+                        case("bool"):
+                            emit("boolean "); break;
+                        default:
+                            emit(((AFormalParam)p).getType().toString().trim() + " "); break;
+                    }
+                    emit(((AFormalParam)p).getId().getText());
+
+                    if(!p.equals(node.getParams().getLast())){
+                        emit(", ");
+                    }
+                }
+
+                emitnl("){");break;
             case("OnInput"):
                 name = "input()";
                 emitnl("public void " + name + "{");break;
