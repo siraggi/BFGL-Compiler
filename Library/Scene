@@ -551,6 +551,528 @@ public class Scene extends BasicGame{
         	Global.input.key.RWIN.isPressed = false;
         }
 
+        if(input.isKeyDown(input.KEY_ESCAPE)){
+        	Global.input.key.ESCAPE.isDown = true;
+        }
+        else{
+        	Global.input.key.ESCAPE.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_1)){
+        	Global.input.key.num1.isDown = true;
+        }
+        else{
+        	Global.input.key.num1.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_2)){
+        	Global.input.key.num2.isDown = true;
+        }
+        else{
+        	Global.input.key.num2.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_3)){
+        	Global.input.key.num3.isDown = true;
+        }
+        else{
+        	Global.input.key.num3.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_4)){
+        	Global.input.key.num4.isDown = true;
+        }
+        else{
+        	Global.input.key.num4.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_5)){
+        	Global.input.key.num5.isDown = true;
+        }
+        else{
+        	Global.input.key.num5.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_6)){
+        	Global.input.key.num6.isDown = true;
+        }
+        else{
+        	Global.input.key.num6.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_7)){
+        	Global.input.key.num7.isDown = true;
+        }
+        else{
+        	Global.input.key.num7.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_8)){
+        	Global.input.key.num8.isDown = true;
+        }
+        else{
+        	Global.input.key.num8.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_9)){
+        	Global.input.key.num9.isDown = true;
+        }
+        else{
+        	Global.input.key.num9.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_0)){
+        	Global.input.key.num0.isDown = true;
+        }
+        else{
+        	Global.input.key.num0.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_BACK)){
+        	Global.input.key.BACK.isDown = true;
+        }
+        else{
+        	Global.input.key.BACK.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_TAB)){
+        	Global.input.key.TAB.isDown = true;
+        }
+        else{
+        	Global.input.key.TAB.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_Q)){
+        	Global.input.key.Q.isDown = true;
+        }
+        else{
+        	Global.input.key.Q.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_W)){
+        	Global.input.key.W.isDown = true;
+        }
+        else{
+        	Global.input.key.W.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_E)){
+        	Global.input.key.E.isDown = true;
+        }
+        else{
+        	Global.input.key.E.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_R)){
+        	Global.input.key.R.isDown = true;
+        }
+        else{
+        	Global.input.key.R.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_T)){
+        	Global.input.key.T.isDown = true;
+        }
+        else{
+        	Global.input.key.T.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_Y)){
+        	Global.input.key.Y.isDown = true;
+        }
+        else{
+        	Global.input.key.Y.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_U)){
+        	Global.input.key.U.isDown = true;
+        }
+        else{
+        	Global.input.key.U.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_I)){
+        	Global.input.key.I.isDown = true;
+        }
+        else{
+        	Global.input.key.I.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_O)){
+        	Global.input.key.O.isDown = true;
+        }
+        else{
+        	Global.input.key.O.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_P)){
+        	Global.input.key.P.isDown = true;
+        }
+        else{
+        	Global.input.key.P.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_RETURN)){
+        	Global.input.key.RETURN.isDown = true;
+        }
+        else{
+        	Global.input.key.RETURN.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_LCONTROL)){
+        	Global.input.key.LCONTROL.isDown = true;
+        }
+        else{
+        	Global.input.key.LCONTROL.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_A)){
+        	Global.input.key.A.isDown = true;
+        }
+        else{
+        	Global.input.key.A.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_S)){
+        	Global.input.key.S.isDown = true;
+        }
+        else{
+        	Global.input.key.S.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_D)){
+        	Global.input.key.D.isDown = true;
+        }
+        else{
+        	Global.input.key.D.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_F)){
+        	Global.input.key.F.isDown = true;
+        }
+        else{
+        	Global.input.key.F.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_G)){
+        	Global.input.key.G.isDown = true;
+        }
+        else{
+        	Global.input.key.G.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_H)){
+        	Global.input.key.H.isDown = true;
+        }
+        else{
+        	Global.input.key.H.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_J)){
+        	Global.input.key.J.isDown = true;
+        }
+        else{
+        	Global.input.key.J.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_K)){
+        	Global.input.key.K.isDown = true;
+        }
+        else{
+        	Global.input.key.K.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_LSHIFT)){
+        	Global.input.key.LSHIFT.isDown = true;
+        }
+        else{
+        	Global.input.key.LSHIFT.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_Z)){
+        	Global.input.key.Z.isDown = true;
+        }
+        else{
+        	Global.input.key.Z.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_X)){
+        	Global.input.key.X.isDown = true;
+        }
+        else{
+        	Global.input.key.X.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_C)){
+        	Global.input.key.C.isDown = true;
+        }
+        else{
+        	Global.input.key.C.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_V)){
+        	Global.input.key.V.isDown = true;
+        }
+        else{
+        	Global.input.key.V.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_B)){
+        	Global.input.key.B.isDown = true;
+        }
+        else{
+        	Global.input.key.B.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_N)){
+        	Global.input.key.N.isDown = true;
+        }
+        else{
+        	Global.input.key.N.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_M)){
+        	Global.input.key.M.isDown = true;
+        }
+        else{
+        	Global.input.key.M.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_COMMA)){
+        	Global.input.key.COMMA.isDown = true;
+        }
+        else{
+        	Global.input.key.COMMA.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_PERIOD)){
+        	Global.input.key.PERIOD.isDown = true;
+        }
+        else{
+        	Global.input.key.PERIOD.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_SLASH)){
+        	Global.input.key.SLASH.isDown = true;
+        }
+        else{
+        	Global.input.key.SLASH.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_RSHIFT)){
+        	Global.input.key.RSHIFT.isDown = true;
+        }
+        else{
+        	Global.input.key.RSHIFT.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_MULTIPLY)){
+        	Global.input.key.MULTIPLY.isDown = true;
+        }
+        else{
+        	Global.input.key.MULTIPLY.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_LALT)){
+        	Global.input.key.LALT.isDown = true;
+        }
+        else{
+        	Global.input.key.LALT.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_SPACE)){
+        	Global.input.key.SPACE.isDown = true;
+        }
+        else{
+        	Global.input.key.SPACE.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_F1)){
+        	Global.input.key.F1.isDown = true;
+        }
+        else{
+        	Global.input.key.F1.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_F2)){
+        	Global.input.key.F2.isDown = true;
+        }
+        else{
+        	Global.input.key.F2.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_F3)){
+        	Global.input.key.F3.isDown = true;
+        }
+        else{
+        	Global.input.key.F3.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_F4)){
+        	Global.input.key.F4.isDown = true;
+        }
+        else{
+        	Global.input.key.F4.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_F5)){
+        	Global.input.key.F5.isDown = true;
+        }
+        else{
+        	Global.input.key.F5.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_F6)){
+        	Global.input.key.F6.isDown = true;
+        }
+        else{
+        	Global.input.key.F6.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_F7)){
+        	Global.input.key.F7.isDown = true;
+        }
+        else{
+        	Global.input.key.F7.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_F8)){
+        	Global.input.key.F8.isDown = true;
+        }
+        else{
+        	Global.input.key.F8.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_F9)){
+        	Global.input.key.F9.isDown = true;
+        }
+        else{
+        	Global.input.key.F9.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_F10)){
+        	Global.input.key.F10.isDown = true;
+        }
+        else{
+        	Global.input.key.F10.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_NUMLOCK)){
+        	Global.input.key.NUMLOCK.isDown = true;
+        }
+        else{
+        	Global.input.key.NUMLOCK.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_SCROLL)){
+        	Global.input.key.SCROLL.isDown = true;
+        }
+        else{
+        	Global.input.key.SCROLL.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_NUMPAD7)){
+        	Global.input.key.NUMPAD7.isDown = true;
+        }
+        else{
+        	Global.input.key.NUMPAD7.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_NUMPAD8)){
+        	Global.input.key.NUMPAD8.isDown = true;
+        }
+        else{
+        	Global.input.key.NUMPAD8.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_NUMPAD9)){
+        	Global.input.key.NUMPAD9.isDown = true;
+        }
+        else{
+        	Global.input.key.NUMPAD9.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_SUBTRACT)){
+        	Global.input.key.SUBTRACT.isDown = true;
+        }
+        else{
+        	Global.input.key.SUBTRACT.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_NUMPAD4)){
+        	Global.input.key.NUMPAD4.isDown = true;
+        }
+        else{
+        	Global.input.key.NUMPAD4.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_NUMPAD5)){
+        	Global.input.key.NUMPAD5.isDown = true;
+        }
+        else{
+        	Global.input.key.NUMPAD5.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_NUMPAD6)){
+        	Global.input.key.NUMPAD6.isDown = true;
+        }
+        else{
+        	Global.input.key.NUMPAD6.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_ADD)){
+        	Global.input.key.ADD.isDown = true;
+        }
+        else{
+        	Global.input.key.ADD.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_NUMPAD1)){
+        	Global.input.key.NUMPAD1.isDown = true;
+        }
+        else{
+        	Global.input.key.NUMPAD1.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_NUMPAD2)){
+        	Global.input.key.NUMPAD2.isDown = true;
+        }
+        else{
+        	Global.input.key.NUMPAD2.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_NUMPAD3)){
+        	Global.input.key.NUMPAD3.isDown = true;
+        }
+        else{
+        	Global.input.key.NUMPAD3.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_NUMPAD0)){
+        	Global.input.key.NUMPAD0.isDown = true;
+        }
+        else{
+        	Global.input.key.NUMPAD0.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_DECIMAL)){
+        	Global.input.key.DECIMAL.isDown = true;
+        }
+        else{
+        	Global.input.key.DECIMAL.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_F11)){
+        	Global.input.key.F11.isDown = true;
+        }
+        else{
+        	Global.input.key.F11.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_F12)){
+        	Global.input.key.F12.isDown = true;
+        }
+        else{
+        	Global.input.key.F12.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_RCONTROL)){
+        	Global.input.key.RCONTROL.isDown = true;
+        }
+        else{
+        	Global.input.key.RCONTROL.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_PAUSE)){
+        	Global.input.key.PAUSE.isDown = true;
+        }
+        else{
+        	Global.input.key.PAUSE.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_HOME)){
+        	Global.input.key.HOME.isDown = true;
+        }
+        else{
+        	Global.input.key.HOME.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_UP)){
+        	Global.input.key.UP.isDown = true;
+        }
+        else{
+        	Global.input.key.UP.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_LEFT)){
+        	Global.input.key.LEFT.isDown = true;
+        }
+        else{
+        	Global.input.key.LEFT.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_RIGHT)){
+        	Global.input.key.RIGHT.isDown = true;
+        }
+        else{
+        	Global.input.key.RIGHT.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_END)){
+        	Global.input.key.END.isDown = true;
+        }
+        else{
+        	Global.input.key.END.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_DOWN)){
+        	Global.input.key.DOWN.isDown = true;
+        }
+        else{
+        	Global.input.key.DOWN.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_INSERT)){
+        	Global.input.key.INSERT.isDown = true;
+        }
+        else{
+        	Global.input.key.INSERT.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_DELETE)){
+        	Global.input.key.DELETE.isDown = true;
+        }
+        else{
+        	Global.input.key.DELETE.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_LWIN)){
+        	Global.input.key.LWIN.isDown = true;
+        }
+        else{
+        	Global.input.key.LWIN.isDown = false;
+        }
+        if(input.isKeyDown(input.KEY_RWIN)){
+        	Global.input.key.RWIN.isDown = true;
+        }
+        else{
+        	Global.input.key.RWIN.isDown = false;
+        }
 
 
 
