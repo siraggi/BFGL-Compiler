@@ -15,7 +15,7 @@ class Player is Sprite begin
     end
 
     OnUpdate() do
-        if input.key.D.isPressed then
+        if input.key.D.isDown then
             set posX to posX + 10
         end
     end

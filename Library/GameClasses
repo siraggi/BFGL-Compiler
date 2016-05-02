@@ -187,3 +187,8 @@ class List begin
 
     end
 end
+
+class Vector begin
+    dcl num x
+    dcl num y
+end
