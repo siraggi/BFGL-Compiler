@@ -1,4 +1,4 @@
-import grammar.ini.GlobalCheck;
+
 import grammar.ini.node.*;
 
 import java.io.BufferedWriter;
@@ -145,7 +145,7 @@ public class FuncBodyVisitor extends VisitorBase {
             if(node.getFirst() instanceof AFuncCall){
                 AFuncCall f = (AFuncCall) node.getFirst();
 
-                GlobalCheck gc = new GlobalCheck(f.getId().getText(), f);
+                GlobalCheck gc = new GlobalCheck(f.getId().getText(), f, superTable);
 
                 getRoot(node).apply(gc);
 
@@ -167,7 +167,7 @@ public class FuncBodyVisitor extends VisitorBase {
             }else if(node.getFirst() instanceof AVarCall){
                 AVarCall v = (AVarCall)node.getFirst();
 
-                GlobalCheck gc = new GlobalCheck(v.getId().getText(), v);
+                GlobalCheck gc = new GlobalCheck(v.getId().getText(), v, superTable);
 
                 getRoot(node).apply(gc);
 
@@ -192,4 +192,6 @@ public class FuncBodyVisitor extends VisitorBase {
             }
         }
     }
+
+
 }

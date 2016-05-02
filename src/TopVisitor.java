@@ -3,6 +3,7 @@ import com.sun.jndi.toolkit.url.Uri;
 import grammar.ini.node.*;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.Hashtable;
 import java.util.List;
@@ -141,7 +142,7 @@ public class TopVisitor extends VisitorBase{
 
 
         try {
-            List<String> lines = Files.readAllLines(sceneFile.toPath());
+            List<String> lines = Files.readAllLines(sceneFile.toPath(), Charset.defaultCharset());
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tempSceneFile)));
             tempSceneFile.createNewFile();
             if(!sceneFile.exists()){

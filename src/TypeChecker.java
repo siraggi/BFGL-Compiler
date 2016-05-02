@@ -38,7 +38,7 @@ public class TypeChecker extends DepthFirstAdapter {
 
         if (node instanceof AClassPdcl) {
             if (((AClassPdcl) node).getInherit() != null) {
-                openScope(getNode(((AInherit) ((AClassPdcl) node).getInherit()).getType().toString().trim()));
+                openScope(getNode(((AInherit) ((AClassPdcl) node).getInherit()).getType().toString().trim()), true);
             }
         }
 
@@ -328,6 +328,10 @@ public class TypeChecker extends DepthFirstAdapter {
     //Event dcl
     public void inAEventPdcl(AEventPdcl node) {
         openScope(node);
+
+        for (Node n : node.getParams()) {
+            addSymbol(((AFormalParam) n).getId().getText(), n, ((AFormalParam) n).getType().toString());
+        }
     }
 
     public void outAEventPdcl(AEventPdcl node) {
@@ -336,14 +340,16 @@ public class TypeChecker extends DepthFirstAdapter {
 
     public void outABaseBase(ABaseBase node) {
         AClassPdcl dcl = getClassDcl(node);
+        boolean hasConstr = false;
 
         if (dcl.getInherit() != null) {
             dcl = (AClassPdcl) getNode(((AInherit) dcl.getInherit()).getType().toString().trim());
 
             for (Node n : dcl.getBody()) {
-                if (n instanceof AEventPdcl) {
-                    AEventPdcl eDcl = (AEventPdcl) n;
-                    if (eDcl.getId().getText() == "OnConstruct") {
+                if (n instanceof AEventdclBody) {
+                    AEventPdcl eDcl = (AEventPdcl) ((AEventdclBody) n).getPdcl();
+                    if (eDcl.getId().getText().equals("OnConstruct")) {
+                        hasConstr = true;
                         if (node.getParams().size() != eDcl.getParams().size()) {
                             ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : " + dcl.getId().getText() + " constructor takes " + eDcl.getParams().size() + " not " + node.getParams().size() + ".");
                         } else {
@@ -357,8 +363,11 @@ public class TypeChecker extends DepthFirstAdapter {
                     }
                 }
             }
-        } else {
+        }
+
+        if(!hasConstr){
             ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : No parent constructor for " + dcl.getId().getText() + ".");
+
         }
     }
 
@@ -396,7 +405,32 @@ public class TypeChecker extends DepthFirstAdapter {
     }
 
     public void outAConstrVal(AConstrVal node) {
+        AEventPdcl dcl = null;
 
+        for(Node n : ((AClassPdcl)getNode(node.getId().getText())).getBody()){
+            if(n instanceof AEventdclBody){
+                AEventdclBody dclBody = (AEventdclBody) n;
+
+                if(dclBody.getPdcl() instanceof AEventPdcl){
+                    if(((AEventPdcl)dclBody.getPdcl()).getId().getText().equals("OnConstruct"))
+                    dcl = (AEventPdcl) dclBody.getPdcl();
+                }
+
+            }
+        }
+
+
+        if (dcl != null) {
+            if (node.getParam().size() != dcl.getParams().size()) {
+                ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : " + node.getId().getText() + ", takes " + dcl.getParams().size() + " not " + node.getParam().size() + ".");
+            } else
+                for (int i = 0; i < node.getParam().size(); i++) {
+                    if (!compareType(node.getParam().get(i), ((AFormalParam) dcl.getParams().get(i)).getType().toString().trim())) {
+                        ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : parameter " + i + " is not of type " + ((AFormalParam) dcl.getParams().get(i)).getType().toString().trim() + ".");
+                    }
+                }
+        }
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         addType(node, node.getId().getText());
     }
 

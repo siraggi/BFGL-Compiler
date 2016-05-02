@@ -93,16 +93,53 @@ public class ClassBodyVisitor extends VisitorBase {
 
         switch (node.getId().getText()){
             case("OnUpdate"):
-                name = "update()"; break;
+                name = "update()";
+                emitnl("public void " + name + "{");break;
             case("OnCollision"):
-                name = "collision()"; break;
+                name = "collision()";
+                emitnl("public void " + name + "{");break;
             case("OnInput"):
-                name = "input()"; break;
+                name = "input()";
+                emitnl("public void " + name + "{");break;
             case("OnConstruct"):
-                name = className + "()"; break;
+                name = className;
+
+                emit("public " + name + "(");
+
+                for (Node p : node.getParams()){
+                    switch (((AFormalParam)p).getType().toString().trim()){
+                        case("num"):
+                            emit("float "); break;
+                        case("text"):
+                            emit("String "); break;
+                        case("bool"):
+                            emit("boolean "); break;
+                        default:
+                            emit(((AFormalParam)p).getType().toString().trim() + " "); break;
+                    }
+                    emit(((AFormalParam)p).getId().getText());
+
+                    if(!p.equals(node.getParams().getLast())){
+                        emit(", ");
+                    }
+                }
+
+                emitnl("){");break;
         }
 
-        emitnl("public void " + name + "{");
+        if(node.getBase() != null){
+            emit("super(");
+
+            for (Node p : ((ABaseBase)node.getBase()).getParams()) {
+                p.apply(new ExpressionVisitor(bw, typeTable, superTable));
+
+                if (!p.equals(((ABaseBase)node.getBase()).getParams().getLast())) {
+                    emit(", ");
+                }
+            }
+
+            emit(");");
+        }
 
         for(Node n : node.getBody()){
             n.apply(new FuncBodyVisitor(bw, typeTable, superTable));

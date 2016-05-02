@@ -62,6 +62,7 @@ class Input begin
 end
 
 class Keyboard begin
+
 end
 
 class Key begin
@@ -69,6 +70,18 @@ class Key begin
 end
 
 class Sprite begin
+    dcl num x
+    dcl num y
+    dcl num sizeX
+    dcl num sizeY
+
+    OnConstruct(num xx, num yy, num sizeXX, num sizeYY) do
+        set x to xx
+        set y to yy
+        set sizeX to sizeXX
+        set sizeY to sizeYY
+    end
+
     dcl func update() begin
 
     end

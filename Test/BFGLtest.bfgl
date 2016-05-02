@@ -1,18 +1,19 @@
 dcl Game game to new Game()
 
 Main begin
-    dcl Player player to new Player()
+    dcl Player player to new Player(20)
+    dcl Player player2 to new Player(100)
 end
 
 class Player is Sprite begin
 
-    OnConstruct() do
-        base(10, 10, 10, 10)
+    OnConstruct(num test) do
+        base(test, 200, 100, 10)
 
-
+        game.Sprites.add(this)
     end
 
-    dcl func asd() begin
-        game.Sprites.add(this)
+    OnUpdate() do
+        set x to x + 1
     end
 end

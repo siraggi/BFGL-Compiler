@@ -1,4 +1,4 @@
-import grammar.ini.GlobalCheck;
+
 import grammar.ini.node.*;
 
 import java.io.BufferedWriter;
@@ -210,7 +210,7 @@ public class ExpressionVisitor extends VisitorBase {
     }
 
     public void inAIdExpr(AIdExpr node) {
-        GlobalCheck gc = new GlobalCheck(node.getId().getText(), node);
+        GlobalCheck gc = new GlobalCheck(node.getId().getText(), node, superTable);
 
         if(!node.visited){
             node.visited = true;

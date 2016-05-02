@@ -1,23 +1,24 @@
-package grammar.ini;
-
 import grammar.ini.analysis.DepthFirstAdapter;
-import grammar.ini.analysis.ReversedDepthFirstAdapter;
 import grammar.ini.node.*;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Stack;
 
 public class GlobalCheck extends DepthFirstAdapter {
     private String id;
     private Node nodeToCheck;
     private Stack<ArrayList<String>> scope;
+    private Hashtable<String, String> superTable;
 
     public boolean global = false;
 
-    public GlobalCheck(String id, Node node){
+    public GlobalCheck(String id, Node node, Hashtable<String, String> superTable){
         this.id = id;
         nodeToCheck = node;
         scope = new Stack<>();
+
+        this.superTable = superTable;
     }
 
     private void openScope(){
@@ -38,7 +39,18 @@ public class GlobalCheck extends DepthFirstAdapter {
     }
 
     public void inAClassPdcl(AClassPdcl node){
+        DclFinder df;
         openScope();
+
+        if(node.getInherit() != null){
+            AInherit i = (AInherit)node.getInherit();
+            df = new DclFinder(node, i.getType().toString().trim(), id);
+
+            df.root.apply(df);
+
+            scope.peek().addAll(df.ids);
+        }
+
     }
 
     public void outAClassPdcl(AClassPdcl node){
@@ -55,6 +67,14 @@ public class GlobalCheck extends DepthFirstAdapter {
 
     public void inAEventPdcl(AEventPdcl node){
         openScope();
+
+        for(Node p : node.getParams()){
+            if(p instanceof AFormalParam){
+                if(((AFormalParam)p).getId().getText().equals(id))
+                    scope.peek().add(((AFormalParam)p).getId().getText());
+            }
+        }
+
     }
 
     public void outAEventPdcl(AEventPdcl node){
@@ -101,24 +121,10 @@ public class GlobalCheck extends DepthFirstAdapter {
     public void outAVarPdcl(AVarPdcl node){
         if(node.getId().getText().equals(id))
             scope.peek().add(node.getId().getText());
-
-        /*if(node.getId().getText().equals(id)){
-            if(node.parent() instanceof AProg)
-                global = true;
-            else
-                global = false;
-        }*/
     }
 
     public void outAVarasgPdcl(AVarasgPdcl node){
         if(node.getId().getText().equals(id))
             scope.peek().add(node.getId().getText());
-
-        /*if(node.getId().getText().equals(id)){
-            if(node.parent() instanceof AProg)
-                global = true;
-            else
-                global = false;
-        }*/
     }
 }

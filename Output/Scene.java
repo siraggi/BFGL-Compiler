@@ -21,19 +21,22 @@ public class Scene extends BasicGame{
     }
 
     public void init(GameContainer gc) throws SlickException {
-Player player = Player ;
+Player player =  new Player(20);
+Player player2 =  new Player(100);
+
     }
 
     public void update(GameContainer gc, int delta) throws SlickException {
-        //for(Sprite s : Global.game.Sprites) {
-        //    s.update();
-        //}
+        for(Sprite s : Global.game.Sprites) {
+            s.update();
+        }
     }
 
     public void render(GameContainer gc, Graphics g) throws SlickException {
         for(Sprite s : Global.game.Sprites) {
-            g.draw(new Rectangle(50, 50, 50, 50));
+            g.draw(new Rectangle(s.x, s.y, s.sizeX, s.sizeY));
         }
+        g.drawString(Integer.toString(Global.game.Sprites.size()), 100, 100);
     }
 
 
