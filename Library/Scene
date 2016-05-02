@@ -28,12 +28,553 @@ public class Scene extends BasicGame{
     public void update(GameContainer gc, int delta) throws SlickException {
         Input input = gc.getInput();
 
-        if(input.isKeyPressed(input.KEY_W)){
-            Global.input.key.W.isPressed = true;
+        if(input.isKeyPressed(input.KEY_any)){
+        	Global.input.key.any.isPressed = true;
         }
         else{
-            Global.input.key.W.isPressed = false;
+        	Global.input.key.any.isPressed = true;
         }
+        if(input.isKeyPressed(input.KEY_VOID)){
+        	Global.input.key.VOID.isPressed = true;
+        }
+        else{
+        	Global.input.key.VOID.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_ESCAPE)){
+        	Global.input.key.ESCAPE.isPressed = true;
+        }
+        else{
+        	Global.input.key.ESCAPE.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_num1)){
+        	Global.input.key.num1.isPressed = true;
+        }
+        else{
+        	Global.input.key.num1.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_num2)){
+        	Global.input.key.num2.isPressed = true;
+        }
+        else{
+        	Global.input.key.num2.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_num3)){
+        	Global.input.key.num3.isPressed = true;
+        }
+        else{
+        	Global.input.key.num3.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_num4)){
+        	Global.input.key.num4.isPressed = true;
+        }
+        else{
+        	Global.input.key.num4.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_num5)){
+        	Global.input.key.num5.isPressed = true;
+        }
+        else{
+        	Global.input.key.num5.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_num6)){
+        	Global.input.key.num6.isPressed = true;
+        }
+        else{
+        	Global.input.key.num6.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_num7)){
+        	Global.input.key.num7.isPressed = true;
+        }
+        else{
+        	Global.input.key.num7.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_num8)){
+        	Global.input.key.num8.isPressed = true;
+        }
+        else{
+        	Global.input.key.num8.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_num9)){
+        	Global.input.key.num9.isPressed = true;
+        }
+        else{
+        	Global.input.key.num9.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_num0)){
+        	Global.input.key.num0.isPressed = true;
+        }
+        else{
+        	Global.input.key.num0.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_BACK)){
+        	Global.input.key.BACK.isPressed = true;
+        }
+        else{
+        	Global.input.key.BACK.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_TAB)){
+        	Global.input.key.TAB.isPressed = true;
+        }
+        else{
+        	Global.input.key.TAB.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_Q)){
+        	Global.input.key.Q.isPressed = true;
+        }
+        else{
+        	Global.input.key.Q.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_W)){
+        	Global.input.key.W.isPressed = true;
+        }
+        else{
+        	Global.input.key.W.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_E)){
+        	Global.input.key.E.isPressed = true;
+        }
+        else{
+        	Global.input.key.E.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_R)){
+        	Global.input.key.R.isPressed = true;
+        }
+        else{
+        	Global.input.key.R.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_T)){
+        	Global.input.key.T.isPressed = true;
+        }
+        else{
+        	Global.input.key.T.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_Y)){
+        	Global.input.key.Y.isPressed = true;
+        }
+        else{
+        	Global.input.key.Y.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_U)){
+        	Global.input.key.U.isPressed = true;
+        }
+        else{
+        	Global.input.key.U.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_I)){
+        	Global.input.key.I.isPressed = true;
+        }
+        else{
+        	Global.input.key.I.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_O)){
+        	Global.input.key.O.isPressed = true;
+        }
+        else{
+        	Global.input.key.O.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_P)){
+        	Global.input.key.P.isPressed = true;
+        }
+        else{
+        	Global.input.key.P.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_RETURN)){
+        	Global.input.key.RETURN.isPressed = true;
+        }
+        else{
+        	Global.input.key.RETURN.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_LCONTROL)){
+        	Global.input.key.LCONTROL.isPressed = true;
+        }
+        else{
+        	Global.input.key.LCONTROL.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_A)){
+        	Global.input.key.A.isPressed = true;
+        }
+        else{
+        	Global.input.key.A.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_S)){
+        	Global.input.key.S.isPressed = true;
+        }
+        else{
+        	Global.input.key.S.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_D)){
+        	Global.input.key.D.isPressed = true;
+        }
+        else{
+        	Global.input.key.D.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_F)){
+        	Global.input.key.F.isPressed = true;
+        }
+        else{
+        	Global.input.key.F.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_G)){
+        	Global.input.key.G.isPressed = true;
+        }
+        else{
+        	Global.input.key.G.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_H)){
+        	Global.input.key.H.isPressed = true;
+        }
+        else{
+        	Global.input.key.H.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_J)){
+        	Global.input.key.J.isPressed = true;
+        }
+        else{
+        	Global.input.key.J.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_K)){
+        	Global.input.key.K.isPressed = true;
+        }
+        else{
+        	Global.input.key.K.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_LSHIFT)){
+        	Global.input.key.LSHIFT.isPressed = true;
+        }
+        else{
+        	Global.input.key.LSHIFT.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_Z)){
+        	Global.input.key.Z.isPressed = true;
+        }
+        else{
+        	Global.input.key.Z.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_X)){
+        	Global.input.key.X.isPressed = true;
+        }
+        else{
+        	Global.input.key.X.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_C)){
+        	Global.input.key.C.isPressed = true;
+        }
+        else{
+        	Global.input.key.C.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_V)){
+        	Global.input.key.V.isPressed = true;
+        }
+        else{
+        	Global.input.key.V.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_B)){
+        	Global.input.key.B.isPressed = true;
+        }
+        else{
+        	Global.input.key.B.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_N)){
+        	Global.input.key.N.isPressed = true;
+        }
+        else{
+        	Global.input.key.N.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_M)){
+        	Global.input.key.M.isPressed = true;
+        }
+        else{
+        	Global.input.key.M.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_COMMA)){
+        	Global.input.key.COMMA.isPressed = true;
+        }
+        else{
+        	Global.input.key.COMMA.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_PERIOD)){
+        	Global.input.key.PERIOD.isPressed = true;
+        }
+        else{
+        	Global.input.key.PERIOD.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_SLASH)){
+        	Global.input.key.SLASH.isPressed = true;
+        }
+        else{
+        	Global.input.key.SLASH.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_RSHIFT)){
+        	Global.input.key.RSHIFT.isPressed = true;
+        }
+        else{
+        	Global.input.key.RSHIFT.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_MULTIPLY)){
+        	Global.input.key.MULTIPLY.isPressed = true;
+        }
+        else{
+        	Global.input.key.MULTIPLY.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_LALT)){
+        	Global.input.key.LALT.isPressed = true;
+        }
+        else{
+        	Global.input.key.LALT.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_SPACE)){
+        	Global.input.key.SPACE.isPressed = true;
+        }
+        else{
+        	Global.input.key.SPACE.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_F1)){
+        	Global.input.key.F1.isPressed = true;
+        }
+        else{
+        	Global.input.key.F1.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_F2)){
+        	Global.input.key.F2.isPressed = true;
+        }
+        else{
+        	Global.input.key.F2.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_F3)){
+        	Global.input.key.F3.isPressed = true;
+        }
+        else{
+        	Global.input.key.F3.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_F4)){
+        	Global.input.key.F4.isPressed = true;
+        }
+        else{
+        	Global.input.key.F4.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_F5)){
+        	Global.input.key.F5.isPressed = true;
+        }
+        else{
+        	Global.input.key.F5.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_F6)){
+        	Global.input.key.F6.isPressed = true;
+        }
+        else{
+        	Global.input.key.F6.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_F7)){
+        	Global.input.key.F7.isPressed = true;
+        }
+        else{
+        	Global.input.key.F7.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_F8)){
+        	Global.input.key.F8.isPressed = true;
+        }
+        else{
+        	Global.input.key.F8.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_F9)){
+        	Global.input.key.F9.isPressed = true;
+        }
+        else{
+        	Global.input.key.F9.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_F10)){
+        	Global.input.key.F10.isPressed = true;
+        }
+        else{
+        	Global.input.key.F10.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_NUMLOCK)){
+        	Global.input.key.NUMLOCK.isPressed = true;
+        }
+        else{
+        	Global.input.key.NUMLOCK.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_SCROLL)){
+        	Global.input.key.SCROLL.isPressed = true;
+        }
+        else{
+        	Global.input.key.SCROLL.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_NUMPAD7)){
+        	Global.input.key.NUMPAD7.isPressed = true;
+        }
+        else{
+        	Global.input.key.NUMPAD7.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_NUMPAD8)){
+        	Global.input.key.NUMPAD8.isPressed = true;
+        }
+        else{
+        	Global.input.key.NUMPAD8.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_NUMPAD9)){
+        	Global.input.key.NUMPAD9.isPressed = true;
+        }
+        else{
+        	Global.input.key.NUMPAD9.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_SUBTRACT)){
+        	Global.input.key.SUBTRACT.isPressed = true;
+        }
+        else{
+        	Global.input.key.SUBTRACT.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_NUMPAD4)){
+        	Global.input.key.NUMPAD4.isPressed = true;
+        }
+        else{
+        	Global.input.key.NUMPAD4.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_NUMPAD5)){
+        	Global.input.key.NUMPAD5.isPressed = true;
+        }
+        else{
+        	Global.input.key.NUMPAD5.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_NUMPAD6)){
+        	Global.input.key.NUMPAD6.isPressed = true;
+        }
+        else{
+        	Global.input.key.NUMPAD6.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_ADD)){
+        	Global.input.key.ADD.isPressed = true;
+        }
+        else{
+        	Global.input.key.ADD.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_NUMPAD1)){
+        	Global.input.key.NUMPAD1.isPressed = true;
+        }
+        else{
+        	Global.input.key.NUMPAD1.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_NUMPAD2)){
+        	Global.input.key.NUMPAD2.isPressed = true;
+        }
+        else{
+        	Global.input.key.NUMPAD2.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_NUMPAD3)){
+        	Global.input.key.NUMPAD3.isPressed = true;
+        }
+        else{
+        	Global.input.key.NUMPAD3.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_NUMPAD0)){
+        	Global.input.key.NUMPAD0.isPressed = true;
+        }
+        else{
+        	Global.input.key.NUMPAD0.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_DECIMAL)){
+        	Global.input.key.DECIMAL.isPressed = true;
+        }
+        else{
+        	Global.input.key.DECIMAL.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_F11)){
+        	Global.input.key.F11.isPressed = true;
+        }
+        else{
+        	Global.input.key.F11.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_F12)){
+        	Global.input.key.F12.isPressed = true;
+        }
+        else{
+        	Global.input.key.F12.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_RCONTROL)){
+        	Global.input.key.RCONTROL.isPressed = true;
+        }
+        else{
+        	Global.input.key.RCONTROL.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_PAUSE)){
+        	Global.input.key.PAUSE.isPressed = true;
+        }
+        else{
+        	Global.input.key.PAUSE.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_HOME)){
+        	Global.input.key.HOME.isPressed = true;
+        }
+        else{
+        	Global.input.key.HOME.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_UP)){
+        	Global.input.key.UP.isPressed = true;
+        }
+        else{
+        	Global.input.key.UP.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_PAGEUP)){
+        	Global.input.key.PAGEUP.isPressed = true;
+        }
+        else{
+        	Global.input.key.PAGEUP.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_LEFT)){
+        	Global.input.key.LEFT.isPressed = true;
+        }
+        else{
+        	Global.input.key.LEFT.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_RIGHT)){
+        	Global.input.key.RIGHT.isPressed = true;
+        }
+        else{
+        	Global.input.key.RIGHT.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_END)){
+        	Global.input.key.END.isPressed = true;
+        }
+        else{
+        	Global.input.key.END.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_DOWN)){
+        	Global.input.key.DOWN.isPressed = true;
+        }
+        else{
+        	Global.input.key.DOWN.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_PAGEDOWN)){
+        	Global.input.key.PAGEDOWN.isPressed = true;
+        }
+        else{
+        	Global.input.key.PAGEDOWN.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_INSERT)){
+        	Global.input.key.INSERT.isPressed = true;
+        }
+        else{
+        	Global.input.key.INSERT.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_DELETE)){
+        	Global.input.key.DELETE.isPressed = true;
+        }
+        else{
+        	Global.input.key.DELETE.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_LWIN)){
+        	Global.input.key.LWIN.isPressed = true;
+        }
+        else{
+        	Global.input.key.LWIN.isPressed = true;
+        }
+        if(input.isKeyPressed(input.KEY_RWIN)){
+        	Global.input.key.RWIN.isPressed = true;
+        }
+        else{
+        	Global.input.key.RWIN.isPressed = true;
+        }
+
 
         for(Sprite s : Global.game.Sprites) {
             s.update();
