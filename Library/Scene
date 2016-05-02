@@ -26,6 +26,15 @@ public class Scene extends BasicGame{
     }
 
     public void update(GameContainer gc, int delta) throws SlickException {
+        Input input = gc.getInput();
+
+        if(input.isKeyPressed(input.KEY_W)){
+            Global.input.key.W.isPressed = true;
+        }
+        else{
+            Global.input.key.W.isPressed = false;
+        }
+
         for(Sprite s : Global.game.Sprites) {
             s.update();
         }

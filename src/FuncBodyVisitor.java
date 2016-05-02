@@ -193,5 +193,49 @@ public class FuncBodyVisitor extends VisitorBase {
         }
     }
 
+    public void inAIfConditional(AIfConditional node){
+        if(!node.visited){
+            node.visited = true;
 
+            emit("if(");
+            node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
+            emitnl("){");
+
+            for(Node n : node.getStmt()){
+                n.apply(this);
+            }
+
+            emitnl("}");
+        }
+    }
+
+    public void inAElseBranch(AElseBranch node){
+        if(!node.visited){
+            node.visited = true;
+
+            emitnl("else{");
+
+            for(Node n : node.getStmt()){
+                n.apply(this);
+            }
+
+            emitnl("}");
+        }
+    }
+
+    public void inAElseifBranch(AElseifBranch node){
+        if(!node.visited){
+            node.visited = true;
+
+            emit("else if(");
+            node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
+            emitnl("){");
+
+            for(Node n : node.getStmt()){
+                n.apply(this);
+            }
+
+            emitnl("}");
+        }
+    }
 }

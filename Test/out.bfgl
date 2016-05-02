@@ -1,20 +1,23 @@
 dcl Game game to new Game()
+dcl InputBFGL input to new InputBFGL()
 
 Main begin
-    dcl Player player to new Player(20)
-    dcl Player player2 to new Player(100)
+    dcl Player player to new Player()
+    dcl Player player2 to new Player()
 end
 
 class Player is Sprite begin
 
-    OnConstruct(num test) do
-        base(test, 200, 100, 10)
+    OnConstruct() do
+        base(200, 200, 100, 10)
 
         game.Sprites.add(this)
     end
 
     OnUpdate() do
-        set x to x + 1
+        if input.key.W.isPressed then
+            set x to x + 10
+        end
     end
 end
 class Math begin
@@ -75,15 +78,109 @@ class Timer begin
     end
 end
 
-class Input begin
-    dcl Keyboard key
+class InputBFGL begin
+    dcl Keyboard key to new Keyboard()
 end
 
 class Keyboard begin
+
+        dcl Key any to new Key()
+        dcl Key VOID to new Key()
+        dcl Key ESCAPE to new Key()
+        dcl Key num1 to new Key()
+        dcl Key num2 to new Key()
+        dcl Key num3 to new Key()
+        dcl Key num4 to new Key()
+        dcl Key num5 to new Key()
+        dcl Key num6 to new Key()
+        dcl Key num7 to new Key()
+        dcl Key num8 to new Key()
+        dcl Key num9 to new Key()
+        dcl Key num0 to new Key()
+        dcl Key BACK to new Key()
+        dcl Key TAB to new Key()
+        dcl Key Q to new Key()
+        dcl Key W to new Key()
+        dcl Key E to new Key()
+        dcl Key R to new Key()
+        dcl Key T to new Key()
+        dcl Key Y to new Key()
+        dcl Key U to new Key()
+        dcl Key I to new Key()
+        dcl Key O to new Key()
+        dcl Key P to new Key()
+        dcl Key RETURN to new Key()
+        dcl Key LCONTROL to new Key()
+        dcl Key A to new Key()
+        dcl Key S to new Key()
+        dcl Key D to new Key()
+        dcl Key F to new Key()
+        dcl Key G to new Key()
+        dcl Key H to new Key()
+        dcl Key J to new Key()
+        dcl Key K to new Key()
+        dcl Key LSHIFT to new Key()
+        dcl Key Z to new Key()
+        dcl Key X to new Key()
+        dcl Key C to new Key()
+        dcl Key V to new Key()
+        dcl Key B to new Key()
+        dcl Key N to new Key()
+        dcl Key M to new Key()
+        dcl Key COMMA to new Key()
+        dcl Key PERIOD to new Key()
+        dcl Key SLASH to new Key()
+        dcl Key RSHIFT to new Key()
+        dcl Key MULTIPLY to new Key()
+        dcl Key LALT to new Key()
+        dcl Key SPACE to new Key()
+        dcl Key F1 to new Key()
+        dcl Key F2 to new Key()
+        dcl Key F3 to new Key()
+        dcl Key F4 to new Key()
+        dcl Key F5 to new Key()
+        dcl Key F6 to new Key()
+        dcl Key F7 to new Key()
+        dcl Key F8 to new Key()
+        dcl Key F9 to new Key()
+        dcl Key F10 to new Key()
+        dcl Key NUMLOCK to new Key()
+        dcl Key SCROLL to new Key()
+        dcl Key NUMPAD7 to new Key()
+        dcl Key NUMPAD8 to new Key()
+        dcl Key NUMPAD9 to new Key()
+        dcl Key SUBTRACT to new Key()
+        dcl Key NUMPAD4 to new Key()
+        dcl Key NUMPAD5 to new Key()
+        dcl Key NUMPAD6 to new Key()
+        dcl Key ADD to new Key()
+        dcl Key NUMPAD1 to new Key()
+        dcl Key NUMPAD2 to new Key()
+        dcl Key NUMPAD3 to new Key()
+        dcl Key NUMPAD0 to new Key()
+        dcl Key DECIMAL to new Key()
+        dcl Key F11 to new Key()
+        dcl Key F12 to new Key()
+        dcl Key RCONTROL to new Key()
+        dcl Key PAUSE to new Key()
+        dcl Key HOME to new Key()
+        dcl Key UP to new Key()
+        dcl Key PAGEUP to new Key()
+        dcl Key LEFT to new Key()
+        dcl Key RIGHT to new Key()
+        dcl Key END to new Key()
+        dcl Key DOWN to new Key()
+        dcl Key PAGEDOWN to new Key()
+        dcl Key INSERT to new Key()
+        dcl Key DELETE to new Key()
+        dcl Key LWIN to new Key()
+        dcl Key RWIN to new Key()
+
 end
 
 class Key begin
     dcl bool isPressed
+    dcl bool isDown
 end
 
 class Sprite begin

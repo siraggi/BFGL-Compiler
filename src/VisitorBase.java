@@ -62,12 +62,12 @@ public class VisitorBase extends DepthFirstAdapter {
     }
 
     protected boolean checkIfStatic(String nameOfClass){
-        List<String> StaticClasses = Arrays.asList("Game", "Math.java", "Timer", "Input", "Keyboard", "Key", "Sprite", "List");
-        for (String staticClass : StaticClasses) {
-            if (nameOfClass.equals(staticClass)){
-                return true;
-            }
-        }
+        //List<String> StaticClasses = Arrays.asList("Game", "Math.java", "Timer", "Input", "Keyboard", "Key", "Sprite", "List");
+        //for (String staticClass : StaticClasses) {
+        //    if (nameOfClass.equals(staticClass)){
+        //        return true;
+        //    }
+        //}
         return false;
     }
 

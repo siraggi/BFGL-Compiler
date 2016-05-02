@@ -57,143 +57,109 @@ class Timer begin
     end
 end
 
-class Input begin
-    dcl Keyboard key
+class InputBFGL begin
+    dcl Keyboard key to new Keyboard()
 end
 
 class Keyboard begin
 
-
-        dcl Key VOID
-        dcl Key ESCAPE
-        dcl Key _1
-        dcl Key _2
-        dcl Key _3
-        dcl Key _4
-        dcl Key _5
-        dcl Key _6
-        dcl Key _7
-        dcl Key _8
-        dcl Key _9
-        dcl Key _0
-        dcl Key MINUS
-        dcl Key EQUALS
-        dcl Key BACK
-        dcl Key TAB
-        dcl Key Q
-        dcl Key W
-        dcl Key E
-        dcl Key R
-        dcl Key T
-        dcl Key Y
-        dcl Key U
-        dcl Key I
-        dcl Key O
-        dcl Key P
-        dcl Key LBRACKET
-        dcl Key RBRACKET
-        dcl Key RETURN
-        dcl Key LCONTROL
-        dcl Key A
-        dcl Key S
-        dcl Key D
-        dcl Key F
-        dcl Key G
-        dcl Key H
-        dcl Key J
-        dcl Key K
-        dcl Key L
-        dcl Key SEMICOLON
-        dcl Key APOSTROPHE
-        dcl Key GRAVE
-        dcl Key LSHIFT
-        dcl Key BACKSLASH
-        dcl Key Z
-        dcl Key X
-        dcl Key C
-        dcl Key V
-        dcl Key B
-        dcl Key N
-        dcl Key M
-        dcl Key COMMA
-        dcl Key PERIOD
-        dcl Key SLASH
-        dcl Key RSHIFT
-        dcl Key MULTIPLY
-        dcl Key LALT
-        dcl Key SPACE
-        dcl Key CAPITAL
-        dcl Key F1
-        dcl Key F2
-        dcl Key F3
-        dcl Key F4
-        dcl Key F5
-        dcl Key F6
-        dcl Key F7
-        dcl Key F8
-        dcl Key F9
-        dcl Key F10
-        dcl Key NUMLOCK
-        dcl Key SCROLL
-        dcl Key NUMPAD7
-        dcl Key NUMPAD8
-        dcl Key NUMPAD9
-        dcl Key SUBTRACT
-        dcl Key NUMPAD4
-        dcl Key NUMPAD5
-        dcl Key NUMPAD6
-        dcl Key ADD
-        dcl Key NUMPAD1
-        dcl Key NUMPAD2
-        dcl Key NUMPAD3
-        dcl Key NUMPAD0
-        dcl Key DECIMAL
-        dcl Key F11
-        dcl Key F12
-        dcl Key F13
-        dcl Key F14
-        dcl Key F15
-        dcl Key KANA
-        dcl Key CONVERT
-        dcl Key NOCONVERT
-        dcl Key YEN
-        dcl Key NUMPADEQUAL
-        dcl Key CIRCUMFLEX
-        dcl Key AT
-        dcl Key COLON
-        dcl Key UNDERLINE
-        dcl Key KANJI
-        dcl Key STOP
-        dcl Key AX
-        dcl Key UNLABELED
-        dcl Key NUMPADENTER
-        dcl Key RCONTROL
-        dcl Key NUMPADCOMMA
-        dcl Key DIVIDE
-        dcl Key SYSRQ
-        dcl Key RALT
-        dcl Key PAUSE
-        dcl Key HOME
-        dcl Key UP
-        dcl Key PAGEUP
-        dcl Key LEFT
-        dcl Key RIGHT
-        dcl Key END
-        dcl Key DOWN
-        dcl Key PAGEDOWN
-        dcl Key INSERT
-        dcl Key DELETE
-        dcl Key LWIN
-        dcl Key RWIN
-        dcl Key APPS
-        dcl Key POWER
-        dcl Key SLEEP
-        dcl Key UNKNOWN
+        dcl Key any to new Key()
+        dcl Key VOID to new Key()
+        dcl Key ESCAPE to new Key()
+        dcl Key num1 to new Key()
+        dcl Key num2 to new Key()
+        dcl Key num3 to new Key()
+        dcl Key num4 to new Key()
+        dcl Key num5 to new Key()
+        dcl Key num6 to new Key()
+        dcl Key num7 to new Key()
+        dcl Key num8 to new Key()
+        dcl Key num9 to new Key()
+        dcl Key num0 to new Key()
+        dcl Key BACK to new Key()
+        dcl Key TAB to new Key()
+        dcl Key Q to new Key()
+        dcl Key W to new Key()
+        dcl Key E to new Key()
+        dcl Key R to new Key()
+        dcl Key T to new Key()
+        dcl Key Y to new Key()
+        dcl Key U to new Key()
+        dcl Key I to new Key()
+        dcl Key O to new Key()
+        dcl Key P to new Key()
+        dcl Key RETURN to new Key()
+        dcl Key LCONTROL to new Key()
+        dcl Key A to new Key()
+        dcl Key S to new Key()
+        dcl Key D to new Key()
+        dcl Key F to new Key()
+        dcl Key G to new Key()
+        dcl Key H to new Key()
+        dcl Key J to new Key()
+        dcl Key K to new Key()
+        dcl Key LSHIFT to new Key()
+        dcl Key Z to new Key()
+        dcl Key X to new Key()
+        dcl Key C to new Key()
+        dcl Key V to new Key()
+        dcl Key B to new Key()
+        dcl Key N to new Key()
+        dcl Key M to new Key()
+        dcl Key COMMA to new Key()
+        dcl Key PERIOD to new Key()
+        dcl Key SLASH to new Key()
+        dcl Key RSHIFT to new Key()
+        dcl Key MULTIPLY to new Key()
+        dcl Key LALT to new Key()
+        dcl Key SPACE to new Key()
+        dcl Key F1 to new Key()
+        dcl Key F2 to new Key()
+        dcl Key F3 to new Key()
+        dcl Key F4 to new Key()
+        dcl Key F5 to new Key()
+        dcl Key F6 to new Key()
+        dcl Key F7 to new Key()
+        dcl Key F8 to new Key()
+        dcl Key F9 to new Key()
+        dcl Key F10 to new Key()
+        dcl Key NUMLOCK to new Key()
+        dcl Key SCROLL to new Key()
+        dcl Key NUMPAD7 to new Key()
+        dcl Key NUMPAD8 to new Key()
+        dcl Key NUMPAD9 to new Key()
+        dcl Key SUBTRACT to new Key()
+        dcl Key NUMPAD4 to new Key()
+        dcl Key NUMPAD5 to new Key()
+        dcl Key NUMPAD6 to new Key()
+        dcl Key ADD to new Key()
+        dcl Key NUMPAD1 to new Key()
+        dcl Key NUMPAD2 to new Key()
+        dcl Key NUMPAD3 to new Key()
+        dcl Key NUMPAD0 to new Key()
+        dcl Key DECIMAL to new Key()
+        dcl Key F11 to new Key()
+        dcl Key F12 to new Key()
+        dcl Key RCONTROL to new Key()
+        dcl Key PAUSE to new Key()
+        dcl Key HOME to new Key()
+        dcl Key UP to new Key()
+        dcl Key PAGEUP to new Key()
+        dcl Key LEFT to new Key()
+        dcl Key RIGHT to new Key()
+        dcl Key END to new Key()
+        dcl Key DOWN to new Key()
+        dcl Key PAGEDOWN to new Key()
+        dcl Key INSERT to new Key()
+        dcl Key DELETE to new Key()
+        dcl Key LWIN to new Key()
+        dcl Key RWIN to new Key()
 
 end
 
 class Key begin
     dcl bool isPressed
+    dcl bool isDown
 end
 
 class Sprite begin

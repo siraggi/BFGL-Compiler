@@ -1,19 +1,22 @@
 dcl Game game to new Game()
+dcl InputBFGL input to new InputBFGL()
 
 Main begin
-    dcl Player player to new Player(20)
-    dcl Player player2 to new Player(100)
+    dcl Player player to new Player()
+    dcl Player player2 to new Player()
 end
 
 class Player is Sprite begin
 
-    OnConstruct(num test) do
-        base(test, 200, 100, 10)
+    OnConstruct() do
+        base(200, 200, 100, 10)
 
         game.Sprites.add(this)
     end
 
     OnUpdate() do
-        set x to x + 1
+        if input.key.W.isPressed then
+            set x to x + 10
+        end
     end
 end

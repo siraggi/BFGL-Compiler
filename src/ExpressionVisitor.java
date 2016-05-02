@@ -230,6 +230,13 @@ public class ExpressionVisitor extends VisitorBase {
 
             if(node.getFirst() instanceof AFuncCall){
                 AFuncCall f = (AFuncCall) node.getFirst();
+
+                GlobalCheck gc = new GlobalCheck(f.getId().getText(), node.getFirst(), superTable);
+                getRoot(node).apply(gc);
+
+                if(gc.global)
+                    emit("Global.");
+
                 emit(f.getId().getText());
                 emit("(");
 
@@ -244,6 +251,12 @@ public class ExpressionVisitor extends VisitorBase {
                 emit(")");
             }else if(node.getFirst() instanceof AVarCall){
                 AVarCall v = (AVarCall)node.getFirst();
+
+                GlobalCheck gc = new GlobalCheck(v.getId().getText(), node.getFirst(), superTable);
+                getRoot(node).apply(gc);
+
+                if(gc.global)
+                    emit("Global.");
 
                 emit(v.getId().getText());
             }
