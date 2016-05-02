@@ -1,5 +1,4 @@
 
-import com.sun.jndi.toolkit.url.Uri;
 import grammar.ini.node.*;
 
 import java.io.*;
@@ -130,10 +129,19 @@ public class TopVisitor extends VisitorBase{
     }
 
     public void inAClassPdcl(AClassPdcl node){
-        if(node.getInherit() == null)
-            newCLass(node.getId().getText(), node, node.getId().getText());
-        else
-            newCLass(node.getId().getText(), ((AInherit)node.getInherit()).getType().toString(), node, node.getId().getText());
+        if (checkIfStatic(node.getId().getText())){
+            try {
+                addLibrary(node.getId().getText() + "BFGL", node.getId().getText());
+            }
+            catch (IOException ioerr){
+            }
+        }
+        else{
+            if(node.getInherit() == null)
+                newCLass(node.getId().getText(), node, node.getId().getText());
+            else
+                newCLass(node.getId().getText(), ((AInherit)node.getInherit()).getType().toString(), node, node.getId().getText());
+        }
     }
 
     public void inAMainPdcl(AMainPdcl node){

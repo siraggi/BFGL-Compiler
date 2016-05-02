@@ -3,3 +3,9 @@ out/
 Output/
 .xml
 CompiledGame/
+CompiledGame/compilationOUT/
+CompiledGame/hax.jar
+
+Output/Scene.java
+
+Output/Sprite.java
