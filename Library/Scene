@@ -28,79 +28,67 @@ public class Scene extends BasicGame{
     public void update(GameContainer gc, int delta) throws SlickException {
         Input input = gc.getInput();
 
-        if(input.isKeyPressed(input.KEY_any)){
-        	Global.input.key.any.isPressed = true;
-        }
-        else{
-        	Global.input.key.any.isPressed = true;
-        }
-        if(input.isKeyPressed(input.KEY_VOID)){
-        	Global.input.key.VOID.isPressed = true;
-        }
-        else{
-        	Global.input.key.VOID.isPressed = true;
-        }
         if(input.isKeyPressed(input.KEY_ESCAPE)){
         	Global.input.key.ESCAPE.isPressed = true;
         }
         else{
         	Global.input.key.ESCAPE.isPressed = true;
         }
-        if(input.isKeyPressed(input.KEY_num1)){
+        if(input.isKeyPressed(input.KEY_1)){
         	Global.input.key.num1.isPressed = true;
         }
         else{
         	Global.input.key.num1.isPressed = true;
         }
-        if(input.isKeyPressed(input.KEY_num2)){
+        if(input.isKeyPressed(input.KEY_2)){
         	Global.input.key.num2.isPressed = true;
         }
         else{
         	Global.input.key.num2.isPressed = true;
         }
-        if(input.isKeyPressed(input.KEY_num3)){
+        if(input.isKeyPressed(input.KEY_3)){
         	Global.input.key.num3.isPressed = true;
         }
         else{
         	Global.input.key.num3.isPressed = true;
         }
-        if(input.isKeyPressed(input.KEY_num4)){
+        if(input.isKeyPressed(input.KEY_4)){
         	Global.input.key.num4.isPressed = true;
         }
         else{
         	Global.input.key.num4.isPressed = true;
         }
-        if(input.isKeyPressed(input.KEY_num5)){
+        if(input.isKeyPressed(input.KEY_5)){
         	Global.input.key.num5.isPressed = true;
         }
         else{
         	Global.input.key.num5.isPressed = true;
         }
-        if(input.isKeyPressed(input.KEY_num6)){
+        if(input.isKeyPressed(input.KEY_6)){
         	Global.input.key.num6.isPressed = true;
         }
         else{
         	Global.input.key.num6.isPressed = true;
         }
-        if(input.isKeyPressed(input.KEY_num7)){
+        if(input.isKeyPressed(input.KEY_7)){
         	Global.input.key.num7.isPressed = true;
         }
         else{
         	Global.input.key.num7.isPressed = true;
         }
-        if(input.isKeyPressed(input.KEY_num8)){
+        if(input.isKeyPressed(input.KEY_8)){
         	Global.input.key.num8.isPressed = true;
         }
         else{
         	Global.input.key.num8.isPressed = true;
         }
-        if(input.isKeyPressed(input.KEY_num9)){
+        if(input.isKeyPressed(input.KEY_9)){
         	Global.input.key.num9.isPressed = true;
         }
         else{
         	Global.input.key.num9.isPressed = true;
         }
-        if(input.isKeyPressed(input.KEY_num0)){
+        if(input.isKeyPressed(input.KEY_0)){
         	Global.input.key.num0.isPressed = true;
         }
         else{
@@ -514,12 +502,6 @@ public class Scene extends BasicGame{
         else{
         	Global.input.key.UP.isPressed = true;
         }
-        if(input.isKeyPressed(input.KEY_PAGEUP)){
-        	Global.input.key.PAGEUP.isPressed = true;
-        }
-        else{
-        	Global.input.key.PAGEUP.isPressed = true;
-        }
         if(input.isKeyPressed(input.KEY_LEFT)){
         	Global.input.key.LEFT.isPressed = true;
         }
@@ -543,12 +525,6 @@ public class Scene extends BasicGame{
         }
         else{
         	Global.input.key.DOWN.isPressed = true;
-        }
-        if(input.isKeyPressed(input.KEY_PAGEDOWN)){
-        	Global.input.key.PAGEDOWN.isPressed = true;
-        }
-        else{
-        	Global.input.key.PAGEDOWN.isPressed = true;
         }
         if(input.isKeyPressed(input.KEY_INSERT)){
         	Global.input.key.INSERT.isPressed = true;
@@ -574,6 +550,7 @@ public class Scene extends BasicGame{
         else{
         	Global.input.key.RWIN.isPressed = true;
         }
+
 
 
         for(Sprite s : Global.game.Sprites) {
