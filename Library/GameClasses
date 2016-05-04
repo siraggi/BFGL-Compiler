@@ -1,27 +1,27 @@
 
-class Math begin
+class MathBFGL begin
     dcl func roundUp(num numToBeRounded) begin
-
+        return 0
     end
 
     dcl func roundDown(num numToBeRounded) begin
-
+        return 0
     end
 
     dcl func round(num numToBeRounded) begin
-
+        return 0
     end
 
     dcl func sqrt(num numToSqr) begin
-
+        return 0
     end
 
     dcl func pwr(num howMuchToPower) begin
-
+        return 0
     end
 
     dcl func getRandomNum(num lowerBound, num upperBound) begin
-
+        return 0
     end
 end
 

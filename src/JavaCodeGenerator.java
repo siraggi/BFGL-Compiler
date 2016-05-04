@@ -19,11 +19,14 @@ public class JavaCodeGenerator {
 
         for(File file: outDir.listFiles()) file.delete();
 
+        node.apply(new TopVisitor(typeTable, superTable));
+
         addLibrary("Main", "Main");
         addLibrary("Scene", "Scene");
+        addLibrary("MathBFGL", "MathBFGL");
 
 
-        node.apply(new TopVisitor(typeTable, superTable));
+
     }
 
     public static void addLibrary(String in, String out) throws IOException {

@@ -1,5 +1,6 @@
 dcl Game game to new Game()
 dcl InputBFGL input to new InputBFGL()
+dcl MathBFGL math to new MathBFGL()
 
 Main begin
     dcl Player player to new Player()
@@ -9,7 +10,7 @@ end
 class Player is Sprite begin
 
     OnConstruct() do
-        base(200, 200, 100, 10, "Player")
+        base(math.sqrt(100), 200, 100, 10, "Player")
 
         game.Sprites.add(this)
     end

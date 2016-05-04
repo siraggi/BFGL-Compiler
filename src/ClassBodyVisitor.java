@@ -146,7 +146,9 @@ public class ClassBodyVisitor extends VisitorBase {
                 emitnl("){");break;
         }
 
-        if(node.getBase() != null){
+
+        if(node.getBase() != null && !node.getBase().visited){
+            node.getBase().visited = true;
             emit("super(");
 
             for (Node p : ((ABaseBase)node.getBase()).getParams()) {

@@ -95,39 +95,45 @@ public class FuncBodyVisitor extends VisitorBase {
     }
 
     public void inAWhileStmt(AWhileStmt node){
-        emit("while(");
-        node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
-        emitnl("){");
+        if(!node.visited){
+            emit("while(");
+            node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
+            emitnl("){");
 
-        for(Node n : node.getStmt()){
-            n.apply(this);
+            for(Node n : node.getStmt()){
+                n.apply(this);
+            }
+
+            emitnl("}");
         }
-
-        emitnl("}");
     }
 
     public void inAForupStmt(AForupStmt node){
-        emit("for(" + node.getId().getText() + " ; " + node.getId().getText() + " < ");
-        node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
-        emitnl(" ; " + node.getId().getText() + "++){");
+        if(!node.visited){
+            emit("for(" + node.getId().getText() + " ; " + node.getId().getText() + " < ");
+            node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
+            emitnl(" ; " + node.getId().getText() + "++){");
 
-        for(Node n : node.getStmt()){
-            n.apply(this);
+            for(Node n : node.getStmt()){
+                n.apply(this);
+            }
+
+            emitnl("}");
         }
-
-        emitnl("}");
     }
 
     public void inAFordownStmt(AFordownStmt node){
-        emit("for(" + node.getId().getText() + " ; " + node.getId().getText() + " > ");
-        node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
-        emitnl(" ; " + node.getId().getText() + "--){");
+        if (!node.visited) {
+            emit("for(" + node.getId().getText() + " ; " + node.getId().getText() + " > ");
+            node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
+            emitnl(" ; " + node.getId().getText() + "--){");
 
-        for(Node n : node.getStmt()){
-            n.apply(this);
+            for(Node n : node.getStmt()){
+                n.apply(this);
+            }
+
+            emitnl("}");
         }
-
-        emitnl("}");
     }
 
     public void inAListPdcl(AListPdcl node){
