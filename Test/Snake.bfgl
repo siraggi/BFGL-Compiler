@@ -1,0 +1,29 @@
+dcl Game game to new Game()
+dcl InputBFGL input to new InputBFGL()
+
+Main begin
+    dcl Snake player to new Snake()
+end
+
+class Snake is Sprite begin
+
+    OnConstruct() do
+        base(40, game.Height/2, 20, 150, "Snake")
+        game.Sprites.add(this)
+    end
+
+    OnCollision(Sprite other) do
+        if other.id = "Food" then
+            game.Sprites.remove(other)
+        end
+     end
+end
+
+class Snake is Sprite begin
+
+    OnConstruct() do
+        base(40, 200, 20, 20, "Food")
+        game.Sprites.add(this)
+    end
+
+end

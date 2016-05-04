@@ -1,0 +1,74 @@
+dcl Game game to new Game()
+dcl InputBFGL input to new InputBFGL()
+
+Main begin
+    dcl Player player to new Player()
+    dcl Enemy enemy to new Enemy()
+end
+
+class Player is Sprite begin
+    dcl num speed
+    dcl num vel
+
+    OnConstruct() do
+        base(40, 200, 20, 150, "Player")
+        set speed to 100
+        game.Sprites.add(this)
+    end
+
+    OnUpdate() do
+        if input.key.W.isDown then
+             set vel to -speed
+        else if input.key.S.isDown then
+             set vel to speed
+        else
+            set vel to 0
+        end
+        set posY to posY+vel
+    end
+end
+
+class Enemy is Sprite begin
+  dcl num speed to 100
+  dcl num vel
+  dcl Ball ball
+  
+  OnConstruct() do
+    base(300, 200, 20, 150, "Enemy")
+    game.Sprites.add(this)
+    set ball to new Ball()
+  end
+
+  OnUpdate() do                           /* A event as explained in the previous section       */
+    if posY < ball.posY then                /* Use the reference obtained earlier, to move the enemy accordingly */
+      set vel to speed
+
+    else if posY > ball.posY then
+      set vel to -speed
+    end
+    set posY to posY+vel
+  end
+end
+
+class Ball is Sprite begin
+  dcl num speed
+  dcl num yspeed
+
+  OnConstruct() do
+    base(200, 200, 20,20, "Ball")
+    set speed to 100
+    Game.sprites.add(this)
+  end
+
+  OnCollision(sprite other) do
+        if other.posY > posY then
+            set yspeed to -speed
+        else
+            set yspeed to speed
+        end
+  end
+
+  OnUpdate() do
+    set posY to posY+yspeed
+  end
+end
