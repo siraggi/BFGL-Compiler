@@ -1,5 +1,6 @@
 dcl Game game to new Game()
 dcl InputBFGL input to new InputBFGL()
+dcl MathBFGL math to new MathBFGL()
 
 Main begin
     dcl Player player to new Player()
@@ -12,11 +13,11 @@ class Player is Sprite begin
 
     OnConstruct() do
         base(40, 200, 20, 150, "Player")
-        set speed to 1
+        set speed to 200
         game.Sprites.add(this)
     end
 
-    OnUpdate() do
+    OnUpdate(num delta) do
         if input.key.W.isDown then
              set vel to -speed
         else if input.key.S.isDown then
@@ -24,50 +25,69 @@ class Player is Sprite begin
         else
             set vel to 0
         end
-        set posY to posY+vel
+        set posY to posY+vel * (delta / 1000)
     end
 end
 
 class Enemy is Sprite begin
-  dcl num speed to 1
+  dcl num speed to 200
   dcl num vel
   dcl Ball ball
   
   OnConstruct() do
-    base(300, 200, 20, 150, "Enemy")
+    base(600, 100, 20, 150, "Enemy")
     game.Sprites.add(this)
     set ball to new Ball()
   end
 
-  OnUpdate() do                           /* A event as explained in the previous section       */
+  OnUpdate(num delta) do                           /* A event as explained in the previous section       */
     if posY < ball.posY then                /* Use the reference obtained earlier, to move the enemy accordingly */
       set vel to speed
 
     else if posY > ball.posY then
       set vel to -speed
     end
-    set posY to posY+vel
+    set posY to posY+vel  * (delta / 1000)
   end
 end
 
 class Ball is Sprite begin
   dcl num speed
   dcl num yspeed
+  dcl num xspeed
+  dcl num dir
 
   OnConstruct() do
     base(200, 200, 20,20, "Ball")
-    set speed to 1
+    set speed to 200
+    set xspeed to speed
     game.Sprites.add(this)
   end
 
   OnCollision(Sprite other) do
-        set speed to -speed
+        set xspeed to -xspeed
+        set dir to math.getRandomNum(200) + 50
 
+        if dir = 1 then
+            set yspeed to dir
+        else
+            set yspeed to -dir
+        end
 
   end
 
-  OnUpdate() do
-    set posY to posY+yspeed
-    set posX to posX + speed
+  OnUpdate(num delta) do
+    if posY <= 0 then
+       set yspeed to -yspeed
+    else if posY >= 480 then
+       set yspeed to -yspeed
+    end
+
+    if posX <= 0 or posX >= 640 then
+        set posX to 320
+    end
+
+    set posY to posY + yspeed * (delta / 1000)
+    set posX to posX + xspeed * (delta / 1000)
   end
 end

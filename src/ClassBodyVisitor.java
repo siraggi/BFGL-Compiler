@@ -100,7 +100,7 @@ public class ClassBodyVisitor extends VisitorBase {
 
         switch (node.getId().getText()) {
             case ("OnUpdate"):
-                name = "update()";
+                name = "update(float delta)";
                 emitnl("public void " + name + "{");
                 break;
             case ("OnCollision"):

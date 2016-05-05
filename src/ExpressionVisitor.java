@@ -182,7 +182,7 @@ public class ExpressionVisitor extends VisitorBase {
 
     public void inANumVal(ANumVal node) {
         if (!node.visited) {
-            emit(node.getNumval().getText());
+            emit(node.getNumval().getText() + "f");
             node.visited = true;
         }
     }

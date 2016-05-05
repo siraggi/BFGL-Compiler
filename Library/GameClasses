@@ -173,7 +173,7 @@ class Sprite begin
         set id to ID
     end
 
-    dcl func update() begin
+    dcl func update(num delta) begin
 
     end
 

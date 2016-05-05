@@ -1083,7 +1083,7 @@ public class Scene extends BasicGame{
                 }
             }
 
-            s.update();
+            s.update(delta);
         }
     }
 
