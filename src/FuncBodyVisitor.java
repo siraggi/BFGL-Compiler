@@ -12,7 +12,7 @@ public class FuncBodyVisitor extends VisitorBase {
         super(bw, typeTable, superTable);
     }
 
-    public void outAVarPdcl(AVarPdcl node) {
+    public void inAVarPdcl(AVarPdcl node) {
         if (!node.visited) {
             node.visited = true;
 
@@ -35,7 +35,7 @@ public class FuncBodyVisitor extends VisitorBase {
 
     }
 
-    public void outAVarasgPdcl(AVarasgPdcl node) {
+    public void inAVarasgPdcl(AVarasgPdcl node) {
         if (!node.visited) {
             node.visited = true;
 

@@ -16,7 +16,7 @@ public class ClassBodyVisitor extends VisitorBase {
         this.className = className;
     }
 
-    public void outAVarPdcl(AVarPdcl node) {
+    public void inAVarPdcl(AVarPdcl node) {
         switch (node.getType().toString().trim()) {
             case ("num"):
                 emitnl("public float " + node.getId().getText() + ";");
@@ -33,7 +33,7 @@ public class ClassBodyVisitor extends VisitorBase {
         }
     }
 
-    public void outAVarasgPdcl(AVarasgPdcl node) {
+    public void inAVarasgPdcl(AVarasgPdcl node) {
         if (!node.visited) {
             node.visited = true;
 
