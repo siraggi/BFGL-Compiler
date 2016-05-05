@@ -5,52 +5,42 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class AValCall extends PCall
-{
+public final class AValCall extends PCall {
     private PVal _val_;
 
-    public AValCall()
-    {
+    public AValCall() {
         // Constructor
     }
 
     public AValCall(
-        @SuppressWarnings("hiding") PVal _val_)
-    {
+            @SuppressWarnings("hiding") PVal _val_) {
         // Constructor
         setVal(_val_);
 
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new AValCall(
-            cloneNode(this._val_));
+                cloneNode(this._val_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseAValCall(this);
     }
 
-    public PVal getVal()
-    {
+    public PVal getVal() {
         return this._val_;
     }
 
-    public void setVal(PVal node)
-    {
-        if(this._val_ != null)
-        {
+    public void setVal(PVal node) {
+        if (this._val_ != null) {
             this._val_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -61,18 +51,15 @@ public final class AValCall extends PCall
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._val_);
+                + toString(this._val_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._val_ == child)
-        {
+        if (this._val_ == child) {
             this._val_ = null;
             return;
         }
@@ -81,11 +68,9 @@ public final class AValCall extends PCall
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._val_ == oldChild)
-        {
+        if (this._val_ == oldChild) {
             setVal((PVal) newChild);
             return;
         }

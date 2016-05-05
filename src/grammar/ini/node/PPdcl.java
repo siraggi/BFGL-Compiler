@@ -2,7 +2,6 @@
 
 package grammar.ini.node;
 
-public abstract class PPdcl extends Node
-{
+public abstract class PPdcl extends Node {
     // Empty body
 }

@@ -5,52 +5,42 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class AThisVal extends PVal
-{
+public final class AThisVal extends PVal {
     private TThis _this_;
 
-    public AThisVal()
-    {
+    public AThisVal() {
         // Constructor
     }
 
     public AThisVal(
-        @SuppressWarnings("hiding") TThis _this_)
-    {
+            @SuppressWarnings("hiding") TThis _this_) {
         // Constructor
         setThis(_this_);
 
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new AThisVal(
-            cloneNode(this._this_));
+                cloneNode(this._this_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseAThisVal(this);
     }
 
-    public TThis getThis()
-    {
+    public TThis getThis() {
         return this._this_;
     }
 
-    public void setThis(TThis node)
-    {
-        if(this._this_ != null)
-        {
+    public void setThis(TThis node) {
+        if (this._this_ != null) {
             this._this_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -61,18 +51,15 @@ public final class AThisVal extends PVal
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._this_);
+                + toString(this._this_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._this_ == child)
-        {
+        if (this._this_ == child) {
             this._this_ = null;
             return;
         }
@@ -81,11 +68,9 @@ public final class AThisVal extends PVal
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._this_ == oldChild)
-        {
+        if (this._this_ == oldChild) {
             setThis((TThis) newChild);
             return;
         }

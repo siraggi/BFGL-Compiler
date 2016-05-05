@@ -3,9 +3,6 @@ import java.util.Random;
 
 
 public class MathBFGL{
-    private MathBFGL(){
-        throw new AssertionError();
-    }
 
     public static float roundDown(float input){
         float result;

@@ -5,35 +5,29 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class TTbase extends Token
-{
-    public TTbase()
-    {
+public final class TTbase extends Token {
+    public TTbase() {
         super.setText("base");
     }
 
-    public TTbase(int line, int pos)
-    {
+    public TTbase(int line, int pos) {
         super.setText("base");
         setLine(line);
         setPos(pos);
     }
 
     @Override
-    public Object clone()
-    {
-      return new TTbase(getLine(), getPos());
+    public Object clone() {
+        return new TTbase(getLine(), getPos());
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseTTbase(this);
     }
 
     @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
+    public void setText(@SuppressWarnings("unused") String text) {
         throw new RuntimeException("Cannot change TTbase text.");
     }
 }

@@ -5,42 +5,35 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class AEmptyReturn extends PReturn
-{
+public final class AEmptyReturn extends PReturn {
 
-    public AEmptyReturn()
-    {
+    public AEmptyReturn() {
         // Constructor
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new AEmptyReturn();
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseAEmptyReturn(this);
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "";
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
         throw new RuntimeException("Not a child.");
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
         throw new RuntimeException("Not a child.");
     }

@@ -27,7 +27,7 @@ public class TableFiller extends DepthFirstAdapter {
     private LineAndPos lineAndPos;
     private boolean dotCall = false;
 
-    public TableFiller(Node node, boolean dotCall, LineAndPos lineAndPos){
+    public TableFiller(Node node, boolean dotCall, LineAndPos lineAndPos) {
         this.node = node;
         this.dotCall = dotCall;
         this.lineAndPos = lineAndPos;
@@ -41,74 +41,72 @@ public class TableFiller extends DepthFirstAdapter {
         symStack.push(new Hashtable<String, Node>());
     }
 
-    private void openScope(){
+    private void openScope() {
         symStack.push(new Hashtable<String, Node>());
     }
 
-    private void closeScope(){
+    private void closeScope() {
         symStack.pop();
     }
 
     //Symbol table methods
-    private void addSymbol(String name, Node node){
+    private void addSymbol(String name, Node node) {
         if (!symStack.peek().containsKey(name)) {
             symStack.peek().put(name, node);
-        }
-        else
+        } else
             ErrorList.add("ERROR: " + name + " is already defined in this scope " + symStack.peek().size());
     }
 
-    private void addType(Node node, String type){
+    private void addType(Node node, String type) {
         typeTable.put(node, type.trim());
     }
 
     //Class dcl
-    public void inAClassPdcl(AClassPdcl node){
+    public void inAClassPdcl(AClassPdcl node) {
         openScope();
     }
 
-    public void outAClassPdcl(AClassPdcl node){
-        if(node != this.node){
+    public void outAClassPdcl(AClassPdcl node) {
+        if (node != this.node) {
             closeScope();
             addSymbol(node.getId().getText(), node);
             addType(node, node.getId().getText());
 
-            if(node.getInherit() != null)
-                superTable.put(node.getId().getText().trim(), ((AInherit)node.getInherit()).getType().toString().trim());
+            if (node.getInherit() != null)
+                superTable.put(node.getId().getText().trim(), ((AInherit) node.getInherit()).getType().toString().trim());
         }
 
     }
 
     //Func dcl
-    public void inAFuncPdcl(AFuncPdcl node){
+    public void inAFuncPdcl(AFuncPdcl node) {
         openScope();
     }
 
-    public void outAFuncPdcl(AFuncPdcl node){
+    public void outAFuncPdcl(AFuncPdcl node) {
         closeScope();
         addSymbol(node.getId().getText(), node);
     }
 
-    public void outAVarPdcl(AVarPdcl node){
-        if(dotCall){
+    public void outAVarPdcl(AVarPdcl node) {
+        if (dotCall) {
             addSymbol(node.getId().getText(), node);
             addType(node, node.getType().toString());
         }
 
 
-
     }
 
-    public void outAVarasgPdcl(AVarasgPdcl node){
-        if(dotCall){
+    public void outAVarasgPdcl(AVarasgPdcl node) {
+        if (dotCall) {
             addSymbol(node.getId().getText(), node);
             addType(node, node.getType().toString());
         }
 
     }
 
-    public void outAListPdcl(AListPdcl node){
-        if(dotCall){
+    public void outAListPdcl(AListPdcl node) {
+        if (dotCall) {
             addSymbol(node.getId().getText(), node);
             addType(node, LIST);
         }

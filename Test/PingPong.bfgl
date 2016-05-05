@@ -56,12 +56,16 @@ class Ball is Sprite begin
 
   OnConstruct() do
     base(200, 200, 20,20, "Ball")
+<<<<<<< HEAD
     set vect to new MyVector(1,0)
+=======
+>>>>>>> d867fd3cf41d7b786951f9bf07c09446ff60db62
     set speed to 1
     game.Sprites.add(this)
   end
 
   OnCollision(Sprite other) do
+<<<<<<< HEAD
         if other.posX > posX then
             vect.SetX(-speed)
         else
@@ -91,5 +95,15 @@ class MyVector begin
     dcl num temp to x+y
     set x to x/temp
     set y to y/temp
+=======
+        set speed to -speed
+
+
+  end
+
+  OnUpdate() do
+    set posY to posY+yspeed
+    set posX to posX + speed
+>>>>>>> d867fd3cf41d7b786951f9bf07c09446ff60db62
   end
 end

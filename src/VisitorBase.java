@@ -15,13 +15,13 @@ public class VisitorBase extends DepthFirstAdapter {
     protected Hashtable<Node, String> typeTable;
     protected Hashtable<String, String> superTable;
 
-    public VisitorBase(BufferedWriter bw, Hashtable<Node, String> typeTable, Hashtable<String, String> superTable){
+    public VisitorBase(BufferedWriter bw, Hashtable<Node, String> typeTable, Hashtable<String, String> superTable) {
         this.bw = bw;
         this.typeTable = typeTable;
         this.superTable = superTable;
     }
 
-    protected void emitnl(String s){
+    protected void emitnl(String s) {
 
         try {
             bw.write(s);
@@ -31,7 +31,7 @@ public class VisitorBase extends DepthFirstAdapter {
         }
     }
 
-    protected void emit(String s){
+    protected void emit(String s) {
 
         try {
             bw.write(s);
@@ -40,7 +40,7 @@ public class VisitorBase extends DepthFirstAdapter {
         }
     }
 
-    protected void AddNameSpaces(){
+    protected void AddNameSpaces() {
         emitnl("import java.lang.*;");
         emitnl("import java.util.*;");
         emitnl("import java.io.*;");
@@ -51,17 +51,17 @@ public class VisitorBase extends DepthFirstAdapter {
         emitnl("import org.newdawn.slick.*;");
     }
 
-    protected Node getRoot(Node node){
+    protected Node getRoot(Node node) {
         Node root = node;
 
-        while (root.parent() != null){
+        while (root.parent() != null) {
             root = root.parent();
         }
 
         return root;
     }
 
-    protected boolean checkIfStatic(String nameOfClass){
+    protected boolean checkIfStatic(String nameOfClass) {
         //List<String> StaticClasses = Arrays.asList("Game", "Math.java", "Timer", "Input", "Keyboard", "Key", "Sprite", "List");
         //for (String staticClass : StaticClasses) {
         //    if (nameOfClass.equals(staticClass)){
@@ -75,7 +75,7 @@ public class VisitorBase extends DepthFirstAdapter {
         FileInputStream instream = null;
         FileOutputStream outstream = null;
 
-        try{
+        try {
             File infile = new File("Library", in);
             File outfile = new File("Output", out + ".java");
 
@@ -85,10 +85,10 @@ public class VisitorBase extends DepthFirstAdapter {
             byte[] buffer = new byte[1024];
 
             int length;
-    	    /*copying the contents from input stream to
+            /*copying the contents from input stream to
     	     * output stream using read and write methods
     	     */
-            while ((length = instream.read(buffer)) > 0){
+            while ((length = instream.read(buffer)) > 0) {
                 outstream.write(buffer, 0, length);
             }
 
@@ -98,7 +98,7 @@ public class VisitorBase extends DepthFirstAdapter {
 
             System.out.println("File copied successfully: " + out);
 
-        }catch(IOException ioe){
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
     }

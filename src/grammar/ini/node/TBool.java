@@ -5,35 +5,29 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class TBool extends Token
-{
-    public TBool()
-    {
+public final class TBool extends Token {
+    public TBool() {
         super.setText("bool");
     }
 
-    public TBool(int line, int pos)
-    {
+    public TBool(int line, int pos) {
         super.setText("bool");
         setLine(line);
         setPos(pos);
     }
 
     @Override
-    public Object clone()
-    {
-      return new TBool(getLine(), getPos());
+    public Object clone() {
+        return new TBool(getLine(), getPos());
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseTBool(this);
     }
 
     @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
+    public void setText(@SuppressWarnings("unused") String text) {
         throw new RuntimeException("Cannot change TBool text.");
     }
 }

@@ -9,22 +9,19 @@ import java.util.List;
 import java.util.ListIterator;
 
 @SuppressWarnings("nls")
-public final class AElseifBranch extends PBranch
-{
+public final class AElseifBranch extends PBranch {
     private PExpr _expr_;
     private final LinkedList<PStmt> _stmt_ = new LinkedList<PStmt>();
     private PBranch _branch_;
 
-    public AElseifBranch()
-    {
+    public AElseifBranch() {
         // Constructor
     }
 
     public AElseifBranch(
-        @SuppressWarnings("hiding") PExpr _expr_,
-        @SuppressWarnings("hiding") List<?> _stmt_,
-        @SuppressWarnings("hiding") PBranch _branch_)
-    {
+            @SuppressWarnings("hiding") PExpr _expr_,
+            @SuppressWarnings("hiding") List<?> _stmt_,
+            @SuppressWarnings("hiding") PBranch _branch_) {
         // Constructor
         setExpr(_expr_);
 
@@ -35,36 +32,29 @@ public final class AElseifBranch extends PBranch
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new AElseifBranch(
-            cloneNode(this._expr_),
-            cloneList(this._stmt_),
-            cloneNode(this._branch_));
+                cloneNode(this._expr_),
+                cloneList(this._stmt_),
+                cloneNode(this._branch_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseAElseifBranch(this);
     }
 
-    public PExpr getExpr()
-    {
+    public PExpr getExpr() {
         return this._expr_;
     }
 
-    public void setExpr(PExpr node)
-    {
-        if(this._expr_ != null)
-        {
+    public void setExpr(PExpr node) {
+        if (this._expr_ != null) {
             this._expr_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -74,24 +64,19 @@ public final class AElseifBranch extends PBranch
         this._expr_ = node;
     }
 
-    public LinkedList<PStmt> getStmt()
-    {
+    public LinkedList<PStmt> getStmt() {
         return this._stmt_;
     }
 
-    public void setStmt(List<?> list)
-    {
-        for(PStmt e : this._stmt_)
-        {
+    public void setStmt(List<?> list) {
+        for (PStmt e : this._stmt_) {
             e.parent(null);
         }
         this._stmt_.clear();
 
-        for(Object obj_e : list)
-        {
+        for (Object obj_e : list) {
             PStmt e = (PStmt) obj_e;
-            if(e.parent() != null)
-            {
+            if (e.parent() != null) {
                 e.parent().removeChild(e);
             }
 
@@ -100,22 +85,17 @@ public final class AElseifBranch extends PBranch
         }
     }
 
-    public PBranch getBranch()
-    {
+    public PBranch getBranch() {
         return this._branch_;
     }
 
-    public void setBranch(PBranch node)
-    {
-        if(this._branch_ != null)
-        {
+    public void setBranch(PBranch node) {
+        if (this._branch_ != null) {
             this._branch_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -126,31 +106,26 @@ public final class AElseifBranch extends PBranch
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._expr_)
-            + toString(this._stmt_)
-            + toString(this._branch_);
+                + toString(this._expr_)
+                + toString(this._stmt_)
+                + toString(this._branch_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._expr_ == child)
-        {
+        if (this._expr_ == child) {
             this._expr_ = null;
             return;
         }
 
-        if(this._stmt_.remove(child))
-        {
+        if (this._stmt_.remove(child)) {
             return;
         }
 
-        if(this._branch_ == child)
-        {
+        if (this._branch_ == child) {
             this._branch_ = null;
             return;
         }
@@ -159,21 +134,16 @@ public final class AElseifBranch extends PBranch
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._expr_ == oldChild)
-        {
+        if (this._expr_ == oldChild) {
             setExpr((PExpr) newChild);
             return;
         }
 
-        for(ListIterator<PStmt> i = this._stmt_.listIterator(); i.hasNext();)
-        {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
+        for (ListIterator<PStmt> i = this._stmt_.listIterator(); i.hasNext(); ) {
+            if (i.next() == oldChild) {
+                if (newChild != null) {
                     i.set((PStmt) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
@@ -186,8 +156,7 @@ public final class AElseifBranch extends PBranch
             }
         }
 
-        if(this._branch_ == oldChild)
-        {
+        if (this._branch_ == oldChild) {
             setBranch((PBranch) newChild);
             return;
         }

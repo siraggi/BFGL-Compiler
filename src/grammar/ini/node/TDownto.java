@@ -5,35 +5,29 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class TDownto extends Token
-{
-    public TDownto()
-    {
+public final class TDownto extends Token {
+    public TDownto() {
         super.setText("downto");
     }
 
-    public TDownto(int line, int pos)
-    {
+    public TDownto(int line, int pos) {
         super.setText("downto");
         setLine(line);
         setPos(pos);
     }
 
     @Override
-    public Object clone()
-    {
-      return new TDownto(getLine(), getPos());
+    public Object clone() {
+        return new TDownto(getLine(), getPos());
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseTDownto(this);
     }
 
     @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
+    public void setText(@SuppressWarnings("unused") String text) {
         throw new RuntimeException("Cannot change TDownto text.");
     }
 }

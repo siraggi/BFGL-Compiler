@@ -10,4 +10,5 @@ public final class Global {
 private Global(){ }
 public static Game game =  new Game();
 public static InputBFGL input =  new InputBFGL();
+public static MathBFGL math =  new MathBFGL();
 }

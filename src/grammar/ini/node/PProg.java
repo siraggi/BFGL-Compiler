@@ -2,7 +2,6 @@
 
 package grammar.ini.node;
 
-public abstract class PProg extends Node
-{
+public abstract class PProg extends Node {
     // Empty body
 }

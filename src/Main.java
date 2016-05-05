@@ -4,6 +4,7 @@ import grammar.ini.node.Start;
 import grammar.ini.parser.Parser;
 import grammar.ini.parser.ParserException;
 import sun.misc.IOUtils;
+
 import static java.nio.file.StandardCopyOption.*;
 
 import java.io.*;
@@ -13,8 +14,7 @@ import java.nio.file.Files;
 public class Main {
 
     public static void main(String[] args)
-    throws ParserException, LexerException, IOException
-    {
+            throws ParserException, LexerException, IOException {
         TypeChecker typeChecker = new TypeChecker();
         File file = new File("Test", "BFGLtest.bfgl");
 
@@ -24,13 +24,12 @@ public class Main {
 
         tree.apply(typeChecker);
 
-        if(!typeChecker.ErrorList.isEmpty()){
-            for (String s:
-            typeChecker.ErrorList){
+        if (!typeChecker.ErrorList.isEmpty()) {
+            for (String s :
+                    typeChecker.ErrorList) {
                 System.out.println(s);
             }
-        }
-        else{
+        } else {
             new JavaCodeGenerator(typeChecker.typeTable, typeChecker.superTable, tree);
             AntExecutor AEx = new AntExecutor();
             AEx.executeAntTask("CompileBFGL.xml", "jar");
@@ -45,7 +44,7 @@ public class Main {
         FileInputStream instream = null;
         FileOutputStream outstream = null;
 
-        try{
+        try {
             File infile = new File("Library", "GameClasses");
 
 
@@ -57,10 +56,10 @@ public class Main {
             byte[] buffer = new byte[1024];
 
             int length;
-    	    /*copying the contents from input stream to
+            /*copying the contents from input stream to
     	     * output stream using read and write methods
     	     */
-            while ((length = instream.read(buffer)) > 0){
+            while ((length = instream.read(buffer)) > 0) {
                 outstream.write(buffer, 0, length);
             }
 
@@ -70,7 +69,7 @@ public class Main {
 
             System.out.println("File copied successfully!!");
 
-        }catch(IOException ioe){
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
 

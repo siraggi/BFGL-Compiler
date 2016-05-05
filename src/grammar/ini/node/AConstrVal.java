@@ -9,20 +9,17 @@ import java.util.List;
 import java.util.ListIterator;
 
 @SuppressWarnings("nls")
-public final class AConstrVal extends PVal
-{
+public final class AConstrVal extends PVal {
     private TId _id_;
     private final LinkedList<PExpr> _param_ = new LinkedList<PExpr>();
 
-    public AConstrVal()
-    {
+    public AConstrVal() {
         // Constructor
     }
 
     public AConstrVal(
-        @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") List<?> _param_)
-    {
+            @SuppressWarnings("hiding") TId _id_,
+            @SuppressWarnings("hiding") List<?> _param_) {
         // Constructor
         setId(_id_);
 
@@ -31,35 +28,28 @@ public final class AConstrVal extends PVal
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new AConstrVal(
-            cloneNode(this._id_),
-            cloneList(this._param_));
+                cloneNode(this._id_),
+                cloneList(this._param_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseAConstrVal(this);
     }
 
-    public TId getId()
-    {
+    public TId getId() {
         return this._id_;
     }
 
-    public void setId(TId node)
-    {
-        if(this._id_ != null)
-        {
+    public void setId(TId node) {
+        if (this._id_ != null) {
             this._id_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -69,24 +59,19 @@ public final class AConstrVal extends PVal
         this._id_ = node;
     }
 
-    public LinkedList<PExpr> getParam()
-    {
+    public LinkedList<PExpr> getParam() {
         return this._param_;
     }
 
-    public void setParam(List<?> list)
-    {
-        for(PExpr e : this._param_)
-        {
+    public void setParam(List<?> list) {
+        for (PExpr e : this._param_) {
             e.parent(null);
         }
         this._param_.clear();
 
-        for(Object obj_e : list)
-        {
+        for (Object obj_e : list) {
             PExpr e = (PExpr) obj_e;
-            if(e.parent() != null)
-            {
+            if (e.parent() != null) {
                 e.parent().removeChild(e);
             }
 
@@ -96,25 +81,21 @@ public final class AConstrVal extends PVal
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._id_)
-            + toString(this._param_);
+                + toString(this._id_)
+                + toString(this._param_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._id_ == child)
-        {
+        if (this._id_ == child) {
             this._id_ = null;
             return;
         }
 
-        if(this._param_.remove(child))
-        {
+        if (this._param_.remove(child)) {
             return;
         }
 
@@ -122,21 +103,16 @@ public final class AConstrVal extends PVal
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._id_ == oldChild)
-        {
+        if (this._id_ == oldChild) {
             setId((TId) newChild);
             return;
         }
 
-        for(ListIterator<PExpr> i = this._param_.listIterator(); i.hasNext();)
-        {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
+        for (ListIterator<PExpr> i = this._param_.listIterator(); i.hasNext(); ) {
+            if (i.next() == oldChild) {
+                if (newChild != null) {
                     i.set((PExpr) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);

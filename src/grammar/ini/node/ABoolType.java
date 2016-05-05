@@ -5,52 +5,42 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class ABoolType extends PType
-{
+public final class ABoolType extends PType {
     private TBool _bool_;
 
-    public ABoolType()
-    {
+    public ABoolType() {
         // Constructor
     }
 
     public ABoolType(
-        @SuppressWarnings("hiding") TBool _bool_)
-    {
+            @SuppressWarnings("hiding") TBool _bool_) {
         // Constructor
         setBool(_bool_);
 
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new ABoolType(
-            cloneNode(this._bool_));
+                cloneNode(this._bool_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseABoolType(this);
     }
 
-    public TBool getBool()
-    {
+    public TBool getBool() {
         return this._bool_;
     }
 
-    public void setBool(TBool node)
-    {
-        if(this._bool_ != null)
-        {
+    public void setBool(TBool node) {
+        if (this._bool_ != null) {
             this._bool_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -61,18 +51,15 @@ public final class ABoolType extends PType
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._bool_);
+                + toString(this._bool_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._bool_ == child)
-        {
+        if (this._bool_ == child) {
             this._bool_ = null;
             return;
         }
@@ -81,11 +68,9 @@ public final class ABoolType extends PType
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._bool_ == oldChild)
-        {
+        if (this._bool_ == oldChild) {
             setBool((TBool) newChild);
             return;
         }

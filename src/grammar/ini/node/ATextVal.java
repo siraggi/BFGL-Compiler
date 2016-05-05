@@ -5,52 +5,42 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class ATextVal extends PVal
-{
+public final class ATextVal extends PVal {
     private TTextval _textval_;
 
-    public ATextVal()
-    {
+    public ATextVal() {
         // Constructor
     }
 
     public ATextVal(
-        @SuppressWarnings("hiding") TTextval _textval_)
-    {
+            @SuppressWarnings("hiding") TTextval _textval_) {
         // Constructor
         setTextval(_textval_);
 
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new ATextVal(
-            cloneNode(this._textval_));
+                cloneNode(this._textval_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseATextVal(this);
     }
 
-    public TTextval getTextval()
-    {
+    public TTextval getTextval() {
         return this._textval_;
     }
 
-    public void setTextval(TTextval node)
-    {
-        if(this._textval_ != null)
-        {
+    public void setTextval(TTextval node) {
+        if (this._textval_ != null) {
             this._textval_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -61,18 +51,15 @@ public final class ATextVal extends PVal
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._textval_);
+                + toString(this._textval_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._textval_ == child)
-        {
+        if (this._textval_ == child) {
             this._textval_ = null;
             return;
         }
@@ -81,11 +68,9 @@ public final class ATextVal extends PVal
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._textval_ == oldChild)
-        {
+        if (this._textval_ == oldChild) {
             setTextval((TTextval) newChild);
             return;
         }

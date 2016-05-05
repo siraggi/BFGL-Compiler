@@ -5,52 +5,42 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class AIdReturn extends PReturn
-{
+public final class AIdReturn extends PReturn {
     private PExpr _expr_;
 
-    public AIdReturn()
-    {
+    public AIdReturn() {
         // Constructor
     }
 
     public AIdReturn(
-        @SuppressWarnings("hiding") PExpr _expr_)
-    {
+            @SuppressWarnings("hiding") PExpr _expr_) {
         // Constructor
         setExpr(_expr_);
 
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new AIdReturn(
-            cloneNode(this._expr_));
+                cloneNode(this._expr_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseAIdReturn(this);
     }
 
-    public PExpr getExpr()
-    {
+    public PExpr getExpr() {
         return this._expr_;
     }
 
-    public void setExpr(PExpr node)
-    {
-        if(this._expr_ != null)
-        {
+    public void setExpr(PExpr node) {
+        if (this._expr_ != null) {
             this._expr_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -61,18 +51,15 @@ public final class AIdReturn extends PReturn
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._expr_);
+                + toString(this._expr_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._expr_ == child)
-        {
+        if (this._expr_ == child) {
             this._expr_ = null;
             return;
         }
@@ -81,11 +68,9 @@ public final class AIdReturn extends PReturn
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._expr_ == oldChild)
-        {
+        if (this._expr_ == oldChild) {
             setExpr((PExpr) newChild);
             return;
         }

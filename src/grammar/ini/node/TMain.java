@@ -5,35 +5,29 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class TMain extends Token
-{
-    public TMain()
-    {
+public final class TMain extends Token {
+    public TMain() {
         super.setText("Main");
     }
 
-    public TMain(int line, int pos)
-    {
+    public TMain(int line, int pos) {
         super.setText("Main");
         setLine(line);
         setPos(pos);
     }
 
     @Override
-    public Object clone()
-    {
-      return new TMain(getLine(), getPos());
+    public Object clone() {
+        return new TMain(getLine(), getPos());
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseTMain(this);
     }
 
     @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
+    public void setText(@SuppressWarnings("unused") String text) {
         throw new RuntimeException("Cannot change TMain text.");
     }
 }

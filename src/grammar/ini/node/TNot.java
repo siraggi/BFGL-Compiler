@@ -5,35 +5,29 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class TNot extends Token
-{
-    public TNot()
-    {
+public final class TNot extends Token {
+    public TNot() {
         super.setText("not");
     }
 
-    public TNot(int line, int pos)
-    {
+    public TNot(int line, int pos) {
         super.setText("not");
         setLine(line);
         setPos(pos);
     }
 
     @Override
-    public Object clone()
-    {
-      return new TNot(getLine(), getPos());
+    public Object clone() {
+        return new TNot(getLine(), getPos());
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseTNot(this);
     }
 
     @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
+    public void setText(@SuppressWarnings("unused") String text) {
         throw new RuntimeException("Cannot change TNot text.");
     }
 }

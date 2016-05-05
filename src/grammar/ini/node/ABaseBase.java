@@ -9,54 +9,44 @@ import java.util.List;
 import java.util.ListIterator;
 
 @SuppressWarnings("nls")
-public final class ABaseBase extends PBase
-{
+public final class ABaseBase extends PBase {
     private final LinkedList<PExpr> _params_ = new LinkedList<PExpr>();
 
-    public ABaseBase()
-    {
+    public ABaseBase() {
         // Constructor
     }
 
     public ABaseBase(
-        @SuppressWarnings("hiding") List<?> _params_)
-    {
+            @SuppressWarnings("hiding") List<?> _params_) {
         // Constructor
         setParams(_params_);
 
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new ABaseBase(
-            cloneList(this._params_));
+                cloneList(this._params_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseABaseBase(this);
     }
 
-    public LinkedList<PExpr> getParams()
-    {
+    public LinkedList<PExpr> getParams() {
         return this._params_;
     }
 
-    public void setParams(List<?> list)
-    {
-        for(PExpr e : this._params_)
-        {
+    public void setParams(List<?> list) {
+        for (PExpr e : this._params_) {
             e.parent(null);
         }
         this._params_.clear();
 
-        for(Object obj_e : list)
-        {
+        for (Object obj_e : list) {
             PExpr e = (PExpr) obj_e;
-            if(e.parent() != null)
-            {
+            if (e.parent() != null) {
                 e.parent().removeChild(e);
             }
 
@@ -66,18 +56,15 @@ public final class ABaseBase extends PBase
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._params_);
+                + toString(this._params_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._params_.remove(child))
-        {
+        if (this._params_.remove(child)) {
             return;
         }
 
@@ -85,15 +72,11 @@ public final class ABaseBase extends PBase
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        for(ListIterator<PExpr> i = this._params_.listIterator(); i.hasNext();)
-        {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
+        for (ListIterator<PExpr> i = this._params_.listIterator(); i.hasNext(); ) {
+            if (i.next() == oldChild) {
+                if (newChild != null) {
                     i.set((PExpr) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);

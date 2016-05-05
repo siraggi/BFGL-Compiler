@@ -5,52 +5,42 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class ATextType extends PType
-{
+public final class ATextType extends PType {
     private TText _text_;
 
-    public ATextType()
-    {
+    public ATextType() {
         // Constructor
     }
 
     public ATextType(
-        @SuppressWarnings("hiding") TText _text_)
-    {
+            @SuppressWarnings("hiding") TText _text_) {
         // Constructor
         setText(_text_);
 
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new ATextType(
-            cloneNode(this._text_));
+                cloneNode(this._text_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseATextType(this);
     }
 
-    public TText getText()
-    {
+    public TText getText() {
         return this._text_;
     }
 
-    public void setText(TText node)
-    {
-        if(this._text_ != null)
-        {
+    public void setText(TText node) {
+        if (this._text_ != null) {
             this._text_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -61,18 +51,15 @@ public final class ATextType extends PType
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._text_);
+                + toString(this._text_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._text_ == child)
-        {
+        if (this._text_ == child) {
             this._text_ = null;
             return;
         }
@@ -81,11 +68,9 @@ public final class ATextType extends PType
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._text_ == oldChild)
-        {
+        if (this._text_ == oldChild) {
             setText((TText) newChild);
             return;
         }

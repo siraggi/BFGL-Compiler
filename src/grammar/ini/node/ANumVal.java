@@ -5,52 +5,42 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class ANumVal extends PVal
-{
+public final class ANumVal extends PVal {
     private TNumval _numval_;
 
-    public ANumVal()
-    {
+    public ANumVal() {
         // Constructor
     }
 
     public ANumVal(
-        @SuppressWarnings("hiding") TNumval _numval_)
-    {
+            @SuppressWarnings("hiding") TNumval _numval_) {
         // Constructor
         setNumval(_numval_);
 
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new ANumVal(
-            cloneNode(this._numval_));
+                cloneNode(this._numval_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseANumVal(this);
     }
 
-    public TNumval getNumval()
-    {
+    public TNumval getNumval() {
         return this._numval_;
     }
 
-    public void setNumval(TNumval node)
-    {
-        if(this._numval_ != null)
-        {
+    public void setNumval(TNumval node) {
+        if (this._numval_ != null) {
             this._numval_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -61,18 +51,15 @@ public final class ANumVal extends PVal
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._numval_);
+                + toString(this._numval_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._numval_ == child)
-        {
+        if (this._numval_ == child) {
             this._numval_ = null;
             return;
         }
@@ -81,11 +68,9 @@ public final class ANumVal extends PVal
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._numval_ == oldChild)
-        {
+        if (this._numval_ == oldChild) {
             setNumval((TNumval) newChild);
             return;
         }

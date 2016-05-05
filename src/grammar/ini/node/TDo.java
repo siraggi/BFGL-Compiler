@@ -5,35 +5,29 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class TDo extends Token
-{
-    public TDo()
-    {
+public final class TDo extends Token {
+    public TDo() {
         super.setText("do");
     }
 
-    public TDo(int line, int pos)
-    {
+    public TDo(int line, int pos) {
         super.setText("do");
         setLine(line);
         setPos(pos);
     }
 
     @Override
-    public Object clone()
-    {
-      return new TDo(getLine(), getPos());
+    public Object clone() {
+        return new TDo(getLine(), getPos());
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseTDo(this);
     }
 
     @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
+    public void setText(@SuppressWarnings("unused") String text) {
         throw new RuntimeException("Cannot change TDo text.");
     }
 }

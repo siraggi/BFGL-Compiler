@@ -5,35 +5,29 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class TGreater extends Token
-{
-    public TGreater()
-    {
+public final class TGreater extends Token {
+    public TGreater() {
         super.setText(">");
     }
 
-    public TGreater(int line, int pos)
-    {
+    public TGreater(int line, int pos) {
         super.setText(">");
         setLine(line);
         setPos(pos);
     }
 
     @Override
-    public Object clone()
-    {
-      return new TGreater(getLine(), getPos());
+    public Object clone() {
+        return new TGreater(getLine(), getPos());
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseTGreater(this);
     }
 
     @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
+    public void setText(@SuppressWarnings("unused") String text) {
         throw new RuntimeException("Cannot change TGreater text.");
     }
 }

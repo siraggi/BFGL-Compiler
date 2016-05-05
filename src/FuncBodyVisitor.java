@@ -13,7 +13,7 @@ public class FuncBodyVisitor extends VisitorBase {
     }
 
     public void outAVarPdcl(AVarPdcl node) {
-        if(!node.visited){
+        if (!node.visited) {
             node.visited = true;
 
             switch (node.getType().toString().trim()) {
@@ -36,7 +36,7 @@ public class FuncBodyVisitor extends VisitorBase {
     }
 
     public void outAVarasgPdcl(AVarasgPdcl node) {
-        if(!node.visited){
+        if (!node.visited) {
             node.visited = true;
 
             switch (node.getType().toString().trim()) {
@@ -65,7 +65,7 @@ public class FuncBodyVisitor extends VisitorBase {
     }
 
     public void inAAssignmentStmt(AAssignmentStmt node) {
-        if(!node.visited){
+        if (!node.visited) {
             node.visited = true;
 
             emit(node.getId() + " = ");
@@ -94,84 +94,90 @@ public class FuncBodyVisitor extends VisitorBase {
         }
     }
 
-    public void inAWhileStmt(AWhileStmt node){
-        emit("while(");
-        node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
-        emitnl("){");
+    public void inAWhileStmt(AWhileStmt node) {
+        if (!node.visited) {
+            emit("while(");
+            node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
+            emitnl("){");
 
-        for(Node n : node.getStmt()){
-            n.apply(this);
+            for (Node n : node.getStmt()) {
+                n.apply(this);
+            }
+
+            emitnl("}");
         }
-
-        emitnl("}");
     }
 
-    public void inAForupStmt(AForupStmt node){
-        emit("for(" + node.getId().getText() + " ; " + node.getId().getText() + " < ");
-        node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
-        emitnl(" ; " + node.getId().getText() + "++){");
+    public void inAForupStmt(AForupStmt node) {
+        if (!node.visited) {
+            emit("for(" + node.getId().getText() + " ; " + node.getId().getText() + " < ");
+            node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
+            emitnl(" ; " + node.getId().getText() + "++){");
 
-        for(Node n : node.getStmt()){
-            n.apply(this);
+            for (Node n : node.getStmt()) {
+                n.apply(this);
+            }
+
+            emitnl("}");
         }
-
-        emitnl("}");
     }
 
-    public void inAFordownStmt(AFordownStmt node){
-        emit("for(" + node.getId().getText() + " ; " + node.getId().getText() + " > ");
-        node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
-        emitnl(" ; " + node.getId().getText() + "--){");
+    public void inAFordownStmt(AFordownStmt node) {
+        if (!node.visited) {
+            emit("for(" + node.getId().getText() + " ; " + node.getId().getText() + " > ");
+            node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
+            emitnl(" ; " + node.getId().getText() + "--){");
 
-        for(Node n : node.getStmt()){
-            n.apply(this);
+            for (Node n : node.getStmt()) {
+                n.apply(this);
+            }
+
+            emitnl("}");
         }
-
-        emitnl("}");
     }
 
-    public void inAListPdcl(AListPdcl node){
-        if (!node.visited){
+    public void inAListPdcl(AListPdcl node) {
+        if (!node.visited) {
             node.visited = true;
             emitnl("ArrayList<" + node.getType().toString().trim() + "> " + node.getId().getText() + " = new ArrayList<>();");
 
         }
     }
 
-    public void inAClassCall(AClassCall node){
-        if(!node.visited){
+    public void inAClassCall(AClassCall node) {
+        if (!node.visited) {
             node.visited = true;
 
-            if(node.getFirst() instanceof AFuncCall){
+            if (node.getFirst() instanceof AFuncCall) {
                 AFuncCall f = (AFuncCall) node.getFirst();
 
                 GlobalCheck gc = new GlobalCheck(f.getId().getText(), f, superTable);
 
                 getRoot(node).apply(gc);
 
-                if(gc.global)
+                if (gc.global)
                     emit("Global.");
 
                 emit(f.getId().getText());
                 emit("(");
 
-                for (Node p : f.getParams()){
+                for (Node p : f.getParams()) {
                     p.apply(this);
 
-                    if(!p.equals(f.getParams().getLast())){
+                    if (!p.equals(f.getParams().getLast())) {
                         emit(", ");
                     }
                 }
 
                 emit(")");
-            }else if(node.getFirst() instanceof AVarCall){
-                AVarCall v = (AVarCall)node.getFirst();
+            } else if (node.getFirst() instanceof AVarCall) {
+                AVarCall v = (AVarCall) node.getFirst();
 
                 GlobalCheck gc = new GlobalCheck(v.getId().getText(), v, superTable);
 
                 getRoot(node).apply(gc);
 
-                if(gc.global)
+                if (gc.global)
                     emit("Global.");
 
                 emit(v.getId().getText());
@@ -179,29 +185,29 @@ public class FuncBodyVisitor extends VisitorBase {
 
             emit(".");
 
-            for(Node n : node.getRest()){
-                if(n instanceof AVarCall){
+            for (Node n : node.getRest()) {
+                if (n instanceof AVarCall) {
                     AVarCall v = (AVarCall) n;
 
                     emit(v.getId().getText());
                 }
 
-                if(n != node.getRest().getLast()){
+                if (n != node.getRest().getLast()) {
                     emit(".");
                 }
             }
         }
     }
 
-    public void inAIfConditional(AIfConditional node){
-        if(!node.visited){
+    public void inAIfConditional(AIfConditional node) {
+        if (!node.visited) {
             node.visited = true;
 
             emit("if(");
             node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
             emitnl("){");
 
-            for(Node n : node.getStmt()){
+            for (Node n : node.getStmt()) {
                 n.apply(this);
             }
 
@@ -209,13 +215,13 @@ public class FuncBodyVisitor extends VisitorBase {
         }
     }
 
-    public void inAElseBranch(AElseBranch node){
-        if(!node.visited){
+    public void inAElseBranch(AElseBranch node) {
+        if (!node.visited) {
             node.visited = true;
 
             emitnl("else{");
 
-            for(Node n : node.getStmt()){
+            for (Node n : node.getStmt()) {
                 n.apply(this);
             }
 
@@ -223,15 +229,15 @@ public class FuncBodyVisitor extends VisitorBase {
         }
     }
 
-    public void inAElseifBranch(AElseifBranch node){
-        if(!node.visited){
+    public void inAElseifBranch(AElseifBranch node) {
+        if (!node.visited) {
             node.visited = true;
 
             emit("else if(");
             node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
             emitnl("){");
 
-            for(Node n : node.getStmt()){
+            for (Node n : node.getStmt()) {
                 n.apply(this);
             }
 

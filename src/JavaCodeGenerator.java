@@ -17,20 +17,23 @@ public class JavaCodeGenerator {
 
         outDir = new File("Output/");
 
-        for(File file: outDir.listFiles()) file.delete();
+        for (File file : outDir.listFiles()) file.delete();
 
-        addLibrary("Main", "Main");
         addLibrary("Scene", "Scene");
 
-
         node.apply(new TopVisitor(typeTable, superTable));
+
+        addLibrary("Main", "Main");
+        addLibrary("MathBFGL", "MathBFGL");
+
+
     }
 
     public static void addLibrary(String in, String out) throws IOException {
         FileInputStream instream = null;
         FileOutputStream outstream = null;
 
-        try{
+        try {
             File infile = new File("Library", in);
             File outfile = new File("Output", out + ".java");
 
@@ -40,10 +43,10 @@ public class JavaCodeGenerator {
             byte[] buffer = new byte[1024];
 
             int length;
-    	    /*copying the contents from input stream to
+            /*copying the contents from input stream to
     	     * output stream using read and write methods
     	     */
-            while ((length = instream.read(buffer)) > 0){
+            while ((length = instream.read(buffer)) > 0) {
                 outstream.write(buffer, 0, length);
             }
 
@@ -53,7 +56,7 @@ public class JavaCodeGenerator {
 
             System.out.println("File copied successfully!!");
 
-        }catch(IOException ioe){
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
     }

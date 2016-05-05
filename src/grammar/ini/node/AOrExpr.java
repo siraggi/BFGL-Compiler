@@ -5,20 +5,17 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class AOrExpr extends PExpr
-{
+public final class AOrExpr extends PExpr {
     private PExpr _left_;
     private PExpr _right_;
 
-    public AOrExpr()
-    {
+    public AOrExpr() {
         // Constructor
     }
 
     public AOrExpr(
-        @SuppressWarnings("hiding") PExpr _left_,
-        @SuppressWarnings("hiding") PExpr _right_)
-    {
+            @SuppressWarnings("hiding") PExpr _left_,
+            @SuppressWarnings("hiding") PExpr _right_) {
         // Constructor
         setLeft(_left_);
 
@@ -27,35 +24,28 @@ public final class AOrExpr extends PExpr
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new AOrExpr(
-            cloneNode(this._left_),
-            cloneNode(this._right_));
+                cloneNode(this._left_),
+                cloneNode(this._right_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseAOrExpr(this);
     }
 
-    public PExpr getLeft()
-    {
+    public PExpr getLeft() {
         return this._left_;
     }
 
-    public void setLeft(PExpr node)
-    {
-        if(this._left_ != null)
-        {
+    public void setLeft(PExpr node) {
+        if (this._left_ != null) {
             this._left_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -65,22 +55,17 @@ public final class AOrExpr extends PExpr
         this._left_ = node;
     }
 
-    public PExpr getRight()
-    {
+    public PExpr getRight() {
         return this._right_;
     }
 
-    public void setRight(PExpr node)
-    {
-        if(this._right_ != null)
-        {
+    public void setRight(PExpr node) {
+        if (this._right_ != null) {
             this._right_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -91,25 +76,21 @@ public final class AOrExpr extends PExpr
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._left_)
-            + toString(this._right_);
+                + toString(this._left_)
+                + toString(this._right_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._left_ == child)
-        {
+        if (this._left_ == child) {
             this._left_ = null;
             return;
         }
 
-        if(this._right_ == child)
-        {
+        if (this._right_ == child) {
             this._right_ = null;
             return;
         }
@@ -118,17 +99,14 @@ public final class AOrExpr extends PExpr
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._left_ == oldChild)
-        {
+        if (this._left_ == oldChild) {
             setLeft((PExpr) newChild);
             return;
         }
 
-        if(this._right_ == oldChild)
-        {
+        if (this._right_ == oldChild) {
             setRight((PExpr) newChild);
             return;
         }

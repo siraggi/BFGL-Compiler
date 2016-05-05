@@ -9,54 +9,44 @@ import java.util.List;
 import java.util.ListIterator;
 
 @SuppressWarnings("nls")
-public final class AMultiParam extends PParam
-{
+public final class AMultiParam extends PParam {
     private final LinkedList<PParam> _param_ = new LinkedList<PParam>();
 
-    public AMultiParam()
-    {
+    public AMultiParam() {
         // Constructor
     }
 
     public AMultiParam(
-        @SuppressWarnings("hiding") List<?> _param_)
-    {
+            @SuppressWarnings("hiding") List<?> _param_) {
         // Constructor
         setParam(_param_);
 
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new AMultiParam(
-            cloneList(this._param_));
+                cloneList(this._param_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseAMultiParam(this);
     }
 
-    public LinkedList<PParam> getParam()
-    {
+    public LinkedList<PParam> getParam() {
         return this._param_;
     }
 
-    public void setParam(List<?> list)
-    {
-        for(PParam e : this._param_)
-        {
+    public void setParam(List<?> list) {
+        for (PParam e : this._param_) {
             e.parent(null);
         }
         this._param_.clear();
 
-        for(Object obj_e : list)
-        {
+        for (Object obj_e : list) {
             PParam e = (PParam) obj_e;
-            if(e.parent() != null)
-            {
+            if (e.parent() != null) {
                 e.parent().removeChild(e);
             }
 
@@ -66,18 +56,15 @@ public final class AMultiParam extends PParam
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._param_);
+                + toString(this._param_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._param_.remove(child))
-        {
+        if (this._param_.remove(child)) {
             return;
         }
 
@@ -85,15 +72,11 @@ public final class AMultiParam extends PParam
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        for(ListIterator<PParam> i = this._param_.listIterator(); i.hasNext();)
-        {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
+        for (ListIterator<PParam> i = this._param_.listIterator(); i.hasNext(); ) {
+            if (i.next() == oldChild) {
+                if (newChild != null) {
                     i.set((PParam) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);

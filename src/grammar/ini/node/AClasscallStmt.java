@@ -5,52 +5,42 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class AClasscallStmt extends PStmt
-{
+public final class AClasscallStmt extends PStmt {
     private PCall _call_;
 
-    public AClasscallStmt()
-    {
+    public AClasscallStmt() {
         // Constructor
     }
 
     public AClasscallStmt(
-        @SuppressWarnings("hiding") PCall _call_)
-    {
+            @SuppressWarnings("hiding") PCall _call_) {
         // Constructor
         setCall(_call_);
 
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new AClasscallStmt(
-            cloneNode(this._call_));
+                cloneNode(this._call_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseAClasscallStmt(this);
     }
 
-    public PCall getCall()
-    {
+    public PCall getCall() {
         return this._call_;
     }
 
-    public void setCall(PCall node)
-    {
-        if(this._call_ != null)
-        {
+    public void setCall(PCall node) {
+        if (this._call_ != null) {
             this._call_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -61,18 +51,15 @@ public final class AClasscallStmt extends PStmt
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._call_);
+                + toString(this._call_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._call_ == child)
-        {
+        if (this._call_ == child) {
             this._call_ = null;
             return;
         }
@@ -81,11 +68,9 @@ public final class AClasscallStmt extends PStmt
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._call_ == oldChild)
-        {
+        if (this._call_ == oldChild) {
             setCall((PCall) newChild);
             return;
         }

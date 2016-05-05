@@ -5,35 +5,29 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class TLess extends Token
-{
-    public TLess()
-    {
+public final class TLess extends Token {
+    public TLess() {
         super.setText("<");
     }
 
-    public TLess(int line, int pos)
-    {
+    public TLess(int line, int pos) {
         super.setText("<");
         setLine(line);
         setPos(pos);
     }
 
     @Override
-    public Object clone()
-    {
-      return new TLess(getLine(), getPos());
+    public Object clone() {
+        return new TLess(getLine(), getPos());
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseTLess(this);
     }
 
     @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
+    public void setText(@SuppressWarnings("unused") String text) {
         throw new RuntimeException("Cannot change TLess text.");
     }
 }

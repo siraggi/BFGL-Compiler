@@ -18,7 +18,7 @@ public class TreeDumper extends DepthFirstAdapter {
 
     public void defaultCase(Node node) {
         indent();
-        out.println(((Token)node).getText());
+        out.println(((Token) node).getText());
     }
 
     public void defaultIn(Node node) {
@@ -26,17 +26,17 @@ public class TreeDumper extends DepthFirstAdapter {
         printNodeName(node);
         out.println();
 
-        depth = depth+1;
+        depth = depth + 1;
     }
 
     public void defaultOut(Node node) {
-        depth = depth-1;
+        depth = depth - 1;
         out.flush();
     }
 
     private void printNodeName(Node node) {
         String fullName = node.getClass().getName();
-        String name = fullName.substring(fullName.lastIndexOf('.')+1);
+        String name = fullName.substring(fullName.lastIndexOf('.') + 1);
 
         out.print(name);
     }

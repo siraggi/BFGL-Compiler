@@ -8,14 +8,14 @@ import java.util.Map;
 /**
  * Created by august on 05/04/16.
  */
-public class LineAndPos extends ReversedDepthFirstAdapter{
+public class LineAndPos extends ReversedDepthFirstAdapter {
     private Map<Node, Integer> lines = new HashMap<Node, Integer>();
     private Map<Node, Integer> positions = new HashMap<Node, Integer>();
 
     private int line, pos;
 
 
-    public LineAndPos(){
+    public LineAndPos() {
         lines = new HashMap<>();
         positions = new HashMap<>();
     }
@@ -28,9 +28,9 @@ public class LineAndPos extends ReversedDepthFirstAdapter{
         return positions.get(node);
     }
 
-    public void defaultCase(Node node){
-        if(node instanceof Token){
-            Token token = (Token)node;
+    public void defaultCase(Node node) {
+        if (node instanceof Token) {
+            Token token = (Token) node;
             line = token.getLine();
             pos = token.getPos();
             lines.put(node, line);
