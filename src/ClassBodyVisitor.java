@@ -63,7 +63,7 @@ public class ClassBodyVisitor extends VisitorBase {
     }
 
     public void inAFuncPdcl(AFuncPdcl node) {
-        emit("public " + (typeTable.get(node) == null ? "void" : typeTable.get(node)) + " " + node.getId().getText() + "(");
+        emit("public " + (typeTable.get(node) == null ? "void " : getJavaType(typeTable.get(node)) + " ") + node.getId().getText() + "(");
         for (Node p : node.getParams()) {
             switch (((AFormalParam) p).getType().toString().trim()) {
                 case ("num"):
@@ -93,6 +93,18 @@ public class ClassBodyVisitor extends VisitorBase {
 
         emitnl("");
         emitnl("}");
+    }
+
+    private String getJavaType(String BFGLtype){
+        switch (BFGLtype){
+            case("num"):
+                return "float";
+            case("text"):
+                return "String";
+            default:
+                return BFGLtype;
+
+        }
     }
 
     public void inAEventPdcl(AEventPdcl node) {

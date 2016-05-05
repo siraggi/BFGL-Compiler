@@ -242,6 +242,7 @@ public class TypeChecker extends DepthFirstAdapter {
     }
 
     public void outAFuncPdcl(AFuncPdcl node) {
+        addType(node, typeTable.get(node.getBody()));
         closeScope();
     }
 

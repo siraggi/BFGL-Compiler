@@ -17,7 +17,7 @@ public class Main {
 
     public static void main(String[] args){
 
-
+        /*
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 GUI gui = new GUI();
@@ -29,8 +29,14 @@ public class Main {
                 frame.setVisible(true);
             }
         });
+        */
 
-
+        try{
+            compile(new File("Test", "AggiPingPong.bfgl"));
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
 
 
     }
