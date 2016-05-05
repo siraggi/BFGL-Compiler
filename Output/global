@@ -1,3 +1,4 @@
 Game game =  new Game();
 InputBFGL input =  new InputBFGL();
 MathBFGL math =  new MathBFGL();
+float score = 0f;

@@ -1085,13 +1085,19 @@ public class Scene extends BasicGame{
 
             s.update(delta);
         }
+
+        for(Label l : Global.game.Labels) {
+            l.update(delta);
+        }
     }
 
     public void render(GameContainer gc, Graphics g) throws SlickException {
         for(Sprite s : Global.game.Sprites) {
             g.draw(new Rectangle(s.posX, s.posY, s.sizeX, s.sizeY));
         }
-        g.drawString(Integer.toString(Global.game.Sprites.size()), 100, 100);
+        for(Label l : Global.game.Labels) {
+            g.drawString(l.textToWrite, l.posX, l.posY);
+        }
     }
 
 

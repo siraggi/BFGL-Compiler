@@ -36,6 +36,7 @@ class Game begin
     dcl num height
 
     dcl list of Sprite Sprites
+    dcl list of Label Labels
 
     dcl text pathToBackground
 
@@ -158,7 +159,7 @@ class Key begin
     dcl bool isDown
 end
 
-class Sprite begin
+class Sprite is Object begin
     dcl num posX
     dcl num posY
     dcl num sizeX
@@ -182,8 +183,40 @@ class Sprite begin
     end
 end
 
+class Label is Object begin
+    dcl num posX
+    dcl num posY
+    dcl text textToWrite
+
+    OnConstruct(text t, num xx, num yy) do
+        set posX to xx
+        set posY to yy
+        set textToWrite to t
+    end
+
+
+    dcl func update(num delta) begin
+
+    end
+
+    dcl func change(text t) begin
+        game.Labels.remove(this)
+        set textToWrite to t
+        game.Labels.add(this)
+    end
+
+end
+
+class Object begin
+
+end
+
 class List begin
-    dcl func add(Sprite sprite) begin
+    dcl func add(Object o) begin
+
+    end
+
+    dcl func remove(Object o) begin
 
     end
 end

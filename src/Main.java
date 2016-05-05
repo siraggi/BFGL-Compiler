@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args)
             throws ParserException, LexerException, IOException {
         TypeChecker typeChecker = new TypeChecker();
-        File file = new File("Test", "PingPong.bfgl");
+        File file = new File("Test", "AggiPingPong.bfgl");
 
         PushbackReader pushbackReader = new PushbackReader(new FileReader(addLibrary(file)));
         Parser parser = new Parser(new Lexer(pushbackReader));
