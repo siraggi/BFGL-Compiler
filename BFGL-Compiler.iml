@@ -3,16 +3,15 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Library" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="ant-1.8.2" level="project" />
-    <orderEntry type="library" name="ant" level="project" />
-    <orderEntry type="library" name="ant-launcher" level="project" />
-    <orderEntry type="library" name="slick" level="project" />
-    <orderEntry type="library" name="ant" level="project" />
-    <orderEntry type="library" name="ant-launcher" level="project" />
+    <orderEntry type="library" name="BFGL-Compiler" level="project" />
+    <orderEntry type="library" name="hax" level="project" />
+    <orderEntry type="library" name="SlickLib1" level="project" />
+    <orderEntry type="library" name="SlickLib" level="project" />
+    <orderEntry type="library" name="Library" level="project" />
   </component>
 </module>

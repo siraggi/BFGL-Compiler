@@ -10,7 +10,7 @@ end
 class Player is Sprite begin
     dcl num g
     OnConstruct() do
-        base(math.sqrt(100), 200, 100, 10, "Player")
+        base(100, math.getRandomNum(100), 100, 10, "Player")
 
         game.Sprites.add(this)
     end

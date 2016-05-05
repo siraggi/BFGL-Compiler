@@ -68,6 +68,13 @@ public class FuncBodyVisitor extends VisitorBase {
         if (!node.visited) {
             node.visited = true;
 
+            GlobalCheck gc = new GlobalCheck(node.getId().getText(), node, superTable);
+
+            getRoot(node).apply(gc);
+
+            if (gc.global)
+                emit("Global.");
+
             emit(node.getId() + " = ");
             node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
             emitnl(";");

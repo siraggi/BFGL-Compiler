@@ -62,7 +62,7 @@ public class ClassBodyVisitor extends VisitorBase {
         }
     }
 
-    public void outAFuncPdcl(AFuncPdcl node) {
+    public void inAFuncPdcl(AFuncPdcl node) {
         emit("public " + (typeTable.get(node) == null ? "void" : typeTable.get(node)) + " " + node.getId().getText() + "(");
         for (Node p : node.getParams()) {
             switch (((AFormalParam) p).getType().toString().trim()) {
@@ -100,7 +100,7 @@ public class ClassBodyVisitor extends VisitorBase {
 
         switch (node.getId().getText()) {
             case ("OnUpdate"):
-                name = "update()";
+                name = "update(float delta)";
                 emitnl("public void " + name + "{");
                 break;
             case ("OnCollision"):
