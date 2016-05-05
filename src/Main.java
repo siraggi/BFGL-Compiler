@@ -5,6 +5,8 @@ import grammar.ini.parser.Parser;
 import grammar.ini.parser.ParserException;
 import sun.misc.IOUtils;
 
+import javax.swing.*;
+
 import static java.nio.file.StandardCopyOption.*;
 
 import java.io.*;
@@ -13,10 +15,30 @@ import java.nio.file.Files;
 
 public class Main {
 
-    public static void main(String[] args)
+    public static void main(String[] args){
+
+
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                GUI gui = new GUI();
+                JFrame frame = gui;
+                frame.setTitle("Program Title");
+                frame.setSize(400, 400);
+                frame.setLocationRelativeTo(null);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setVisible(true);
+            }
+        });
+
+
+
+
+    }
+
+    public static void compile(File inFile)
             throws ParserException, LexerException, IOException {
         TypeChecker typeChecker = new TypeChecker();
-        File file = new File("Test", "AggiPingPong.bfgl");
+        File file = inFile;
 
         PushbackReader pushbackReader = new PushbackReader(new FileReader(addLibrary(file)));
         Parser parser = new Parser(new Lexer(pushbackReader));
@@ -34,8 +56,6 @@ public class Main {
             AntExecutor AEx = new AntExecutor();
             AEx.executeAntTask("CompileBFGL.xml", "jar");
         }
-
-
     }
 
     private static File addLibrary(File file) throws IOException {

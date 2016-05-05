@@ -251,4 +251,14 @@ public class FuncBodyVisitor extends VisitorBase {
             emitnl("}");
         }
     }
+
+    public void inAIdReturn(AIdReturn node){
+        if (!node.visited) {
+            node.visited = true;
+
+            emit("return ");
+            node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
+            emitnl(";");
+        }
+    }
 }
