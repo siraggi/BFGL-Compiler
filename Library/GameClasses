@@ -20,7 +20,7 @@ class MathBFGL begin
         return 0
     end
 
-    dcl func getRandomNum(num lowerBound, num upperBound) begin
+    dcl func getRandomNum(num upperBound) begin
         return 0
     end
 end
