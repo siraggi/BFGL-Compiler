@@ -180,6 +180,13 @@ class Sprite begin
     dcl func collision(Sprite other) begin
 
     end
+
+    dcl func GetCenter() begin
+      dcl Vector center to new Vector(0,0)
+      center.SetX(posX+(sizeX/2))
+      center.SetY(posY+(sizeY/2))
+      return center
+    end
 end
 
 class List begin
@@ -191,4 +198,33 @@ end
 class Vector begin
     dcl num x
     dcl num y
+
+  OnConstruct(num dclx, num dcly) do
+    set x to dclx
+    set y to dcly
+  end
+
+  dcl func SetX(num value) begin
+    set x to value
+  end
+
+  dcl func SetY(num value) begin
+    set y to value
+  end
+
+  dcl func Normelise() begin
+    dcl num temp to x+y
+    set x to x/temp
+    set y to y/temp
+  end
+
+  dcl func DirVector(Vector point) begin
+    dcl Vector temp to new Vector(x-point.x, y-point.y)
+    return temp
+  end
+
+  dcl func MultiVector(num amount) begin
+    set x to x*amount
+    set y to y*amount
+  end
 end

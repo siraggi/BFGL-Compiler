@@ -52,58 +52,20 @@ end
 
 class Ball is Sprite begin
   dcl num speed
-  dcl MyVector vect
+  dcl Vector vect
 
   OnConstruct() do
     base(200, 200, 20,20, "Ball")
-<<<<<<< HEAD
-    set vect to new MyVector(1,0)
-=======
->>>>>>> d867fd3cf41d7b786951f9bf07c09446ff60db62
+    set vect to new Vector(1,0)
     set speed to 1
     game.Sprites.add(this)
   end
 
   OnCollision(Sprite other) do
-<<<<<<< HEAD
-        if other.posX > posX then
-            vect.SetX(-speed)
-        else
-            vect.SetX(speed)
-        end
+
   end
 
   OnUpdate() do
     set posX to posX+vect.x
-  end
-end
-
-class MyVector begin
-  dcl num x
-  dcl num y
-
-  OnConstruct(num dclx, num dcly) do
-    set x to dclx
-    set y to dcly
-  end
-
-  dcl func SetX(num value) begin
-    set x to value
-  end
-
-  dcl func Normelise() begin
-    dcl num temp to x+y
-    set x to x/temp
-    set y to y/temp
-=======
-        set speed to -speed
-
-
-  end
-
-  OnUpdate() do
-    set posY to posY+yspeed
-    set posX to posX + speed
->>>>>>> d867fd3cf41d7b786951f9bf07c09446ff60db62
   end
 end
