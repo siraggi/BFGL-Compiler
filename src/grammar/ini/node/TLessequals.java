@@ -5,35 +5,29 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class TLessequals extends Token
-{
-    public TLessequals()
-    {
+public final class TLessequals extends Token {
+    public TLessequals() {
         super.setText("<=");
     }
 
-    public TLessequals(int line, int pos)
-    {
+    public TLessequals(int line, int pos) {
         super.setText("<=");
         setLine(line);
         setPos(pos);
     }
 
     @Override
-    public Object clone()
-    {
-      return new TLessequals(getLine(), getPos());
+    public Object clone() {
+        return new TLessequals(getLine(), getPos());
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseTLessequals(this);
     }
 
     @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
+    public void setText(@SuppressWarnings("unused") String text) {
         throw new RuntimeException("Cannot change TLessequals text.");
     }
 }

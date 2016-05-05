@@ -5,35 +5,29 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class TUpto extends Token
-{
-    public TUpto()
-    {
+public final class TUpto extends Token {
+    public TUpto() {
         super.setText("upto");
     }
 
-    public TUpto(int line, int pos)
-    {
+    public TUpto(int line, int pos) {
         super.setText("upto");
         setLine(line);
         setPos(pos);
     }
 
     @Override
-    public Object clone()
-    {
-      return new TUpto(getLine(), getPos());
+    public Object clone() {
+        return new TUpto(getLine(), getPos());
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseTUpto(this);
     }
 
     @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
+    public void setText(@SuppressWarnings("unused") String text) {
         throw new RuntimeException("Cannot change TUpto text.");
     }
 }

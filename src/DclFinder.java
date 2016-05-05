@@ -19,42 +19,42 @@ public class DclFinder extends DepthFirstAdapter {
     public Node root;
     public ArrayList<String> ids;
 
-    public DclFinder(Node node, String inherit, String id){
+    public DclFinder(Node node, String inherit, String id) {
         this.id = id;
         this.inherit = inherit;
 
         ids = new ArrayList<>();
 
-        while(node.parent() != null){
+        while (node.parent() != null) {
             node = node.parent();
         }
 
         root = node;
     }
 
-    public void defaultIn(Node node){
-        if(node instanceof AClassPdcl){
-            if(((AClassPdcl)node).getId().getText().equals(inherit)){
+    public void defaultIn(Node node) {
+        if (node instanceof AClassPdcl) {
+            if (((AClassPdcl) node).getId().getText().equals(inherit)) {
                 found = true;
             }
         }
     }
 
-    public void defaultOut(Node node){
-        if(node instanceof AClassPdcl){
-            if(((AClassPdcl)node).getId().getText().equals(inherit)){
+    public void defaultOut(Node node) {
+        if (node instanceof AClassPdcl) {
+            if (((AClassPdcl) node).getId().getText().equals(inherit)) {
                 found = false;
             }
         }
     }
 
-    public void outAVarPdcl(AVarPdcl node){
-        if(found && node.getId().getText().equals(id))
+    public void outAVarPdcl(AVarPdcl node) {
+        if (found && node.getId().getText().equals(id))
             ids.add(node.getId().getText());
     }
 
-    public void outAVarasgPdcl(AVarasgPdcl node){
-        if(found && node.getId().getText().equals(id))
+    public void outAVarasgPdcl(AVarasgPdcl node) {
+        if (found && node.getId().getText().equals(id))
             ids.add(node.getId().getText());
     }
 }

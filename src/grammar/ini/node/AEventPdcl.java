@@ -9,24 +9,21 @@ import java.util.List;
 import java.util.ListIterator;
 
 @SuppressWarnings("nls")
-public final class AEventPdcl extends PPdcl
-{
+public final class AEventPdcl extends PPdcl {
     private TId _id_;
     private final LinkedList<PParam> _params_ = new LinkedList<PParam>();
     private PBase _base_;
     private final LinkedList<PStmt> _body_ = new LinkedList<PStmt>();
 
-    public AEventPdcl()
-    {
+    public AEventPdcl() {
         // Constructor
     }
 
     public AEventPdcl(
-        @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") List<?> _params_,
-        @SuppressWarnings("hiding") PBase _base_,
-        @SuppressWarnings("hiding") List<?> _body_)
-    {
+            @SuppressWarnings("hiding") TId _id_,
+            @SuppressWarnings("hiding") List<?> _params_,
+            @SuppressWarnings("hiding") PBase _base_,
+            @SuppressWarnings("hiding") List<?> _body_) {
         // Constructor
         setId(_id_);
 
@@ -39,37 +36,30 @@ public final class AEventPdcl extends PPdcl
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new AEventPdcl(
-            cloneNode(this._id_),
-            cloneList(this._params_),
-            cloneNode(this._base_),
-            cloneList(this._body_));
+                cloneNode(this._id_),
+                cloneList(this._params_),
+                cloneNode(this._base_),
+                cloneList(this._body_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseAEventPdcl(this);
     }
 
-    public TId getId()
-    {
+    public TId getId() {
         return this._id_;
     }
 
-    public void setId(TId node)
-    {
-        if(this._id_ != null)
-        {
+    public void setId(TId node) {
+        if (this._id_ != null) {
             this._id_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -79,24 +69,19 @@ public final class AEventPdcl extends PPdcl
         this._id_ = node;
     }
 
-    public LinkedList<PParam> getParams()
-    {
+    public LinkedList<PParam> getParams() {
         return this._params_;
     }
 
-    public void setParams(List<?> list)
-    {
-        for(PParam e : this._params_)
-        {
+    public void setParams(List<?> list) {
+        for (PParam e : this._params_) {
             e.parent(null);
         }
         this._params_.clear();
 
-        for(Object obj_e : list)
-        {
+        for (Object obj_e : list) {
             PParam e = (PParam) obj_e;
-            if(e.parent() != null)
-            {
+            if (e.parent() != null) {
                 e.parent().removeChild(e);
             }
 
@@ -105,22 +90,17 @@ public final class AEventPdcl extends PPdcl
         }
     }
 
-    public PBase getBase()
-    {
+    public PBase getBase() {
         return this._base_;
     }
 
-    public void setBase(PBase node)
-    {
-        if(this._base_ != null)
-        {
+    public void setBase(PBase node) {
+        if (this._base_ != null) {
             this._base_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -130,24 +110,19 @@ public final class AEventPdcl extends PPdcl
         this._base_ = node;
     }
 
-    public LinkedList<PStmt> getBody()
-    {
+    public LinkedList<PStmt> getBody() {
         return this._body_;
     }
 
-    public void setBody(List<?> list)
-    {
-        for(PStmt e : this._body_)
-        {
+    public void setBody(List<?> list) {
+        for (PStmt e : this._body_) {
             e.parent(null);
         }
         this._body_.clear();
 
-        for(Object obj_e : list)
-        {
+        for (Object obj_e : list) {
             PStmt e = (PStmt) obj_e;
-            if(e.parent() != null)
-            {
+            if (e.parent() != null) {
                 e.parent().removeChild(e);
             }
 
@@ -157,38 +132,32 @@ public final class AEventPdcl extends PPdcl
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._id_)
-            + toString(this._params_)
-            + toString(this._base_)
-            + toString(this._body_);
+                + toString(this._id_)
+                + toString(this._params_)
+                + toString(this._base_)
+                + toString(this._body_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._id_ == child)
-        {
+        if (this._id_ == child) {
             this._id_ = null;
             return;
         }
 
-        if(this._params_.remove(child))
-        {
+        if (this._params_.remove(child)) {
             return;
         }
 
-        if(this._base_ == child)
-        {
+        if (this._base_ == child) {
             this._base_ = null;
             return;
         }
 
-        if(this._body_.remove(child))
-        {
+        if (this._body_.remove(child)) {
             return;
         }
 
@@ -196,21 +165,16 @@ public final class AEventPdcl extends PPdcl
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._id_ == oldChild)
-        {
+        if (this._id_ == oldChild) {
             setId((TId) newChild);
             return;
         }
 
-        for(ListIterator<PParam> i = this._params_.listIterator(); i.hasNext();)
-        {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
+        for (ListIterator<PParam> i = this._params_.listIterator(); i.hasNext(); ) {
+            if (i.next() == oldChild) {
+                if (newChild != null) {
                     i.set((PParam) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
@@ -223,18 +187,14 @@ public final class AEventPdcl extends PPdcl
             }
         }
 
-        if(this._base_ == oldChild)
-        {
+        if (this._base_ == oldChild) {
             setBase((PBase) newChild);
             return;
         }
 
-        for(ListIterator<PStmt> i = this._body_.listIterator(); i.hasNext();)
-        {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
+        for (ListIterator<PStmt> i = this._body_.listIterator(); i.hasNext(); ) {
+            if (i.next() == oldChild) {
+                if (newChild != null) {
                     i.set((PStmt) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);

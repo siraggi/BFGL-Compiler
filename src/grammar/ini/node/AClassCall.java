@@ -9,20 +9,17 @@ import java.util.List;
 import java.util.ListIterator;
 
 @SuppressWarnings("nls")
-public final class AClassCall extends PCall
-{
+public final class AClassCall extends PCall {
     private PCall _first_;
     private final LinkedList<PCall> _rest_ = new LinkedList<PCall>();
 
-    public AClassCall()
-    {
+    public AClassCall() {
         // Constructor
     }
 
     public AClassCall(
-        @SuppressWarnings("hiding") PCall _first_,
-        @SuppressWarnings("hiding") List<?> _rest_)
-    {
+            @SuppressWarnings("hiding") PCall _first_,
+            @SuppressWarnings("hiding") List<?> _rest_) {
         // Constructor
         setFirst(_first_);
 
@@ -31,35 +28,28 @@ public final class AClassCall extends PCall
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new AClassCall(
-            cloneNode(this._first_),
-            cloneList(this._rest_));
+                cloneNode(this._first_),
+                cloneList(this._rest_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseAClassCall(this);
     }
 
-    public PCall getFirst()
-    {
+    public PCall getFirst() {
         return this._first_;
     }
 
-    public void setFirst(PCall node)
-    {
-        if(this._first_ != null)
-        {
+    public void setFirst(PCall node) {
+        if (this._first_ != null) {
             this._first_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -69,24 +59,19 @@ public final class AClassCall extends PCall
         this._first_ = node;
     }
 
-    public LinkedList<PCall> getRest()
-    {
+    public LinkedList<PCall> getRest() {
         return this._rest_;
     }
 
-    public void setRest(List<?> list)
-    {
-        for(PCall e : this._rest_)
-        {
+    public void setRest(List<?> list) {
+        for (PCall e : this._rest_) {
             e.parent(null);
         }
         this._rest_.clear();
 
-        for(Object obj_e : list)
-        {
+        for (Object obj_e : list) {
             PCall e = (PCall) obj_e;
-            if(e.parent() != null)
-            {
+            if (e.parent() != null) {
                 e.parent().removeChild(e);
             }
 
@@ -96,25 +81,21 @@ public final class AClassCall extends PCall
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._first_)
-            + toString(this._rest_);
+                + toString(this._first_)
+                + toString(this._rest_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._first_ == child)
-        {
+        if (this._first_ == child) {
             this._first_ = null;
             return;
         }
 
-        if(this._rest_.remove(child))
-        {
+        if (this._rest_.remove(child)) {
             return;
         }
 
@@ -122,21 +103,16 @@ public final class AClassCall extends PCall
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._first_ == oldChild)
-        {
+        if (this._first_ == oldChild) {
             setFirst((PCall) newChild);
             return;
         }
 
-        for(ListIterator<PCall> i = this._rest_.listIterator(); i.hasNext();)
-        {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
+        for (ListIterator<PCall> i = this._rest_.listIterator(); i.hasNext(); ) {
+            if (i.next() == oldChild) {
+                if (newChild != null) {
                     i.set((PCall) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);

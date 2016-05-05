@@ -11,17 +11,17 @@ public class RecursiveCheck extends DepthFirstAdapter {
     public boolean isRecursive = false;
     private AFuncPdcl dcl;
 
-    public RecursiveCheck(AFuncPdcl dcl){
+    public RecursiveCheck(AFuncPdcl dcl) {
         this.dcl = dcl;
     }
 
-    public void defaultOut(Node node){
+    public void defaultOut(Node node) {
         AFuncCall expr;
 
-        if(node instanceof ACallExpr && ((ACallExpr) node).getCall() instanceof AFuncCall){
+        if (node instanceof ACallExpr && ((ACallExpr) node).getCall() instanceof AFuncCall) {
             expr = (AFuncCall) ((ACallExpr) node).getCall();
 
-            if(dcl.getId().getText().trim().equals(expr.getId().getText().trim())){
+            if (dcl.getId().getText().trim().equals(expr.getId().getText().trim())) {
                 isRecursive = true;
             }
         }

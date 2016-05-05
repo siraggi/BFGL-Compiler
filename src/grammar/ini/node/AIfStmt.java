@@ -5,52 +5,42 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class AIfStmt extends PStmt
-{
+public final class AIfStmt extends PStmt {
     private PConditional _conditional_;
 
-    public AIfStmt()
-    {
+    public AIfStmt() {
         // Constructor
     }
 
     public AIfStmt(
-        @SuppressWarnings("hiding") PConditional _conditional_)
-    {
+            @SuppressWarnings("hiding") PConditional _conditional_) {
         // Constructor
         setConditional(_conditional_);
 
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new AIfStmt(
-            cloneNode(this._conditional_));
+                cloneNode(this._conditional_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseAIfStmt(this);
     }
 
-    public PConditional getConditional()
-    {
+    public PConditional getConditional() {
         return this._conditional_;
     }
 
-    public void setConditional(PConditional node)
-    {
-        if(this._conditional_ != null)
-        {
+    public void setConditional(PConditional node) {
+        if (this._conditional_ != null) {
             this._conditional_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -61,18 +51,15 @@ public final class AIfStmt extends PStmt
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._conditional_);
+                + toString(this._conditional_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._conditional_ == child)
-        {
+        if (this._conditional_ == child) {
             this._conditional_ = null;
             return;
         }
@@ -81,11 +68,9 @@ public final class AIfStmt extends PStmt
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._conditional_ == oldChild)
-        {
+        if (this._conditional_ == oldChild) {
             setConditional((PConditional) newChild);
             return;
         }

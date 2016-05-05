@@ -365,7 +365,7 @@ public class TypeChecker extends DepthFirstAdapter {
             }
         }
 
-        if(!hasConstr){
+        if (!hasConstr) {
             ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : No parent constructor for " + dcl.getId().getText() + ".");
 
         }
@@ -407,13 +407,13 @@ public class TypeChecker extends DepthFirstAdapter {
     public void outAConstrVal(AConstrVal node) {
         AEventPdcl dcl = null;
 
-        for(Node n : ((AClassPdcl)getNode(node.getId().getText())).getBody()){
-            if(n instanceof AEventdclBody){
+        for (Node n : ((AClassPdcl) getNode(node.getId().getText())).getBody()) {
+            if (n instanceof AEventdclBody) {
                 AEventdclBody dclBody = (AEventdclBody) n;
 
-                if(dclBody.getPdcl() instanceof AEventPdcl){
-                    if(((AEventPdcl)dclBody.getPdcl()).getId().getText().equals("OnConstruct"))
-                    dcl = (AEventPdcl) dclBody.getPdcl();
+                if (dclBody.getPdcl() instanceof AEventPdcl) {
+                    if (((AEventPdcl) dclBody.getPdcl()).getId().getText().equals("OnConstruct"))
+                        dcl = (AEventPdcl) dclBody.getPdcl();
                 }
 
             }
@@ -446,7 +446,7 @@ public class TypeChecker extends DepthFirstAdapter {
             currentNode = currentNode.parent();
         }
 
-        if(currentNode instanceof AClassPdcl){
+        if (currentNode instanceof AClassPdcl) {
             dcl = (AClassPdcl) currentNode;
         }
 

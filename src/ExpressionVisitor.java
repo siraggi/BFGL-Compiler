@@ -162,17 +162,16 @@ public class ExpressionVisitor extends VisitorBase {
     }
 
 
-
-    public void inAConstrVal(AConstrVal node){
-        if(!node.visited){
+    public void inAConstrVal(AConstrVal node) {
+        if (!node.visited) {
             node.visited = true;
 
             emit(" new " + node.getId().getText() + "(");
 
-            for (Node p : node.getParam()){
+            for (Node p : node.getParam()) {
                 p.apply(this);
 
-                if(!p.equals(node.getParam().getLast())){
+                if (!p.equals(node.getParam().getLast())) {
                     emit(", ");
                 }
             }
@@ -212,11 +211,11 @@ public class ExpressionVisitor extends VisitorBase {
     public void inAIdExpr(AIdExpr node) {
         GlobalCheck gc = new GlobalCheck(node.getId().getText(), node, superTable);
 
-        if(!node.visited){
+        if (!node.visited) {
             node.visited = true;
             getRoot(node).apply(gc);
 
-            if(gc.global)
+            if (gc.global)
                 emit("Global." + node.getId().getText());
             else
                 emit(node.getId().getText());
@@ -224,38 +223,38 @@ public class ExpressionVisitor extends VisitorBase {
         }
     }
 
-    public void inAClassCall(AClassCall node){
-        if(!node.visited){
+    public void inAClassCall(AClassCall node) {
+        if (!node.visited) {
             node.visited = true;
 
-            if(node.getFirst() instanceof AFuncCall){
+            if (node.getFirst() instanceof AFuncCall) {
                 AFuncCall f = (AFuncCall) node.getFirst();
 
                 GlobalCheck gc = new GlobalCheck(f.getId().getText(), node.getFirst(), superTable);
                 getRoot(node).apply(gc);
 
-                if(gc.global)
+                if (gc.global)
                     emit("Global.");
 
                 emit(f.getId().getText());
                 emit("(");
 
-                for (Node p : f.getParams()){
+                for (Node p : f.getParams()) {
                     p.apply(this);
 
-                    if(!p.equals(f.getParams().getLast())){
+                    if (!p.equals(f.getParams().getLast())) {
                         emit(", ");
                     }
                 }
 
                 emit(")");
-            }else if(node.getFirst() instanceof AVarCall){
-                AVarCall v = (AVarCall)node.getFirst();
+            } else if (node.getFirst() instanceof AVarCall) {
+                AVarCall v = (AVarCall) node.getFirst();
 
                 GlobalCheck gc = new GlobalCheck(v.getId().getText(), node.getFirst(), superTable);
                 getRoot(node).apply(gc);
 
-                if(gc.global)
+                if (gc.global)
                     emit("Global.");
 
                 emit(v.getId().getText());
@@ -263,45 +262,47 @@ public class ExpressionVisitor extends VisitorBase {
 
             emit(".");
 
-            for(Node n : node.getRest()){
-                if(n instanceof AFuncCall){
+            for (Node n : node.getRest()) {
+                if (n instanceof AFuncCall) {
                     AFuncCall f = (AFuncCall) n;
                     emit(f.getId().getText());
                     emit("(");
 
-                    for (Node p : f.getParams()){
+                    for (Node p : f.getParams()) {
                         p.apply(this);
 
-                        if(!p.equals(f.getParams().getLast())){
+                        if (!p.equals(f.getParams().getLast())) {
                             emit(", ");
                         }
                     }
 
                     emit(")");
-                }else if(n instanceof AVarCall){
+                } else if (n instanceof AVarCall) {
                     AVarCall v = (AVarCall) n;
 
                     emit(v.getId().getText());
                 }
 
-                if(n != node.getRest().getLast()){
+                if (n != node.getRest().getLast()) {
                     emit(".");
                 }
             }
         }
+
+        node.apply(new DisableVisitor(true));
     }
 
-    public void inAFuncCall(AFuncCall node){
-        if(!node.visited){
+    public void inAFuncCall(AFuncCall node) {
+        if (!node.visited) {
             node.visited = true;
 
             emit(node.getId().getText());
             emit("(");
 
-            for (Node p : node.getParams()){
+            for (Node p : node.getParams()) {
                 p.apply(this);
 
-                if(!p.equals(node.getParams().getLast())){
+                if (!p.equals(node.getParams().getLast())) {
                     emit(", ");
                 }
             }

@@ -5,52 +5,42 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class AInherit extends PInherit
-{
+public final class AInherit extends PInherit {
     private PType _type_;
 
-    public AInherit()
-    {
+    public AInherit() {
         // Constructor
     }
 
     public AInherit(
-        @SuppressWarnings("hiding") PType _type_)
-    {
+            @SuppressWarnings("hiding") PType _type_) {
         // Constructor
         setType(_type_);
 
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new AInherit(
-            cloneNode(this._type_));
+                cloneNode(this._type_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseAInherit(this);
     }
 
-    public PType getType()
-    {
+    public PType getType() {
         return this._type_;
     }
 
-    public void setType(PType node)
-    {
-        if(this._type_ != null)
-        {
+    public void setType(PType node) {
+        if (this._type_ != null) {
             this._type_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -61,18 +51,15 @@ public final class AInherit extends PInherit
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._type_);
+                + toString(this._type_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._type_ == child)
-        {
+        if (this._type_ == child) {
             this._type_ = null;
             return;
         }
@@ -81,11 +68,9 @@ public final class AInherit extends PInherit
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._type_ == oldChild)
-        {
+        if (this._type_ == oldChild) {
             setType((PType) newChild);
             return;
         }

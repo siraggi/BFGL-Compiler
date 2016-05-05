@@ -10,21 +10,21 @@ import java.util.List;
 /**
  * Created by august on 18/04/16.
  */
-public class TopVisitor extends VisitorBase{
+public class TopVisitor extends VisitorBase {
 
-    public TopVisitor(Hashtable<Node, String> typeTable, Hashtable<String, String> superTable){
+    public TopVisitor(Hashtable<Node, String> typeTable, Hashtable<String, String> superTable) {
         super(null, typeTable, superTable);
     }
 
-    private void newCLass(String className, Node node, String name){
+    private void newCLass(String className, Node node, String name) {
         File file;
         FileWriter fw;
 
 
         file = new File("Output/" + className + ".java");
 
-        try{
-            if (!file.exists()){
+        try {
+            if (!file.exists()) {
                 file.createNewFile();
             }
 
@@ -38,21 +38,20 @@ public class TopVisitor extends VisitorBase{
             emitnl("}");
 
             bw.close();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void newCLass(String className, String inherit, Node node, String name){
+    private void newCLass(String className, String inherit, Node node, String name) {
         File file;
         FileWriter fw;
 
 
         file = new File("Output/" + className + ".java");
 
-        try{
-            if (!file.exists()){
+        try {
+            if (!file.exists()) {
                 file.createNewFile();
             }
 
@@ -67,13 +66,12 @@ public class TopVisitor extends VisitorBase{
             emitnl("}");
 
             bw.close();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void inAProg(AProg node){
+    public void inAProg(AProg node) {
         File dump;
         File global;
         FileWriter fw;
@@ -81,8 +79,8 @@ public class TopVisitor extends VisitorBase{
 
         dump = new File("Output/global");
 
-        try{
-            if (!dump.exists()){
+        try {
+            if (!dump.exists()) {
                 dump.createNewFile();
             }
 
@@ -90,8 +88,7 @@ public class TopVisitor extends VisitorBase{
             bw = new BufferedWriter(fw);
 
 
-
-            for(Node n : node.getGlobaldcl()){
+            for (Node n : node.getGlobaldcl()) {
                 n.apply(new FuncBodyVisitor(bw, typeTable, superTable));
             }
 
@@ -99,7 +96,7 @@ public class TopVisitor extends VisitorBase{
 
             global = new File("Output/Global.java");
 
-            if (!global.exists()){
+            if (!global.exists()) {
                 global.createNewFile();
             }
 
@@ -115,36 +112,33 @@ public class TopVisitor extends VisitorBase{
             BufferedReader br = new BufferedReader(fr);
 
             String s;
-            while ((s = br.readLine()) != null){
+            while ((s = br.readLine()) != null) {
                 bw.write("public static " + s);
                 bw.newLine();
             }
 
             bw.write("}");
             bw.close();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void inAClassPdcl(AClassPdcl node){
-        if (checkIfStatic(node.getId().getText())){
+    public void inAClassPdcl(AClassPdcl node) {
+        if (checkIfStatic(node.getId().getText())) {
             try {
                 addLibrary(node.getId().getText() + "BFGL", node.getId().getText());
+            } catch (IOException ioerr) {
             }
-            catch (IOException ioerr){
-            }
-        }
-        else{
-            if(node.getInherit() == null)
+        } else {
+            if (node.getInherit() == null)
                 newCLass(node.getId().getText(), node, node.getId().getText());
             else
-                newCLass(node.getId().getText(), ((AInherit)node.getInherit()).getType().toString(), node, node.getId().getText());
+                newCLass(node.getId().getText(), ((AInherit) node.getInherit()).getType().toString(), node, node.getId().getText());
         }
     }
 
-    public void inAMainPdcl(AMainPdcl node){
+    public void inAMainPdcl(AMainPdcl node) {
         File sceneFile = new File("Output/Scene.java");
         File tempSceneFile = new File("Output/tempSceneFile.java");
 
@@ -153,29 +147,27 @@ public class TopVisitor extends VisitorBase{
             List<String> lines = Files.readAllLines(sceneFile.toPath(), Charset.defaultCharset());
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tempSceneFile)));
             tempSceneFile.createNewFile();
-            if(!sceneFile.exists()){
+            if (!sceneFile.exists()) {
                 throw new IOException("Scene library not copied! fatal error");
             }
 
-            for (int linepos  = 0; linepos < lines.size(); linepos++) {
+            for (int linepos = 0; linepos < lines.size(); linepos++) {
 
-                if (lines.get(linepos).contains("TAGPUTMAINHERE")){
+                if (lines.get(linepos).contains("/*TAGPUTMAINHERE*/")) {
                     node.apply(new FuncBodyVisitor(bw, typeTable, superTable));
-                }
-                else{
+                } else {
                     bw.write(lines.get(linepos));
                     bw.newLine();
                 }
             }
             Files.deleteIfExists(sceneFile.toPath());
             bw.close();
-            if (!(tempSceneFile.renameTo(new File("Output/Scene.java")))){
+            if (!(tempSceneFile.renameTo(new File("Output/Scene.java")))) {
                 throw new IOException("Could not rename scene.java!");
             }
 
-        }
-        catch (IOException ioerr){
-
+        } catch (IOException ioerr) {
+            ioerr.printStackTrace();
         }
     }
 }

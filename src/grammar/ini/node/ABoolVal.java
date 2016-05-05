@@ -5,52 +5,42 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class ABoolVal extends PVal
-{
+public final class ABoolVal extends PVal {
     private TBoolval _boolval_;
 
-    public ABoolVal()
-    {
+    public ABoolVal() {
         // Constructor
     }
 
     public ABoolVal(
-        @SuppressWarnings("hiding") TBoolval _boolval_)
-    {
+            @SuppressWarnings("hiding") TBoolval _boolval_) {
         // Constructor
         setBoolval(_boolval_);
 
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new ABoolVal(
-            cloneNode(this._boolval_));
+                cloneNode(this._boolval_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseABoolVal(this);
     }
 
-    public TBoolval getBoolval()
-    {
+    public TBoolval getBoolval() {
         return this._boolval_;
     }
 
-    public void setBoolval(TBoolval node)
-    {
-        if(this._boolval_ != null)
-        {
+    public void setBoolval(TBoolval node) {
+        if (this._boolval_ != null) {
             this._boolval_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -61,18 +51,15 @@ public final class ABoolVal extends PVal
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._boolval_);
+                + toString(this._boolval_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._boolval_ == child)
-        {
+        if (this._boolval_ == child) {
             this._boolval_ = null;
             return;
         }
@@ -81,11 +68,9 @@ public final class ABoolVal extends PVal
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._boolval_ == oldChild)
-        {
+        if (this._boolval_ == oldChild) {
             setBoolval((TBoolval) newChild);
             return;
         }

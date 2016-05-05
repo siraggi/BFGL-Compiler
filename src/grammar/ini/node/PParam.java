@@ -2,7 +2,6 @@
 
 package grammar.ini.node;
 
-public abstract class PParam extends Node
-{
+public abstract class PParam extends Node {
     // Empty body
 }

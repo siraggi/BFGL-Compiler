@@ -4,15 +4,15 @@ import grammar.ini.node.Node;
 /**
  * Created by august on 19/04/16.
  */
-public class DisableVisitor extends DepthFirstAdapter{
+public class DisableVisitor extends DepthFirstAdapter {
     private boolean visited;
 
 
-    public DisableVisitor(boolean visited){
+    public DisableVisitor(boolean visited) {
         this.visited = visited;
     }
 
-    public void defaultIn(Node node){
+    public void defaultIn(Node node) {
         node.visited = visited;
     }
 }

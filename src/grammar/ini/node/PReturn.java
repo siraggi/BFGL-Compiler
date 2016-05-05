@@ -2,7 +2,6 @@
 
 package grammar.ini.node;
 
-public abstract class PReturn extends Node
-{
+public abstract class PReturn extends Node {
     // Empty body
 }

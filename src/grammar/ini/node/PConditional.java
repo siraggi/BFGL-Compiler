@@ -2,7 +2,6 @@
 
 package grammar.ini.node;
 
-public abstract class PConditional extends Node
-{
+public abstract class PConditional extends Node {
     // Empty body
 }

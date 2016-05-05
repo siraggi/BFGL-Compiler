@@ -5,29 +5,24 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class TId extends Token
-{
-    public TId(String text)
-    {
+public final class TId extends Token {
+    public TId(String text) {
         setText(text);
     }
 
-    public TId(String text, int line, int pos)
-    {
+    public TId(String text, int line, int pos) {
         setText(text);
         setLine(line);
         setPos(pos);
     }
 
     @Override
-    public Object clone()
-    {
-      return new TId(getText(), getLine(), getPos());
+    public Object clone() {
+        return new TId(getText(), getLine(), getPos());
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseTId(this);
     }
 }

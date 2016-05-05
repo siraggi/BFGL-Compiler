@@ -8,11 +8,15 @@ Main begin
 end
 
 class Player is Sprite begin
-
+    dcl num g
     OnConstruct() do
         base(math.sqrt(100), 200, 100, 10, "Player")
 
         game.Sprites.add(this)
+    end
+
+    dcl func f(num n) begin
+        set g to n
     end
 
     OnUpdate() do

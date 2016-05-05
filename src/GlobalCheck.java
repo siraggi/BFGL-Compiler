@@ -13,7 +13,7 @@ public class GlobalCheck extends DepthFirstAdapter {
 
     public boolean global = false;
 
-    public GlobalCheck(String id, Node node, Hashtable<String, String> superTable){
+    public GlobalCheck(String id, Node node, Hashtable<String, String> superTable) {
         this.id = id;
         nodeToCheck = node;
         scope = new Stack<>();
@@ -21,29 +21,29 @@ public class GlobalCheck extends DepthFirstAdapter {
         this.superTable = superTable;
     }
 
-    private void openScope(){
+    private void openScope() {
         scope.push(new ArrayList<String>());
     }
 
-    private void closeScope(){
-        if(scope.size() > 0)
+    private void closeScope() {
+        if (scope.size() > 0)
             scope.pop();
     }
 
-    public void inAProg(AProg node){
+    public void inAProg(AProg node) {
         openScope();
     }
 
-    public void outAProg(AProg node){
+    public void outAProg(AProg node) {
         closeScope();
     }
 
-    public void inAClassPdcl(AClassPdcl node){
+    public void inAClassPdcl(AClassPdcl node) {
         DclFinder df;
         openScope();
 
-        if(node.getInherit() != null){
-            AInherit i = (AInherit)node.getInherit();
+        if (node.getInherit() != null) {
+            AInherit i = (AInherit) node.getInherit();
             df = new DclFinder(node, i.getType().toString().trim(), id);
 
             df.root.apply(df);
@@ -53,78 +53,84 @@ public class GlobalCheck extends DepthFirstAdapter {
 
     }
 
-    public void outAClassPdcl(AClassPdcl node){
+    public void outAClassPdcl(AClassPdcl node) {
         closeScope();
     }
 
-    public void inAFuncPdcl(AFuncPdcl node){
+    public void inAFuncPdcl(AFuncPdcl node) {
         openScope();
+
+        for (Node p : node.getParams()) {
+            if (p instanceof AFormalParam) {
+                if (((AFormalParam) p).getId().getText().equals(id))
+                    scope.peek().add(((AFormalParam) p).getId().getText());
+            }
+        }
     }
 
-    public void outAFuncPdcl(AFuncPdcl node){
+    public void outAFuncPdcl(AFuncPdcl node) {
         closeScope();
     }
 
-    public void inAEventPdcl(AEventPdcl node){
+    public void inAEventPdcl(AEventPdcl node) {
         openScope();
 
-        for(Node p : node.getParams()){
-            if(p instanceof AFormalParam){
-                if(((AFormalParam)p).getId().getText().equals(id))
-                    scope.peek().add(((AFormalParam)p).getId().getText());
+        for (Node p : node.getParams()) {
+            if (p instanceof AFormalParam) {
+                if (((AFormalParam) p).getId().getText().equals(id))
+                    scope.peek().add(((AFormalParam) p).getId().getText());
             }
         }
 
     }
 
-    public void outAEventPdcl(AEventPdcl node){
+    public void outAEventPdcl(AEventPdcl node) {
         closeScope();
     }
 
-    public void inAWhileStmt(AWhileStmt node){
+    public void inAWhileStmt(AWhileStmt node) {
         openScope();
     }
 
-    public void outAWhileStmt(AWhileStmt node){
+    public void outAWhileStmt(AWhileStmt node) {
         closeScope();
     }
 
-    public void inAForupStmt(AForupStmt node){
+    public void inAForupStmt(AForupStmt node) {
         openScope();
     }
 
-    public void outAForupStmt(AForupStmt node){
+    public void outAForupStmt(AForupStmt node) {
         closeScope();
     }
 
-    public void inAFordownStmt(AFordownStmt node){
+    public void inAFordownStmt(AFordownStmt node) {
         openScope();
     }
 
-    public void outAFordownStmt(AFordownStmt node){
+    public void outAFordownStmt(AFordownStmt node) {
         closeScope();
     }
 
-    public void defaultIn(Node node){
-        if(node.equals(nodeToCheck)){
-            while(scope.size() > 1){
-                if(scope.pop().contains(id)){
+    public void defaultIn(Node node) {
+        if (node.equals(nodeToCheck)) {
+            while (scope.size() > 1) {
+                if (scope.pop().contains(id)) {
                     global = false;
                     break;
-                }
-                else
+                } else
                     global = true;
             }
         }
     }
 
-    public void outAVarPdcl(AVarPdcl node){
-        if(node.getId().getText().equals(id))
+    public void outAVarPdcl(AVarPdcl node) {
+        if (node.getId().getText().equals(id))
             scope.peek().add(node.getId().getText());
     }
 
-    public void outAVarasgPdcl(AVarasgPdcl node){
-        if(node.getId().getText().equals(id))
+    public void outAVarasgPdcl(AVarasgPdcl node) {
+        if (node.getId().getText().equals(id))
             scope.peek().add(node.getId().getText());
     }
 }

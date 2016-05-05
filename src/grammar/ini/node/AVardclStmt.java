@@ -5,52 +5,42 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class AVardclStmt extends PStmt
-{
+public final class AVardclStmt extends PStmt {
     private PPdcl _pdcl_;
 
-    public AVardclStmt()
-    {
+    public AVardclStmt() {
         // Constructor
     }
 
     public AVardclStmt(
-        @SuppressWarnings("hiding") PPdcl _pdcl_)
-    {
+            @SuppressWarnings("hiding") PPdcl _pdcl_) {
         // Constructor
         setPdcl(_pdcl_);
 
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new AVardclStmt(
-            cloneNode(this._pdcl_));
+                cloneNode(this._pdcl_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseAVardclStmt(this);
     }
 
-    public PPdcl getPdcl()
-    {
+    public PPdcl getPdcl() {
         return this._pdcl_;
     }
 
-    public void setPdcl(PPdcl node)
-    {
-        if(this._pdcl_ != null)
-        {
+    public void setPdcl(PPdcl node) {
+        if (this._pdcl_ != null) {
             this._pdcl_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -61,18 +51,15 @@ public final class AVardclStmt extends PStmt
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._pdcl_);
+                + toString(this._pdcl_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._pdcl_ == child)
-        {
+        if (this._pdcl_ == child) {
             this._pdcl_ = null;
             return;
         }
@@ -81,11 +68,9 @@ public final class AVardclStmt extends PStmt
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._pdcl_ == oldChild)
-        {
+        if (this._pdcl_ == oldChild) {
             setPdcl((PPdcl) newChild);
             return;
         }

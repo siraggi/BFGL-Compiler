@@ -2,7 +2,6 @@
 
 package grammar.ini.node;
 
-public abstract class PType extends Node
-{
+public abstract class PType extends Node {
     // Empty body
 }

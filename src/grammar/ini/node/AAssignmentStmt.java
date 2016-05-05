@@ -5,20 +5,17 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class AAssignmentStmt extends PStmt
-{
+public final class AAssignmentStmt extends PStmt {
     private TId _id_;
     private PExpr _expr_;
 
-    public AAssignmentStmt()
-    {
+    public AAssignmentStmt() {
         // Constructor
     }
 
     public AAssignmentStmt(
-        @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") PExpr _expr_)
-    {
+            @SuppressWarnings("hiding") TId _id_,
+            @SuppressWarnings("hiding") PExpr _expr_) {
         // Constructor
         setId(_id_);
 
@@ -27,35 +24,28 @@ public final class AAssignmentStmt extends PStmt
     }
 
     @Override
-    public Object clone()
-    {
+    public Object clone() {
         return new AAssignmentStmt(
-            cloneNode(this._id_),
-            cloneNode(this._expr_));
+                cloneNode(this._id_),
+                cloneNode(this._expr_));
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseAAssignmentStmt(this);
     }
 
-    public TId getId()
-    {
+    public TId getId() {
         return this._id_;
     }
 
-    public void setId(TId node)
-    {
-        if(this._id_ != null)
-        {
+    public void setId(TId node) {
+        if (this._id_ != null) {
             this._id_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -65,22 +55,17 @@ public final class AAssignmentStmt extends PStmt
         this._id_ = node;
     }
 
-    public PExpr getExpr()
-    {
+    public PExpr getExpr() {
         return this._expr_;
     }
 
-    public void setExpr(PExpr node)
-    {
-        if(this._expr_ != null)
-        {
+    public void setExpr(PExpr node) {
+        if (this._expr_ != null) {
             this._expr_.parent(null);
         }
 
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
+        if (node != null) {
+            if (node.parent() != null) {
                 node.parent().removeChild(node);
             }
 
@@ -91,25 +76,21 @@ public final class AAssignmentStmt extends PStmt
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ""
-            + toString(this._id_)
-            + toString(this._expr_);
+                + toString(this._id_)
+                + toString(this._expr_);
     }
 
     @Override
-    void removeChild(@SuppressWarnings("unused") Node child)
-    {
+    void removeChild(@SuppressWarnings("unused") Node child) {
         // Remove child
-        if(this._id_ == child)
-        {
+        if (this._id_ == child) {
             this._id_ = null;
             return;
         }
 
-        if(this._expr_ == child)
-        {
+        if (this._expr_ == child) {
             this._expr_ = null;
             return;
         }
@@ -118,17 +99,14 @@ public final class AAssignmentStmt extends PStmt
     }
 
     @Override
-    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
-    {
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild) {
         // Replace child
-        if(this._id_ == oldChild)
-        {
+        if (this._id_ == oldChild) {
             setId((TId) newChild);
             return;
         }
 
-        if(this._expr_ == oldChild)
-        {
+        if (this._expr_ == oldChild) {
             setExpr((PExpr) newChild);
             return;
         }

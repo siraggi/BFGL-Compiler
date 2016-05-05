@@ -12,7 +12,7 @@ class Player is Sprite begin
 
     OnConstruct() do
         base(40, 200, 20, 150, "Player")
-        set speed to 100
+        set speed to 1
         game.Sprites.add(this)
     end
 
@@ -29,7 +29,7 @@ class Player is Sprite begin
 end
 
 class Enemy is Sprite begin
-  dcl num speed to 100
+  dcl num speed to 1
   dcl num vel
   dcl Ball ball
   
@@ -56,19 +56,18 @@ class Ball is Sprite begin
 
   OnConstruct() do
     base(200, 200, 20,20, "Ball")
-    set speed to 100
-    Game.sprites.add(this)
+    set speed to 1
+    game.Sprites.add(this)
   end
 
-  OnCollision(sprite other) do
-        if other.posY > posY then
-            set yspeed to -speed
-        else
-            set yspeed to speed
-        end
+  OnCollision(Sprite other) do
+        set speed to -speed
+
+
   end
 
   OnUpdate() do
     set posY to posY+yspeed
+    set posX to posX + speed
   end
 end

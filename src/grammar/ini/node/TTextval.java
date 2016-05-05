@@ -5,29 +5,24 @@ package grammar.ini.node;
 import grammar.ini.analysis.Analysis;
 
 @SuppressWarnings("nls")
-public final class TTextval extends Token
-{
-    public TTextval(String text)
-    {
+public final class TTextval extends Token {
+    public TTextval(String text) {
         setText(text);
     }
 
-    public TTextval(String text, int line, int pos)
-    {
+    public TTextval(String text, int line, int pos) {
         setText(text);
         setLine(line);
         setPos(pos);
     }
 
     @Override
-    public Object clone()
-    {
-      return new TTextval(getText(), getLine(), getPos());
+    public Object clone() {
+        return new TTextval(getText(), getLine(), getPos());
     }
 
     @Override
-    public void apply(Switch sw)
-    {
+    public void apply(Switch sw) {
         ((Analysis) sw).caseTTextval(this);
     }
 }

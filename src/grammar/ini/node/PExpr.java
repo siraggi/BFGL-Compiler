@@ -2,7 +2,6 @@
 
 package grammar.ini.node;
 
-public abstract class PExpr extends Node
-{
+public abstract class PExpr extends Node {
     // Empty body
 }

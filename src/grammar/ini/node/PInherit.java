@@ -2,7 +2,6 @@
 
 package grammar.ini.node;
 
-public abstract class PInherit extends Node
-{
+public abstract class PInherit extends Node {
     // Empty body
 }

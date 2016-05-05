@@ -2,7 +2,6 @@
 
 package grammar.ini.node;
 
-public abstract class PBody extends Node
-{
+public abstract class PBody extends Node {
     // Empty body
 }

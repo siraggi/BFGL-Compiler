@@ -10,27 +10,31 @@ public class ClassBodyVisitor extends VisitorBase {
 
     private String className;
 
-    public ClassBodyVisitor(BufferedWriter bw, Hashtable<Node, String> typeTable, Hashtable<String, String> superTable, String className){
+    public ClassBodyVisitor(BufferedWriter bw, Hashtable<Node, String> typeTable, Hashtable<String, String> superTable, String className) {
         super(bw, typeTable, superTable);
 
         this.className = className;
     }
 
-    public void outAVarPdcl(AVarPdcl node){
-        switch (node.getType().toString().trim()){
-            case("num"):
-                emitnl("public float " + node.getId().getText() + ";"); break;
-            case("text"):
-                emitnl("public String " + node.getId().getText() + ";"); break;
-            case("bool"):
-                emitnl("public boolean " + node.getId().getText() + ";"); break;
+    public void outAVarPdcl(AVarPdcl node) {
+        switch (node.getType().toString().trim()) {
+            case ("num"):
+                emitnl("public float " + node.getId().getText() + ";");
+                break;
+            case ("text"):
+                emitnl("public String " + node.getId().getText() + ";");
+                break;
+            case ("bool"):
+                emitnl("public boolean " + node.getId().getText() + ";");
+                break;
             default:
-                emitnl("public " + node.getType().toString().trim() + " " + node.getId().getText() + ";"); break;
+                emitnl("public " + node.getType().toString().trim() + " " + node.getId().getText() + ";");
+                break;
         }
     }
 
     public void outAVarasgPdcl(AVarasgPdcl node) {
-        if(!node.visited){
+        if (!node.visited) {
             node.visited = true;
 
             switch (node.getType().toString().trim()) {
@@ -58,22 +62,26 @@ public class ClassBodyVisitor extends VisitorBase {
         }
     }
 
-    public void outAFuncPdcl(AFuncPdcl node){
-        emit("public " + (typeTable.get(node) == null? "void" : typeTable.get(node)) + " " + node.getId().getText() + "(");
-        for (Node p : node.getParams()){
-            switch (((AFormalParam)p).getType().toString().trim()){
-                case("num"):
-                    emit("float "); break;
-                case("text"):
-                    emit("String "); break;
-                case("bool"):
-                    emit("boolean "); break;
+    public void outAFuncPdcl(AFuncPdcl node) {
+        emit("public " + (typeTable.get(node) == null ? "void" : typeTable.get(node)) + " " + node.getId().getText() + "(");
+        for (Node p : node.getParams()) {
+            switch (((AFormalParam) p).getType().toString().trim()) {
+                case ("num"):
+                    emit("float ");
+                    break;
+                case ("text"):
+                    emit("String ");
+                    break;
+                case ("bool"):
+                    emit("boolean ");
+                    break;
                 default:
-                    emit(((AFormalParam)p).getType().toString().trim() + " "); break;
+                    emit(((AFormalParam) p).getType().toString().trim() + " ");
+                    break;
             }
-            emit(((AFormalParam)p).getId().getText());
+            emit(((AFormalParam) p).getId().getText());
 
-            if(!p.equals(node.getParams().getLast())){
+            if (!p.equals(node.getParams().getLast())) {
                 emit(", ");
             }
         }
@@ -87,74 +95,86 @@ public class ClassBodyVisitor extends VisitorBase {
         emitnl("}");
     }
 
-    public void inAEventPdcl(AEventPdcl node){
+    public void inAEventPdcl(AEventPdcl node) {
         String name = "event";
 
-        switch (node.getId().getText()){
-            case("OnUpdate"):
+        switch (node.getId().getText()) {
+            case ("OnUpdate"):
                 name = "update()";
-                emitnl("public void " + name + "{");break;
-            case("OnCollision"):
+                emitnl("public void " + name + "{");
+                break;
+            case ("OnCollision"):
                 name = "collision";
                 emit("public void " + name + "(");
 
-                for (Node p : node.getParams()){
-                    switch (((AFormalParam)p).getType().toString().trim()){
-                        case("num"):
-                            emit("float "); break;
-                        case("text"):
-                            emit("String "); break;
-                        case("bool"):
-                            emit("boolean "); break;
+                for (Node p : node.getParams()) {
+                    switch (((AFormalParam) p).getType().toString().trim()) {
+                        case ("num"):
+                            emit("float ");
+                            break;
+                        case ("text"):
+                            emit("String ");
+                            break;
+                        case ("bool"):
+                            emit("boolean ");
+                            break;
                         default:
-                            emit(((AFormalParam)p).getType().toString().trim() + " "); break;
+                            emit(((AFormalParam) p).getType().toString().trim() + " ");
+                            break;
                     }
-                    emit(((AFormalParam)p).getId().getText());
+                    emit(((AFormalParam) p).getId().getText());
 
-                    if(!p.equals(node.getParams().getLast())){
+                    if (!p.equals(node.getParams().getLast())) {
                         emit(", ");
                     }
                 }
 
-                emitnl("){");break;
-            case("OnInput"):
+                emitnl("){");
+                break;
+            case ("OnInput"):
                 name = "input()";
-                emitnl("public void " + name + "{");break;
-            case("OnConstruct"):
+                emitnl("public void " + name + "{");
+                break;
+            case ("OnConstruct"):
                 name = className;
 
                 emit("public " + name + "(");
 
-                for (Node p : node.getParams()){
-                    switch (((AFormalParam)p).getType().toString().trim()){
-                        case("num"):
-                            emit("float "); break;
-                        case("text"):
-                            emit("String "); break;
-                        case("bool"):
-                            emit("boolean "); break;
+                for (Node p : node.getParams()) {
+                    switch (((AFormalParam) p).getType().toString().trim()) {
+                        case ("num"):
+                            emit("float ");
+                            break;
+                        case ("text"):
+                            emit("String ");
+                            break;
+                        case ("bool"):
+                            emit("boolean ");
+                            break;
                         default:
-                            emit(((AFormalParam)p).getType().toString().trim() + " "); break;
+                            emit(((AFormalParam) p).getType().toString().trim() + " ");
+                            break;
                     }
-                    emit(((AFormalParam)p).getId().getText());
+                    emit(((AFormalParam) p).getId().getText());
 
-                    if(!p.equals(node.getParams().getLast())){
+                    if (!p.equals(node.getParams().getLast())) {
                         emit(", ");
                     }
                 }
 
-                emitnl("){");break;
+                emitnl("){");
+                break;
         }
 
 
-        if(node.getBase() != null && !node.getBase().visited){
+        if (node.getBase() != null && !node.getBase().visited) {
             node.getBase().visited = true;
             emit("super(");
 
-            for (Node p : ((ABaseBase)node.getBase()).getParams()) {
+            for (Node p : ((ABaseBase) node.getBase()).getParams()) {
                 p.apply(new ExpressionVisitor(bw, typeTable, superTable));
 
-                if (!p.equals(((ABaseBase)node.getBase()).getParams().getLast())) {
+                if (!p.equals(((ABaseBase) node.getBase()).getParams().getLast())) {
                     emit(", ");
                 }
             }
@@ -162,15 +182,15 @@ public class ClassBodyVisitor extends VisitorBase {
             emit(");");
         }
 
-        for(Node n : node.getBody()){
+        for (Node n : node.getBody()) {
             n.apply(new FuncBodyVisitor(bw, typeTable, superTable));
         }
 
         emitnl("}");
     }
 
-    public void inAListPdcl(AListPdcl node){
-        if (!node.visited){
+    public void inAListPdcl(AListPdcl node) {
+        if (!node.visited) {
             node.visited = true;
             emitnl("ArrayList<" + node.getType().toString().trim() + "> " + node.getId().getText() + " = new ArrayList<>();");
 
