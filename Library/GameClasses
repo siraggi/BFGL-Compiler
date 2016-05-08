@@ -246,7 +246,19 @@ class Vector begin
   end
 
   dcl func Normelise() begin
-    dcl num temp to x+y
+    dcl num tempX
+    dcl num tempY
+    if x < 0 then
+      set tempX to -x
+    else
+      set tempX to x
+    end
+    if y < 0 then
+      set tempY to -Y
+    else
+      set tempY to y
+    end
+    dcl num temp to tempX+tempY
     set x to x/temp
     set y to y/temp
   end

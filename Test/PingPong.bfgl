@@ -1,9 +1,14 @@
 dcl Game game to new Game()
 dcl InputBFGL input to new InputBFGL()
+dcl num Height
+dcl num Wight
 
 Main begin
     dcl Player player to new Player()
     dcl Enemy enemy to new Enemy()
+    set Height to 600
+    set Wight to 800
+
 end
 
 class Player is Sprite begin
@@ -11,7 +16,7 @@ class Player is Sprite begin
     dcl num vel
 
     OnConstruct() do
-        base(40, 200, 20, 150, "Player")
+        base(40, Height/2, 20, 150, "Player")
         set speed to 1
         game.Sprites.add(this)
     end
@@ -34,7 +39,7 @@ class Enemy is Sprite begin
   dcl Ball ball
   
   OnConstruct() do
-    base(300, 200, 20, 150, "Enemy")
+    base(Wight-40, Height/2, 20, 150, "Enemy")
     game.Sprites.add(this)
     set ball to new Ball()
   end
@@ -56,16 +61,23 @@ class Ball is Sprite begin
 
   OnConstruct() do
     base(200, 200, 20,20, "Ball")
-    set vect to new Vector(1,0)
-    set speed to 1
+    set vect to new Vector(-1,0)
+    set speed to 0.2
     game.Sprites.add(this)
   end
 
   OnCollision(Sprite other) do
-
+    set vect to GetCenter()
+    set vect to vect.DirVector(other.GetCenter())
+    vect.Normelise()
+    set speed to 0.01
   end
 
   OnUpdate() do
-    set posX to posX+vect.x
+    if y < 0 or y > Height then
+      vect.SetY(-vect.y)
+    end
+    set posX to posX+vect.x*speed
+    set posY to posY+vect.y*speed
   end
 end
