@@ -254,7 +254,7 @@ class Vector begin
       set tempX to x
     end
     if y < 0 then
-      set tempY to -Y
+      set tempY to -y
     else
       set tempY to y
     end

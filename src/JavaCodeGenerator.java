@@ -19,7 +19,7 @@ public class JavaCodeGenerator {
 
         for (File file : outDir.listFiles()) file.delete();
 
-        addLibrary("Scene", "Scene");
+        addLibrary("Scene", "Scene"); //Because the topvisitor aka the codegen needs to have the scenefile before doign its run
 
         node.apply(new TopVisitor(typeTable, superTable));
 
