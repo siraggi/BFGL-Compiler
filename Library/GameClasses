@@ -165,6 +165,7 @@ class Sprite is Object begin
     dcl num sizeX
     dcl num sizeY
     dcl text id
+    dcl text texture
 
     OnConstruct(num xx, num yy, num sizeXX, num sizeYY, text ID) do
         set posX to xx
