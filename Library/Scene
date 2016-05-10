@@ -553,28 +553,29 @@ public class Scene extends BasicGame{
 
 
 
-        for(Sprite s : Global.game.Sprites) {
-            for(Sprite other : Global.game.Sprites){
-                if(!s.equals(other) && (new Rectangle(s.posX, s.posY, s.sizeX, s.sizeY)).intersects(new Rectangle(other.posX, other.posY, other.sizeX, other.sizeY))){
-                    s.collision(other);
+        for(_Sprite s : Global._game._Sprites) {
+            for(_Sprite other : Global._game._Sprites){
+                if(!s.equals(other) && (new Rectangle(s._posX, s._posY, s._sizeX, s._sizeY)).intersects(new Rectangle(other._posX, other._posY, other._sizeX, other._sizeY))){
+                    s._collision(other);
                 }
             }
 
-            s.update(delta);
+            s._update(delta);
         }
 
-        for(Label l : Global.game.Labels) {
-            l.update(delta);
+        for(_Label l : Global._game._Labels) {
+            l._update(delta);
         }
     }
 
     public void render(GameContainer gc, Graphics g) throws SlickException {
-        for(Sprite s : Global.game.Sprites) {
-            g.draw(new Rectangle(s.posX, s.posY, s.sizeX, s.sizeY));
+        for(_Sprite s : Global._game._Sprites) {
+            g.draw(new Rectangle(s._posX, s._posY, s._sizeX, s._sizeY));
         }
-        for(Label l : Global.game.Labels) {
-            g.drawString(l.textToWrite, l.posX, l.posY);
+        for(_Label l : Global._game._Labels) {
+            g.drawString(l._textToWrite, l._posX, l._posY);
         }
+        //g.drawString("" + Global._game._Sprites.size(), 150, 100);
     }
 
 }

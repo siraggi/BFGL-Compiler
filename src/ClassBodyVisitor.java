@@ -28,7 +28,7 @@ public class ClassBodyVisitor extends VisitorBase {
                 emitnl("public boolean " + "_" + node.getId().getText() + ";");
                 break;
             default:
-                emitnl("public " + node.getType().toString().trim() + " " + "_" + node.getId().getText() + ";");
+                emitnl("public " + "_" + node.getType().toString().trim() + " " + "_" + node.getId().getText() + ";");
                 break;
         }
     }
@@ -36,6 +36,8 @@ public class ClassBodyVisitor extends VisitorBase {
     public void inAVarasgPdcl(AVarasgPdcl node) {
         if (!node.visited) {
             node.visited = true;
+
+            emit("public ");
 
             switch (node.getType().toString().trim()) {
                 case ("num"):
@@ -54,7 +56,7 @@ public class ClassBodyVisitor extends VisitorBase {
                     emitnl(";");
                     break;
                 default:
-                    emit(node.getType().toString().trim() + " " + "_" + node.getId().getText() + " = ");
+                    emit("_" + node.getType().toString().trim() + " " + "_" + node.getId().getText() + " = ");
                     node.apply(new ExpressionVisitor(bw, typeTable, superTable));
                     emitnl(";");
                     break;
@@ -76,10 +78,10 @@ public class ClassBodyVisitor extends VisitorBase {
                     emit("boolean ");
                     break;
                 default:
-                    emit(((AFormalParam) p).getType().toString().trim() + " ");
+                    emit("_" + ((AFormalParam) p).getType().toString().trim() + " ");
                     break;
             }
-            emit(((AFormalParam) p).getId().getText());
+            emit("_" + ((AFormalParam) p).getId().getText());
 
             if (!p.equals(node.getParams().getLast())) {
                 emit(", ");
@@ -102,7 +104,7 @@ public class ClassBodyVisitor extends VisitorBase {
             case("text"):
                 return "String";
             default:
-                return BFGLtype;
+                return (BFGLtype.contains("void") ? BFGLtype : "_" + BFGLtype);
 
         }
     }
@@ -112,11 +114,11 @@ public class ClassBodyVisitor extends VisitorBase {
 
         switch (node.getId().getText()) {
             case ("OnUpdate"):
-                name = "update(float delta)";
+                name = "_update(float _delta)";
                 emitnl("public void " + name + "{");
                 break;
             case ("OnCollision"):
-                name = "collision";
+                name = "_collision";
                 emit("public void " + name + "(");
 
                 for (Node p : node.getParams()) {
@@ -131,10 +133,10 @@ public class ClassBodyVisitor extends VisitorBase {
                             emit("boolean ");
                             break;
                         default:
-                            emit(((AFormalParam) p).getType().toString().trim() + " ");
+                            emit("_" + ((AFormalParam) p).getType().toString().trim() + " ");
                             break;
                     }
-                    emit(((AFormalParam) p).getId().getText());
+                    emit("_" + ((AFormalParam) p).getId().getText());
 
                     if (!p.equals(node.getParams().getLast())) {
                         emit(", ");
@@ -142,10 +144,6 @@ public class ClassBodyVisitor extends VisitorBase {
                 }
 
                 emitnl("){");
-                break;
-            case ("OnInput"):
-                name = "input()";
-                emitnl("public void " + name + "{");
                 break;
             case ("OnConstruct"):
                 name = className;
@@ -164,10 +162,10 @@ public class ClassBodyVisitor extends VisitorBase {
                             emit("boolean ");
                             break;
                         default:
-                            emit(((AFormalParam) p).getType().toString().trim() + " ");
+                            emit("_" + ((AFormalParam) p).getType().toString().trim() + " ");
                             break;
                     }
-                    emit(((AFormalParam) p).getId().getText());
+                    emit("_" + ((AFormalParam) p).getId().getText());
 
                     if (!p.equals(node.getParams().getLast())) {
                         emit(", ");
@@ -204,7 +202,7 @@ public class ClassBodyVisitor extends VisitorBase {
     public void inAListPdcl(AListPdcl node) {
         if (!node.visited) {
             node.visited = true;
-            emitnl("ArrayList<" + node.getType().toString().trim() + "> " + "_" + node.getId().getText() + " = new ArrayList<>();");
+            emitnl("ArrayList<" + "_" + node.getType().toString().trim() + "> " + "_" + node.getId().getText() + " = new ArrayList<>();");
 
         }
     }

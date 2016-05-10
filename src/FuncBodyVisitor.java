@@ -3,6 +3,7 @@ import grammar.ini.node.*;
 
 import java.io.BufferedWriter;
 import java.util.Hashtable;
+import java.util.LinkedList;
 
 /**
  * Created by august on 18/04/16.
@@ -86,7 +87,26 @@ public class FuncBodyVisitor extends VisitorBase {
         if (!node.visited && !(node.parent().parent() instanceof AVarasgPdcl) && !(node.parent().parent() instanceof AAssignmentStmt)) {
             node.visited = true;
 
-            emit("_" + node.getId().getText());
+            if(node.parent() instanceof AClassCall){
+                LinkedList<PCall> temp = new LinkedList<>();
+                AClassCall c = (AClassCall) node.parent();
+
+                temp.add(c.getFirst());
+                temp.addAll(c.getRest());
+
+                if(temp.size() > 2 && temp.get(temp.size() - 2) instanceof AVarCall){
+                    AVarCall v =  (AVarCall) c.getRest().get(c.getRest().size() - 2);
+
+                    if(!typeTable.get(v).equals("List"))
+                        emit("_");
+                }
+                else
+                    emit("_");
+            }
+            else
+                emit("_");
+
+            emit(node.getId().getText());
             emit("(");
 
             for (Node p : node.getParams()) {
@@ -154,7 +174,7 @@ public class FuncBodyVisitor extends VisitorBase {
     public void inAListPdcl(AListPdcl node) {
         if (!node.visited) {
             node.visited = true;
-            emitnl("ArrayList<" + node.getType().toString().trim() + "> " + "_" + node.getId().getText() + " = new ArrayList<>();");
+            emitnl("ArrayList<" + "_" + node.getType().toString().trim() + "> " + "_" + node.getId().getText() + " = new ArrayList<>();");
 
         }
     }

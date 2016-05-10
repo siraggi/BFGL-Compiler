@@ -112,6 +112,14 @@ public class GlobalCheck extends DepthFirstAdapter {
         closeScope();
     }
 
+    public void inAMainPdcl(AMainPdcl node){
+        openScope();
+    }
+
+    public void outAMainPdcl(AMainPdcl node){
+        closeScope();
+    }
+
     public void defaultIn(Node node) {
         if (node.equals(nodeToCheck)) {
             while (scope.size() > 1) {

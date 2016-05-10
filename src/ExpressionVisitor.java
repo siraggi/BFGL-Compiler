@@ -3,6 +3,7 @@ import grammar.ini.node.*;
 
 import java.io.BufferedWriter;
 import java.util.Hashtable;
+import java.util.LinkedList;
 
 /**
  * Created by august on 18/04/16.
@@ -257,7 +258,7 @@ public class ExpressionVisitor extends VisitorBase {
                 if (gc.global)
                     emit("Global.");
 
-                emit(v.getId().getText());
+                emit("_" + v.getId().getText());
             }
 
             emit(".");
@@ -265,6 +266,16 @@ public class ExpressionVisitor extends VisitorBase {
             for (Node n : node.getRest()) {
                 if (n instanceof AFuncCall) {
                     AFuncCall f = (AFuncCall) n;
+
+                    if(node.getRest().indexOf(n) - 1 >= 0&& node.getRest().get(node.getRest().indexOf(n) - 1) instanceof AVarCall){
+                        AVarCall v =  (AVarCall) node.getRest().get(node.getRest().indexOf(n) - 1);
+
+                        if(!typeTable.get(v).equals("List"))
+                            emit("_");
+                    }
+                    else
+                        emit("_");
+
                     emit(f.getId().getText());
                     emit("(");
 
@@ -280,7 +291,7 @@ public class ExpressionVisitor extends VisitorBase {
                 } else if (n instanceof AVarCall) {
                     AVarCall v = (AVarCall) n;
 
-                    emit(v.getId().getText());
+                    emit("_" + v.getId().getText());
                 }
 
                 if (n != node.getRest().getLast()) {
