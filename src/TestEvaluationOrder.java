@@ -1,10 +1,11 @@
 import grammar.ini.lexer.LexerException;
 import grammar.ini.parser.ParserException;
-import org.junit.*;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.*;
-import java.nio.Buffer;
+
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * Created by krist on 10-05-2016.
@@ -13,6 +14,7 @@ public class TestEvaluationOrder {
 
     private static boolean setUpIsDone = false;
 
+    @SuppressWarnings("Duplicates")
     @Before
     public void setUp(){
         try {
@@ -34,9 +36,13 @@ public class TestEvaluationOrder {
     public void TestEvalOrder(){
         File outputScene = new File("Output/Scene.java");
         try(BufferedReader br = new BufferedReader(new FileReader(outputScene))) {
-            String line;
+            String[] targetLines = {"float _x = 5f;", "_x = _x + 5f;", "float _y = _player._g;", "_y = _x * 2f;"};
+            String line = null;
+
             while (!(br.readLine().contains("float _x"))){
-                br.
+            }
+            for (int i = 0; i < 4; i++){
+                assertTrue(line.equals(targetLines[i]));
             }
 
 
