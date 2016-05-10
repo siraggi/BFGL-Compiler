@@ -219,6 +219,10 @@ class Object begin
 end
 
 class List begin
+    dcl func size() begin
+        return 0
+    end
+
     dcl func add(Object o) begin
 
     end

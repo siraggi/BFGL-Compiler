@@ -166,7 +166,7 @@ public class ExpressionVisitor extends VisitorBase {
         if (!node.visited) {
             node.visited = true;
 
-            emit(" new " + node.getId().getText() + "(");
+            emit(" new " + "_" + node.getId().getText() + "(");
 
             for (Node p : node.getParam()) {
                 p.apply(this);
@@ -216,9 +216,9 @@ public class ExpressionVisitor extends VisitorBase {
             getRoot(node).apply(gc);
 
             if (gc.global)
-                emit("Global." + node.getId().getText());
+                emit("Global." + "_" + node.getId().getText());
             else
-                emit(node.getId().getText());
+                emit("_" + node.getId().getText());
 
         }
     }
@@ -296,7 +296,7 @@ public class ExpressionVisitor extends VisitorBase {
         if (!node.visited) {
             node.visited = true;
 
-            emit(node.getId().getText());
+            emit("_" + node.getId().getText());
             emit("(");
 
             for (Node p : node.getParams()) {

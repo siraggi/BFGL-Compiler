@@ -16,7 +16,7 @@ public class TopVisitor extends VisitorBase {
         super(null, typeTable, superTable);
     }
 
-    private void newCLass(String className, Node node, String name) {
+    private void newCLass(String className, Node node) {
         File file;
         FileWriter fw;
 
@@ -34,7 +34,7 @@ public class TopVisitor extends VisitorBase {
             AddNameSpaces();
 
             emitnl("public class " + className + "{");
-            node.apply(new ClassBodyVisitor(bw, typeTable, superTable, name));
+            node.apply(new ClassBodyVisitor(bw, typeTable, superTable, className));
             emitnl("}");
 
             bw.close();
@@ -43,7 +43,7 @@ public class TopVisitor extends VisitorBase {
         }
     }
 
-    private void newCLass(String className, String inherit, Node node, String name) {
+    private void newCLass(String className, String inherit, Node node) {
         File file;
         FileWriter fw;
 
@@ -62,7 +62,7 @@ public class TopVisitor extends VisitorBase {
 
 
             emitnl("public class " + className + " extends " + inherit + "{");
-            node.apply(new ClassBodyVisitor(bw, typeTable, superTable, name));
+            node.apply(new ClassBodyVisitor(bw, typeTable, superTable, className));
             emitnl("}");
 
             bw.close();
@@ -125,17 +125,10 @@ public class TopVisitor extends VisitorBase {
     }
 
     public void inAClassPdcl(AClassPdcl node) {
-        if (checkIfStatic(node.getId().getText())) {
-            try {
-                addLibrary(node.getId().getText() + "BFGL", node.getId().getText());
-            } catch (IOException ioerr) {
-            }
-        } else {
-            if (node.getInherit() == null)
-                newCLass(node.getId().getText(), node, node.getId().getText());
-            else
-                newCLass(node.getId().getText(), ((AInherit) node.getInherit()).getType().toString(), node, node.getId().getText());
-        }
+        if (node.getInherit() == null)
+            newCLass("_" + node.getId().getText(), node);
+        else
+            newCLass("_" + node.getId().getText(), ((AInherit) node.getInherit()).getType().toString(), node);
     }
 
     public void inAMainPdcl(AMainPdcl node) {

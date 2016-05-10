@@ -31,6 +31,7 @@ public class Main {
         });
         */
 
+
         try{
             compile(new File("Test", "AggiPingPong.bfgl"));
         }
@@ -43,6 +44,7 @@ public class Main {
 
     public static void compile(File inFile)
             throws ParserException, LexerException, IOException {
+
         TypeChecker typeChecker = new TypeChecker();
         File file = inFile;
 
@@ -67,16 +69,38 @@ public class Main {
     private static File addLibrary(File file) throws IOException {
         File outFile = new File("Test", "out.bfgl");
 
+        FileWriter fw = new FileWriter(outFile);
+        BufferedWriter bw = new BufferedWriter(fw);
+
+        bw.write("dcl Game game to new Game()");
+        bw.newLine();
+        bw.write("dcl InputBFGL input to new InputBFGL()");
+        bw.newLine();
+        bw.write("dcl MathBFGL math to new MathBFGL()");
+        bw.newLine();
+
+        bw.close();
+        fw.close();
+
+        try {
+
+
+            copyFileContentAppend(file, outFile);
+            copyFileContentAppend(new File("Library", "GameClasses"), outFile);
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        return outFile;
+    }
+
+    private static void copyFileContentAppend(File inFile, File outFile) throws IOException {
         FileInputStream instream = null;
         FileOutputStream outstream = null;
 
         try {
-            File infile = new File("Library", "GameClasses");
-
-
-            Files.copy(file.toPath(), outFile.toPath(), REPLACE_EXISTING);
-
-            instream = new FileInputStream(infile);
+            instream = new FileInputStream(inFile);
             outstream = new FileOutputStream(outFile, true);
 
             byte[] buffer = new byte[1024];
@@ -98,7 +122,5 @@ public class Main {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-
-        return outFile;
     }
 }

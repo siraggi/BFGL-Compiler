@@ -18,16 +18,16 @@ public class FuncBodyVisitor extends VisitorBase {
 
             switch (node.getType().toString().trim()) {
                 case ("num"):
-                    emitnl("float " + node.getId().getText() + ";");
+                    emitnl("float " + "_" + node.getId().getText() + ";");
                     break;
                 case ("text"):
-                    emitnl("String " + node.getId().getText() + ";");
+                    emitnl("String " + "_" + node.getId().getText() + ";");
                     break;
                 case ("bool"):
-                    emitnl("bool " + node.getId().getText() + ";");
+                    emitnl("bool " + "_" + node.getId().getText() + ";");
                     break;
                 default:
-                    emitnl(node.getType().toString().trim() + " " + node.getId().getText() + ";");
+                    emitnl(node.getType().toString().trim() + " " + "_" + node.getId().getText() + ";");
                     break;
             }
         }
@@ -41,22 +41,22 @@ public class FuncBodyVisitor extends VisitorBase {
 
             switch (node.getType().toString().trim()) {
                 case ("num"):
-                    emit("float " + node.getId().getText() + " = ");
+                    emit("float " + "_" + node.getId().getText() + " = ");
                     node.apply(new ExpressionVisitor(bw, typeTable, superTable));
                     emitnl(";");
                     break;
                 case ("text"):
-                    emit("String " + node.getId().getText() + " = ");
+                    emit("String " + "_" + node.getId().getText() + " = ");
                     node.apply(new ExpressionVisitor(bw, typeTable, superTable));
                     emitnl(";");
                     break;
                 case ("bool"):
-                    emit("bool " + node.getId().getText() + " = ");
+                    emit("bool " + "_" + node.getId().getText() + " = ");
                     node.apply(new ExpressionVisitor(bw, typeTable, superTable));
                     emitnl(";");
                     break;
                 default:
-                    emit(node.getType().toString().trim() + " " + node.getId().getText() + " = ");
+                    emit("_" + node.getType().toString().trim() + " " + "_" + node.getId().getText() + " = ");
                     node.apply(new ExpressionVisitor(bw, typeTable, superTable));
                     emitnl(";");
                     break;
@@ -75,7 +75,7 @@ public class FuncBodyVisitor extends VisitorBase {
             if (gc.global)
                 emit("Global.");
 
-            emit(node.getId() + " = ");
+            emit("_" + node.getId().getText() + " = ");
             node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
             emitnl(";");
         }
@@ -86,7 +86,7 @@ public class FuncBodyVisitor extends VisitorBase {
         if (!node.visited && !(node.parent().parent() instanceof AVarasgPdcl) && !(node.parent().parent() instanceof AAssignmentStmt)) {
             node.visited = true;
 
-            emit(node.getId().getText());
+            emit("_" + node.getId().getText());
             emit("(");
 
             for (Node p : node.getParams()) {
@@ -117,9 +117,13 @@ public class FuncBodyVisitor extends VisitorBase {
 
     public void inAForupStmt(AForupStmt node) {
         if (!node.visited) {
-            emit("for(" + node.getId().getText() + " ; " + node.getId().getText() + " < ");
+            emit("float _exprval" + node.getId().getText() + " = ");
             node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
-            emitnl(" ; " + node.getId().getText() + "++){");
+            emitnl(";");
+
+            emit("for(" + "_" + node.getId().getText() + " = " + "_" + node.getId().getText() + " ; " + "_" + node.getId().getText() + " <= _exprval" + node.getId().getText());
+
+            emitnl(" ; " + "_" + node.getId().getText() + "++){");
 
             for (Node n : node.getStmt()) {
                 n.apply(this);
@@ -131,9 +135,13 @@ public class FuncBodyVisitor extends VisitorBase {
 
     public void inAFordownStmt(AFordownStmt node) {
         if (!node.visited) {
-            emit("for(" + node.getId().getText() + " ; " + node.getId().getText() + " > ");
+            emit("float _exprval" + node.getId().getText() + " = ");
             node.getExpr().apply(new ExpressionVisitor(bw, typeTable, superTable));
-            emitnl(" ; " + node.getId().getText() + "--){");
+            emitnl(";");
+
+            emit("for(" + "_" + node.getId().getText() + " = " + "_" + node.getId().getText() + " ; " + "_" + node.getId().getText() + " >= _exprval" + node.getId().getText());
+
+            emitnl(" ; " + "_" + node.getId().getText() + "--){");
 
             for (Node n : node.getStmt()) {
                 n.apply(this);
@@ -146,7 +154,7 @@ public class FuncBodyVisitor extends VisitorBase {
     public void inAListPdcl(AListPdcl node) {
         if (!node.visited) {
             node.visited = true;
-            emitnl("ArrayList<" + node.getType().toString().trim() + "> " + node.getId().getText() + " = new ArrayList<>();");
+            emitnl("ArrayList<" + node.getType().toString().trim() + "> " + "_" + node.getId().getText() + " = new ArrayList<>();");
 
         }
     }
@@ -165,7 +173,7 @@ public class FuncBodyVisitor extends VisitorBase {
                 if (gc.global)
                     emit("Global.");
 
-                emit(f.getId().getText());
+                emit("_" + f.getId().getText());
                 emit("(");
 
                 for (Node p : f.getParams()) {
@@ -187,7 +195,7 @@ public class FuncBodyVisitor extends VisitorBase {
                 if (gc.global)
                     emit("Global.");
 
-                emit(v.getId().getText());
+                emit("_" + v.getId().getText());
             }
 
             emit(".");
@@ -196,7 +204,7 @@ public class FuncBodyVisitor extends VisitorBase {
                 if (n instanceof AVarCall) {
                     AVarCall v = (AVarCall) n;
 
-                    emit(v.getId().getText());
+                    emit("_" + v.getId().getText());
                 }
 
                 if (n != node.getRest().getLast()) {

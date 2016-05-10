@@ -1,4 +1,4 @@
-Game game =  new Game();
-InputBFGL input =  new InputBFGL();
-MathBFGL math =  new MathBFGL();
-float score = 0f;
+_Game _game =  new _Game();
+_InputBFGL _input =  new _InputBFGL();
+_MathBFGL _math =  new _MathBFGL();
+float _score = 0f;

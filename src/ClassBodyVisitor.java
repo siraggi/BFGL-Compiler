@@ -19,16 +19,16 @@ public class ClassBodyVisitor extends VisitorBase {
     public void inAVarPdcl(AVarPdcl node) {
         switch (node.getType().toString().trim()) {
             case ("num"):
-                emitnl("public float " + node.getId().getText() + ";");
+                emitnl("public float " + "_" + node.getId().getText() + ";");
                 break;
             case ("text"):
-                emitnl("public String " + node.getId().getText() + ";");
+                emitnl("public String " + "_" + node.getId().getText() + ";");
                 break;
             case ("bool"):
-                emitnl("public boolean " + node.getId().getText() + ";");
+                emitnl("public boolean " + "_" + node.getId().getText() + ";");
                 break;
             default:
-                emitnl("public " + node.getType().toString().trim() + " " + node.getId().getText() + ";");
+                emitnl("public " + node.getType().toString().trim() + " " + "_" + node.getId().getText() + ";");
                 break;
         }
     }
@@ -39,22 +39,22 @@ public class ClassBodyVisitor extends VisitorBase {
 
             switch (node.getType().toString().trim()) {
                 case ("num"):
-                    emit("float " + node.getId().getText() + " = ");
+                    emit("float " + "_" + node.getId().getText() + " = ");
                     node.apply(new ExpressionVisitor(bw, typeTable, superTable));
                     emitnl(";");
                     break;
                 case ("text"):
-                    emit("String " + node.getId().getText() + " = ");
+                    emit("String " + "_" + node.getId().getText() + " = ");
                     node.apply(new ExpressionVisitor(bw, typeTable, superTable));
                     emitnl(";");
                     break;
                 case ("bool"):
-                    emit("bool " + node.getId().getText() + " = ");
+                    emit("bool " + "_" + node.getId().getText() + " = ");
                     node.apply(new ExpressionVisitor(bw, typeTable, superTable));
                     emitnl(";");
                     break;
                 default:
-                    emit(node.getType().toString().trim() + " " + node.getId().getText() + " = ");
+                    emit(node.getType().toString().trim() + " " + "_" + node.getId().getText() + " = ");
                     node.apply(new ExpressionVisitor(bw, typeTable, superTable));
                     emitnl(";");
                     break;
@@ -63,7 +63,7 @@ public class ClassBodyVisitor extends VisitorBase {
     }
 
     public void inAFuncPdcl(AFuncPdcl node) {
-        emit("public " + (typeTable.get(node) == null ? "void " : getJavaType(typeTable.get(node)) + " ") + node.getId().getText() + "(");
+        emit("public " + (typeTable.get(node) == null ? "void " : getJavaType(typeTable.get(node)) + " ") + "_" + node.getId().getText() + "(");
         for (Node p : node.getParams()) {
             switch (((AFormalParam) p).getType().toString().trim()) {
                 case ("num"):
@@ -204,7 +204,7 @@ public class ClassBodyVisitor extends VisitorBase {
     public void inAListPdcl(AListPdcl node) {
         if (!node.visited) {
             node.visited = true;
-            emitnl("ArrayList<" + node.getType().toString().trim() + "> " + node.getId().getText() + " = new ArrayList<>();");
+            emitnl("ArrayList<" + node.getType().toString().trim() + "> " + "_" + node.getId().getText() + " = new ArrayList<>();");
 
         }
     }

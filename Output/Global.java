@@ -8,8 +8,8 @@ import java.math.*;
 import org.newdawn.slick.*;
 public final class Global {
 private Global(){ }
-public static Game game =  new Game();
-public static InputBFGL input =  new InputBFGL();
-public static MathBFGL math =  new MathBFGL();
-public static float score = 0f;
+public static _Game _game =  new _Game();
+public static _InputBFGL _input =  new _InputBFGL();
+public static _MathBFGL _math =  new _MathBFGL();
+public static float _score = 0f;
 }
