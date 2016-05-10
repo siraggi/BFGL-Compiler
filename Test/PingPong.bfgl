@@ -4,8 +4,8 @@ dcl num Wight
 Main begin
     dcl Player player to new Player()
     dcl Enemy enemy to new Enemy()
-    set Height to 600
-    set Wight to 800
+    set Height to game.height
+    set Wight to game.width
 
 end
 
@@ -37,7 +37,7 @@ class Enemy is Sprite begin
   dcl Ball ball
   
   OnConstruct() do
-    base(Wight-40, Height/2, 20, 150, "Enemy")
+    base(Wight - 40, 100, 20, 150, "Enemy")
     game.Sprites.add(this)
     set ball to new Ball()
   end

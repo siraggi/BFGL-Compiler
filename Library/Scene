@@ -9,10 +9,11 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Image;
+
 
 public class Scene extends BasicGame{
 
-   // public ArrayList<Sprite> Sprites;
 
     public Scene(String gamename)
     {
@@ -20,6 +21,9 @@ public class Scene extends BasicGame{
     }
 
     public void init(GameContainer gc) throws SlickException {
+        Global._game._height = gc.getHeight();
+        Global._game._width = gc.getWidth();
+
         /*TAGPUTMAINHERE*/
 
     }
@@ -570,12 +574,19 @@ public class Scene extends BasicGame{
 
     public void render(GameContainer gc, Graphics g) throws SlickException {
         for(_Sprite s : Global._game._Sprites) {
+
+            if(!s._texture.equals("")) {
+                Image img = new Image(s._texture);
+                img.draw(s._posX, s._posY, s._sizeX, s._sizeY);
+            }
+
             g.draw(new Rectangle(s._posX, s._posY, s._sizeX, s._sizeY));
+
         }
         for(_Label l : Global._game._Labels) {
             g.drawString(l._textToWrite, l._posX, l._posY);
         }
-        //g.drawString("" + Global._game._Sprites.size(), 150, 100);
+        g.drawString("" + Global._game._Sprites.size(), 150, 100);
     }
 
 

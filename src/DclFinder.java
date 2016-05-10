@@ -22,7 +22,6 @@ public class DclFinder extends DepthFirstAdapter {
     public DclFinder(Node node, String inherit, String id) {
         this.id = id;
         this.inherit = inherit;
-
         ids = new ArrayList<>();
 
         while (node.parent() != null) {
