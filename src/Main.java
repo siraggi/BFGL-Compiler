@@ -33,7 +33,7 @@ public class Main {
 
 
         try{
-            compile(new File("Test", "AggiPingPong.bfgl"));
+            compile(new File("Test", "BFGLtest.bfgl"));
         }
         catch (Exception ex){
             ex.printStackTrace();

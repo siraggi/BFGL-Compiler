@@ -17,7 +17,6 @@ public class Scene extends BasicGame{
     public Scene(String gamename)
     {
     		super(gamename);
-    		//Sprites = new ArrayList<>();
     }
 
     public void init(GameContainer gc) throws SlickException {
