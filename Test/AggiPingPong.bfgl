@@ -14,11 +14,6 @@ class Player is Sprite begin
     dcl num speed
     dcl num vel
 
-    dcl func testf() begin
-
-        return 5
-    end
-
     OnConstruct() do
         base(40, 200, 20, 150, "Player")
         set speed to 200
