@@ -68,6 +68,8 @@
                         <fileset dir="Library/windows">
                                 <include name="*.dll"/>
                         </fileset>
+                </copy>
+                <copy todir="CompiledGame/Resources">
                         <fileset dir="Resources"/>
                 </copy>
 
