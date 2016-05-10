@@ -31,7 +31,7 @@ public class LineAndPos extends ReversedDepthFirstAdapter {
     public void defaultCase(Node node) {
         if (node instanceof Token) {
             Token token = (Token) node;
-            line = token.getLine();
+            line = token.getLine() - 3;
             pos = token.getPos();
             lines.put(node, line);
             positions.put(node, pos);

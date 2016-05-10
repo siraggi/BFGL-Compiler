@@ -1,6 +1,6 @@
 Main begin
     dcl Player player to new Player()
-    dcl Block block to new Block()
+    dcl Block block to new Block();
 end
 
 class Player is Sprite begin

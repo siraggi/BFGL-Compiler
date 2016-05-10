@@ -33,7 +33,7 @@ public class Main {
 
 
         try{
-            compile(new File("Test", "AggiPingPong.bfgl"));
+            compile(new File("Test", "BFGLtest.bfgl"));
         }
         catch (Exception ex){
             ex.printStackTrace();
@@ -47,12 +47,21 @@ public class Main {
 
         TypeChecker typeChecker = new TypeChecker();
         File file = inFile;
+        Start tree = null;
+        try {
+            PushbackReader pushbackReader = new PushbackReader(new FileReader(addLibrary(file)));
+            Parser parser = new Parser(new Lexer(pushbackReader));
+            tree = parser.parse();
+        }
+        catch(LexerException ex){
+            int line = ex.getToken().getLine() - 3;
+            int pos = ex.getToken().getPos();
+            String error = ex.getLocalizedMessage().split("]")[ex.getLocalizedMessage().split("]").length - 1];
+            typeChecker.ErrorList.add("Lexer Error: Line: " + line + " Pos: " + pos + ", " + error);
+        }
 
-        PushbackReader pushbackReader = new PushbackReader(new FileReader(addLibrary(file)));
-        Parser parser = new Parser(new Lexer(pushbackReader));
-        Start tree = parser.parse();
-
-        tree.apply(typeChecker);
+        if(typeChecker.ErrorList.size() == 0)
+            tree.apply(typeChecker);
 
         if (!typeChecker.ErrorList.isEmpty()) {
             for (String s :
