@@ -19,16 +19,16 @@ public class FuncBodyVisitor extends VisitorBase {
 
             switch (node.getType().toString().trim()) {
                 case ("num"):
-                    emitnl("float " + "_" + node.getId().getText() + ";");
+                    emitnl("float " + "_" + node.getId().getText() + " = 0;");
                     break;
                 case ("text"):
-                    emitnl("String " + "_" + node.getId().getText() + ";");
+                    emitnl("String " + "_" + node.getId().getText() + " = \"\";");
                     break;
                 case ("bool"):
-                    emitnl("bool " + "_" + node.getId().getText() + ";");
+                    emitnl("bool " + "_" + node.getId().getText() + " = false;");
                     break;
                 default:
-                    emitnl(node.getType().toString().trim() + " " + "_" + node.getId().getText() + ";");
+                    emitnl("_" + node.getType().toString().trim() + " " + "_" + node.getId().getText() + ";");
                     break;
             }
         }

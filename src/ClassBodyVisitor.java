@@ -19,13 +19,13 @@ public class ClassBodyVisitor extends VisitorBase {
     public void inAVarPdcl(AVarPdcl node) {
         switch (node.getType().toString().trim()) {
             case ("num"):
-                emitnl("public float " + "_" + node.getId().getText() + ";");
+                emitnl("public float " + "_" + node.getId().getText() + " = 0;");
                 break;
             case ("text"):
-                emitnl("public String " + "_" + node.getId().getText() + ";");
+                emitnl("public String " + "_" + node.getId().getText() + " = \"\";");
                 break;
             case ("bool"):
-                emitnl("public boolean " + "_" + node.getId().getText() + ";");
+                emitnl("public boolean " + "_" + node.getId().getText() + " = false;");
                 break;
             default:
                 emitnl("public " + "_" + node.getType().toString().trim() + " " + "_" + node.getId().getText() + ";");

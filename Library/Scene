@@ -579,8 +579,10 @@ public class Scene extends BasicGame{
                 Image img = new Image(s._texture);
                 img.draw(s._posX, s._posY, s._sizeX, s._sizeY);
             }
+            else{
+                g.draw(new Rectangle(s._posX, s._posY, s._sizeX, s._sizeY));
+            }
 
-            g.draw(new Rectangle(s._posX, s._posY, s._sizeX, s._sizeY));
 
         }
         for(_Label l : Global._game._Labels) {

@@ -13,7 +13,7 @@ class Player is Sprite begin
     OnConstruct() do
         base(40, 200, 20, 150, "Player")
         set speed to 200
-        set texture to "Resources/redfighter0006.png"
+        set texture to "redfighter0006.png"
         game.Sprites.add(this)
         dcl num i to 0
         for i upto game.Sprites.size() do
@@ -64,6 +64,7 @@ class Ball is Sprite begin
 
   OnConstruct() do
     base(200, 200, 20,20, "Ball")
+    set texture to "pokeball.png"
     game.Labels.add(l)
     set speed to 200
     set xspeed to speed

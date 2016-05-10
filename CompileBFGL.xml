@@ -65,8 +65,8 @@
                 <!--- <antcall target="TargetSystem"/> -->
 
                 <copy todir="CompiledGame">
-                        <fileset dir="Library/windows">
-                                <include name="*.dll"/>
+                        <fileset dir="Library/macosx">
+                                <include name="*.dylib"/>
                         </fileset>
                 </copy>
                 <copy todir="CompiledGame/Resources">
