@@ -6,9 +6,11 @@ import grammar.ini.lexer.LexerException;
 import grammar.ini.parser.ParserException;
 import org.apache.tools.ant.taskdefs.Tar;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.Ignore;
 import org.junit.Assert.*;
+import org.junit.internal.runners.statements.Fail;
 
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 import java.io.*;
@@ -16,25 +18,23 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class TestCompilationEquivalence {
-    protected File targetFolder;
-    protected File[] targetFilesList;
-    protected File compOutFolder;
-    protected File[] compOutFilesList;
+    protected File targetFolder = new File("Library/TestingTarget");
+    protected File[] targetFilesList = targetFolder.listFiles();
+    protected File compOutFolder = new File("Output");
+    protected File[] compOutFilesList = compOutFolder.listFiles();
+    private static boolean setUpIsDone = false;
 
 
     @Before
     public void setUp(){
         try {
-            Main.compile(new File("Test", "BFGLtest.bfgl"));
-            targetFolder = new File("Library/TestingTarget");
-            compOutFolder = new File("Output");
-            targetFilesList = targetFolder.listFiles();
-            compOutFilesList = compOutFolder.listFiles();
-
+            if (!setUpIsDone){
+                Main.compile(new File("Test", "BFGLtest.bfgl"));
+                setUpIsDone = true;
+            }
         } catch (ParserException e) {
             e.printStackTrace();
         } catch (LexerException e) {
@@ -46,8 +46,8 @@ public class TestCompilationEquivalence {
 
     @Test
     public void testFolders(){
-        assertNotNull("Folder not found! targetFolder",targetFolder);
-        assertNotNull("Folder not found! compOutFolder", compOutFolder);
+        assertTrue("Folder not found! targetFolder", (targetFolder.length()) > 0);
+        assertTrue("Folder not found! compOutFolder", (compOutFolder.length()) > 0);
     }
 
     @Test
@@ -73,9 +73,27 @@ public class TestCompilationEquivalence {
                 e.printStackTrace();
                 return;
             }
-            String hexTargetFile = (new HexBinaryAdapter()).marshal(md5.digest(readFile(targetFilesList[i]).getBytes()));
-            String hexCompiledFile =  (new HexBinaryAdapter()).marshal(md5.digest(readFile(compOutFilesList[i]).getBytes()));
-            assertEquals("Files are different! MD5 mismatch!", hexTargetFile, hexCompiledFile);
+            String targetFile = readFile(targetFilesList[i]);
+            String compiledFile = readFile(compOutFilesList[i]);
+            String hexCompiledFile;
+            String hexTargetFile;
+            if (targetFile != null && compiledFile != null){
+                hexTargetFile = (new HexBinaryAdapter()).marshal(md5.digest(targetFile.getBytes()));
+                hexCompiledFile =  (new HexBinaryAdapter()).marshal(md5.digest(compiledFile.getBytes()));
+
+                if (hexTargetFile != null && hexCompiledFile != null){
+                    assertTrue("Files are different! MD5 mismatch!" + i, hexTargetFile.equals(hexCompiledFile));
+                }
+                else{
+                    assertNull(hexTargetFile);
+                    assertNull(hexCompiledFile);
+                }
+            }
+            else{
+                assertNull(targetFile);
+                assertNull(compiledFile);
+            }
+
         }
     }
 
