@@ -1,7 +1,3 @@
-dcl Game game to new Game()
-dcl InputBFGL input to new InputBFGL()
-dcl MathBFGL math to new MathBFGL()
-
 Main begin
     dcl Player player to new Player()
     dcl Block block to new Block()
