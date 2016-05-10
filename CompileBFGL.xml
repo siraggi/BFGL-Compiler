@@ -73,7 +73,8 @@
                         <fileset dir="Resources"/>
                 </copy>
 
-               <antcall target="cleanCompOUT"/>
+                <antcall target="cleanCompOUT"/>
+                
         </target>
 
         <target name="run" depends="jar">

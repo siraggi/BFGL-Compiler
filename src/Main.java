@@ -11,33 +11,39 @@ import static java.nio.file.StandardCopyOption.*;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.util.ArrayList;
 
 
 public class Main {
 
+    public static ArrayList<String> ErrorList;
+    private static GUI gui;
+
     public static void main(String[] args){
 
-        /*
+        ErrorList = new ArrayList<>();
+
+
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                GUI gui = new GUI();
+                gui = new GUI();
                 JFrame frame = gui;
                 frame.setTitle("Program Title");
-                frame.setSize(400, 400);
+                frame.setSize(480, 640);
                 frame.setLocationRelativeTo(null);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setVisible(true);
             }
         });
-        */
 
 
+        /*
         try{
             compile(new File("Test", "BFGLtest.bfgl"));
         }
         catch (Exception ex){
             ex.printStackTrace();
-        }
+        }*/
 
 
     }
@@ -57,13 +63,16 @@ public class Main {
             int line = ex.getToken().getLine() - 3;
             int pos = ex.getToken().getPos();
             String error = ex.getLocalizedMessage().split("]")[ex.getLocalizedMessage().split("]").length - 1];
-            typeChecker.ErrorList.add("Lexer Error: Line: " + line + " Pos: " + pos + ", " + error);
+            ErrorList.add("Lexer Error: Line: " + line + " Pos: " + pos + ", " + error);
         }
 
-        if(typeChecker.ErrorList.size() == 0)
+        if(ErrorList.size() == 0)
             tree.apply(typeChecker);
 
-        if (!typeChecker.ErrorList.isEmpty()) {
+        ErrorList.addAll(typeChecker.ErrorList);
+
+        if (!ErrorList.isEmpty()) {
+            gui.addErrors(ErrorList);
             for (String s :
                     typeChecker.ErrorList) {
                 System.out.println(s);
@@ -73,6 +82,8 @@ public class Main {
             AntExecutor AEx = new AntExecutor();
             AEx.executeAntTask("CompileBFGL.xml", "jar");
         }
+
+        gui.showGameButton();
     }
 
     private static File addLibrary(File file) throws IOException {

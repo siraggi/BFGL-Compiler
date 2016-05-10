@@ -1,8 +1,10 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by august on 05/05/16.
@@ -13,6 +15,8 @@ public class GUI extends JFrame{
     private JPanel panel1;
     private JFileChooser fileDialog;
     private JLabel statusLabel;
+    private JList errorList;
+    private JButton gameButton;
     private File file;
 
     public GUI() {
@@ -20,11 +24,19 @@ public class GUI extends JFrame{
         chooseFileButton = new JButton("Choose file");
         compileButton = new JButton("Compile!");
         fileDialog = new JFileChooser();
+        gameButton = new JButton("Run game");
         statusLabel = new JLabel();
+
+        gameButton.setVisible(false);
+
+        errorList = new JList();
+        errorList.setPreferredSize(new Dimension(450, 300));
 
         panel1.add(chooseFileButton);
         panel1.add(compileButton);
         panel1.add(statusLabel);
+        panel1.add(errorList);
+        panel1.add(gameButton);
 
         add(panel1);
 
@@ -56,5 +68,27 @@ public class GUI extends JFrame{
 
             }
         });
+
+        gameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    ProcessBuilder pb = new ProcessBuilder("CompiledGame/", "-jar", "hax.jar");
+                    Process p = pb.start();
+                }
+                catch (Exception ex){
+                    ex.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+    public void addErrors(ArrayList<String> errors){
+        errorList.setListData(errors.toArray());
+    }
+
+    public void showGameButton(){
+        gameButton.setVisible(true);
     }
 }
