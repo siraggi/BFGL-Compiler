@@ -24,6 +24,7 @@ public class Scene extends BasicGame{
         Global._game._height = gc.getHeight();
         Global._game._width = gc.getWidth();
 
+
         /*TAGPUTMAINHERE*/
 
     }
@@ -573,6 +574,12 @@ public class Scene extends BasicGame{
     }
 
     public void render(GameContainer gc, Graphics g) throws SlickException {
+        Image background;
+        if(!Global._game._background.equals("")){
+            background = new Image(Global._game._background);
+            background.draw(0, 0, gc.getWidth(), gc.getHeight());
+        }
+
         for(_Sprite s : Global._game._Sprites) {
 
             if(!s._texture.equals("")) {

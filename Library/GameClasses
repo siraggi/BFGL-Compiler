@@ -27,6 +27,11 @@ end
 
 class Game begin
     dcl num deltatime
+    dcl text background
+
+    dcl func SetBackground(text image) begin
+        set background to image
+    end
 
     dcl func GetSystemTime() begin
 
