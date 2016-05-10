@@ -24,7 +24,7 @@ public class JavaCodeGenerator {
         node.apply(new TopVisitor(typeTable, superTable));
 
         addLibrary("Main", "Main");
-        addLibrary("MathBFGL", "MathBFGL");
+        addLibrary("_MathBFGL", "_MathBFGL");
 
 
     }

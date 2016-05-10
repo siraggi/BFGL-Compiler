@@ -61,7 +61,7 @@ public class TopVisitor extends VisitorBase {
             AddNameSpaces();
 
 
-            emitnl("public class " + className + " extends " + inherit + "{");
+            emitnl("public class " + className + " extends " + "_" + inherit + "{");
             node.apply(new ClassBodyVisitor(bw, typeTable, superTable, className));
             emitnl("}");
 

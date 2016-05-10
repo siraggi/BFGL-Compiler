@@ -1,4 +1,5 @@
 _Game _game =  new _Game();
 _InputBFGL _input =  new _InputBFGL();
 _MathBFGL _math =  new _MathBFGL();
-float _score = 0f;
+float _Height;
+float _Wight;

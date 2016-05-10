@@ -33,7 +33,7 @@ class Player is Sprite begin
 end
 
 class Enemy is Sprite begin
-  dcl num speed to 200
+  dcl num speed to 100
   dcl num vel
   dcl Ball ball
 
