@@ -16,8 +16,7 @@ public class TestLineAndPos {
     private static boolean setUpIsDone = false;
     Start tree;
 
-    @Before
-    public void setUp() {
+    public void setUp(){
         if (!setUpIsDone) {
 
             File file = new File("Test/BFGLTest.bfgl");

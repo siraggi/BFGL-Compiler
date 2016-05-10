@@ -7,11 +7,12 @@ import java.nio.*;
 import java.math.*;
 import org.newdawn.slick.*;
 public class _Sprite extends _Object {
-public float _posX;
-public float _posY;
-public float _sizeX;
-public float _sizeY;
-public String _id;
+public float _posX = 0;
+public float _posY = 0;
+public float _sizeX = 0;
+public float _sizeY = 0;
+public String _id = "";
+public String _texture = "";
 public _Sprite(float _xx, float _yy, float _sizeXX, float _sizeYY, String _ID){
 _posX = _xx;
 _posY = _yy;

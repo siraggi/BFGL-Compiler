@@ -9,10 +9,11 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Image;
+
 
 public class Scene extends BasicGame{
 
-   // public ArrayList<Sprite> Sprites;
 
     public Scene(String gamename)
     {
@@ -20,8 +21,16 @@ public class Scene extends BasicGame{
     }
 
     public void init(GameContainer gc) throws SlickException {
+        Global._game._height = gc.getHeight();
+        Global._game._width = gc.getWidth();
+
+
 _Player _player =  new _Player();
 _Block _block =  new _Block();
+float _x = 5f;
+_x = _x + 5f;
+float _y = _player._g;
+_y = _x * 2f;
 
     }
 
@@ -570,13 +579,28 @@ _Block _block =  new _Block();
     }
 
     public void render(GameContainer gc, Graphics g) throws SlickException {
+        Image background;
+        if(!Global._game._background.equals("")){
+            background = new Image(Global._game._background);
+            background.draw(0, 0, gc.getWidth(), gc.getHeight());
+        }
+
         for(_Sprite s : Global._game._Sprites) {
-            g.draw(new Rectangle(s._posX, s._posY, s._sizeX, s._sizeY));
+
+            if(!s._texture.equals("")) {
+                Image img = new Image(s._texture);
+                img.draw(s._posX, s._posY, s._sizeX, s._sizeY);
+            }
+            else{
+                g.draw(new Rectangle(s._posX, s._posY, s._sizeX, s._sizeY));
+            }
+
+
         }
         for(_Label l : Global._game._Labels) {
             g.drawString(l._textToWrite, l._posX, l._posY);
         }
-        //g.drawString("" + Global._game._Sprites.size(), 150, 100);
+        g.drawString("" + Global._game._Sprites.size(), 150, 100);
     }
 
 }

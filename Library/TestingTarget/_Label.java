@@ -7,9 +7,9 @@ import java.nio.*;
 import java.math.*;
 import org.newdawn.slick.*;
 public class _Label extends _Object {
-public float _posX;
-public float _posY;
-public String _textToWrite;
+public float _posX = 0;
+public float _posY = 0;
+public String _textToWrite = "";
 public _Label(String _t, float _xx, float _yy){
 _posX = _xx;
 _posY = _yy;

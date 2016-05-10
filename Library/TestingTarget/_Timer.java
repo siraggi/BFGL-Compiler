@@ -7,7 +7,7 @@ import java.nio.*;
 import java.math.*;
 import org.newdawn.slick.*;
 public class _Timer{
-public float _interval;
+public float _interval = 0;
 public void _Start(){
 
 }

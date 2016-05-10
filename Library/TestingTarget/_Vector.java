@@ -7,8 +7,8 @@ import java.nio.*;
 import java.math.*;
 import org.newdawn.slick.*;
 public class _Vector{
-public float _x;
-public float _y;
+public float _x = 0;
+public float _y = 0;
 public _Vector(float _dclx, float _dcly){
 _x = _dclx;
 _y = _dcly;
@@ -22,8 +22,8 @@ _y = _value;
 
 }
 public void _Normelise(){
-float _tempX;
-float _tempY;
+float _tempX = 0;
+float _tempY = 0;
 if(_x < 0f){
 _tempX = (-_x);
 }
@@ -41,8 +41,8 @@ _x = _x / _temp;
 _y = _y / _temp;
 
 }
-public float _tempX;
-public float _tempY;
+public float _tempX = 0;
+public float _tempY = 0;
 public _Vector _DirVector(_Vector _point){
 _Vector _temp =  new _Vector(_x - _point._x, _y - _point._y);
 return _temp;

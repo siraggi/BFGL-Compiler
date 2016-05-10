@@ -7,7 +7,7 @@ import java.nio.*;
 import java.math.*;
 import org.newdawn.slick.*;
 public class _Player extends _Sprite {
-public float _g;
+public float _g = 5f;
 public _Player(){
 super(100f, Global._math._getRandomNum(100f), 100f, 10f, "Player");Global._game._Sprites.add(this);
 }

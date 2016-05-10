@@ -7,6 +7,6 @@ import java.nio.*;
 import java.math.*;
 import org.newdawn.slick.*;
 public class _Key{
-public boolean _isPressed;
-public boolean _isDown;
+public boolean _isPressed = false;
+public boolean _isDown = false;
 }

@@ -1,10 +1,15 @@
 Main begin
     dcl Player player to new Player()
-    dcl Block block to new Block();
+    dcl Block block to new Block()
+    dcl num x to 5
+    set x to x + 5
+    dcl num y to player.g
+    set y to x * 2
+
 end
 
 class Player is Sprite begin
-    dcl num g
+    dcl num g to 5
     OnConstruct() do
         base(100, math.getRandomNum(100), 100, 10, "Player")
 
