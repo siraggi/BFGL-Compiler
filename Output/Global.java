@@ -11,4 +11,5 @@ private Global(){ }
 public static _Game _game =  new _Game();
 public static _InputBFGL _input =  new _InputBFGL();
 public static _MathBFGL _math =  new _MathBFGL();
+public static float _score = 0f;
 }
