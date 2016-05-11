@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+import java.util.*;
+import java.io.*;
 
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -11,13 +12,17 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 
-
 public class Scene extends BasicGame{
-
+    private Hashtable<String, Image> textures;
+    private File resourceFolder;
 
     public Scene(String gamename)
     {
     		super(gamename);
+
+    		textures = new Hashtable<>();
+            resourceFolder = new File("Resources/");
+
     }
 
     public void init(GameContainer gc) throws SlickException {
@@ -575,27 +580,37 @@ public class Scene extends BasicGame{
 
     public void render(GameContainer gc, Graphics g) throws SlickException {
         Image background;
+
         if(!Global._game._background.equals("")){
             background = new Image(Global._game._background);
             background.draw(0, 0, gc.getWidth(), gc.getHeight());
         }
 
+        for (File f : resourceFolder.listFiles()) {
+            try{
+                textures.put("Resources/" + f.getName().trim(), new Image(f.getPath()));
+            }
+            catch(SlickException ex){
+                ex.printStackTrace();
+
+            }
+        }
+
+
         for(_Sprite s : Global._game._Sprites) {
 
-            if(!s._texture.equals("")) {
-                Image img = new Image(s._texture);
-                img.draw(s._posX, s._posY, s._sizeX, s._sizeY);
-            }
-            else{
+            if(!textures.containsKey(s._texture.trim())){
                 g.draw(new Rectangle(s._posX, s._posY, s._sizeX, s._sizeY));
             }
-
-
+            else{
+                textures.get(s._texture.trim()).draw(s._posX, s._posY, s._sizeX, s._sizeY);
+            }
         }
+
         for(_Label l : Global._game._Labels) {
             g.drawString(l._textToWrite, l._posX, l._posY);
         }
-        g.drawString("" + Global._game._Sprites.size(), 150, 100);
+        //g.drawString("" + Global._game._Sprites.size(), 150, 100);
     }
 
 }

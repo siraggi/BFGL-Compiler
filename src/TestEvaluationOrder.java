@@ -36,7 +36,7 @@ public class TestEvaluationOrder {
         try(BufferedReader br = new BufferedReader(new FileReader(outputScene))) {
             String line;
             while (!(br.readLine().contains("float _x"))){
-                br.
+
             }
 
 

@@ -205,6 +205,7 @@ class Label is Object begin
         set posX to xx
         set posY to yy
         set textToWrite to t
+        game.Labels.add(this)
     end
 
 
@@ -212,10 +213,18 @@ class Label is Object begin
 
     end
 
-    dcl func change(text t) begin
+    dcl func updateText(text t) begin
         game.Labels.remove(this)
         set textToWrite to t
         game.Labels.add(this)
+    end
+
+    dcl func draw() begin
+        game.Labels.add(this)
+    end
+
+    dcl func remove() begin
+        game.Labels.remove(this)
     end
 
 end

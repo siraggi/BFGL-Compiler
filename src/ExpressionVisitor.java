@@ -155,10 +155,19 @@ public class ExpressionVisitor extends VisitorBase {
 
     public void inANotExpr(ANotExpr node) {
         if (!node.visited) {
+            node.visited = true;
             emit("!");
             node.apply(this);
             emit(" ");
+        }
+    }
+
+    public void inAParenExpr(AParenExpr node){
+        if (!node.visited) {
             node.visited = true;
+            emit("(");
+            node.apply(this);
+            emit(")");
         }
     }
 

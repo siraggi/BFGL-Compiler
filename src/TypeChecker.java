@@ -30,6 +30,7 @@ public class TypeChecker extends DepthFirstAdapter {
         superTable = new Hashtable<>();
         ErrorList = new ArrayList<>();
         lineAndPos = new LineAndPos();
+
     }
 
     //Scope methods
@@ -544,12 +545,16 @@ public class TypeChecker extends DepthFirstAdapter {
 
     //Expr
     public void outANotExpr(ANotExpr node) {
-        if (compareType(node, BOOL))
+        if (compareType(node.getExpr(), BOOL))
             addType(node, BOOL);
         else {
             ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : " + node.getExpr().toString() + ", is not of type " + BOOL + ".");
             addType(node, ERRORTYPE);
         }
+    }
+
+    public void outAParenExpr(AParenExpr node){
+        addType(node, typeTable.get(node.getExpr()));
     }
 
     public void outAUnaryExpr(AUnaryExpr node) {

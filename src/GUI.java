@@ -23,7 +23,10 @@ public class GUI extends JFrame{
         panel1 = new JPanel();
         chooseFileButton = new JButton("Choose file");
         compileButton = new JButton("Compile!");
+
         fileDialog = new JFileChooser();
+        fileDialog.setCurrentDirectory(new File(System.getProperty("user.dir")));
+
         gameButton = new JButton("Run game");
         statusLabel = new JLabel();
 
@@ -60,6 +63,9 @@ public class GUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
+                    errorList.setListData(new String[0]);
+                    //errorList.removeAll();
+                    //errorList.clearSelection();
                     Main.compile(file);
                 }
                 catch (Exception ex){
@@ -73,13 +79,13 @@ public class GUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    ProcessBuilder pb = new ProcessBuilder("CompiledGame/", "-jar", "hax.jar");
+                    ProcessBuilder pb = new ProcessBuilder("Java", "-jar", "CompiledGame/hax.jar");
+                    pb.redirectOutput();
                     Process p = pb.start();
                 }
                 catch (Exception ex){
                     ex.printStackTrace();
                 }
-
             }
         });
     }

@@ -9,14 +9,17 @@ import javax.swing.*;
 
 import static java.nio.file.StandardCopyOption.*;
 
+import java.awt.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Dictionary;
 
 
 public class Main {
 
     public static ArrayList<String> ErrorList;
+
     private static GUI gui;
 
     public static void main(String[] args){
@@ -36,10 +39,10 @@ public class Main {
             }
         });
 
+/*
 
-        /*
         try{
-            compile(new File("Test", "BFGLtest.bfgl"));
+            compile(new File("Test", "AggiPingPong.bfgl"));
         }
         catch (Exception ex){
             ex.printStackTrace();
@@ -54,16 +57,29 @@ public class Main {
         TypeChecker typeChecker = new TypeChecker();
         File file = inFile;
         Start tree = null;
+        ErrorList.clear();
         try {
             PushbackReader pushbackReader = new PushbackReader(new FileReader(addLibrary(file)));
             Parser parser = new Parser(new Lexer(pushbackReader));
             tree = parser.parse();
         }
-        catch(LexerException ex){
-            int line = ex.getToken().getLine() - 3;
-            int pos = ex.getToken().getPos();
-            String error = ex.getLocalizedMessage().split("]")[ex.getLocalizedMessage().split("]").length - 1];
-            ErrorList.add("Lexer Error: Line: " + line + " Pos: " + pos + ", " + error);
+        catch(LexerException | ParserException ex){
+            if(ex instanceof LexerException){
+                LexerException le = (LexerException) ex;
+                int line = le.getToken().getLine();
+                int pos = le.getToken().getPos();
+                String error = ex.getLocalizedMessage().split("]")[ex.getLocalizedMessage().split("]").length - 1];
+                ErrorList.add("Lexer Error: Line: " + line + " Pos: " + pos + ", " + error);
+            }
+            else{
+                ParserException pe = (ParserException) ex;
+                int line = pe.getToken().getLine();
+                int pos = pe.getToken().getPos();
+                String error = ex.getLocalizedMessage().split("]")[ex.getLocalizedMessage().split("]").length - 1];
+                ErrorList.add("Lexer Error: Line: " + line + " Pos: " + pos + ", " + error);
+            }
+
+
         }
 
         if(ErrorList.size() == 0)
@@ -82,8 +98,8 @@ public class Main {
             AntExecutor AEx = new AntExecutor();
             AEx.executeAntTask("CompileBFGL.xml", "jar");
         }
-
-        gui.showGameButton();
+        Desktop.getDesktop().open(new File("CompiledGame/"));
+        //gui.showGameButton();
     }
 
     private static File addLibrary(File file) throws IOException {
