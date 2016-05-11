@@ -269,7 +269,7 @@ class Vector begin
   end
 
   dcl func Normelise() begin
-    dcl num temp to MathBFGL.abs(x)+MathBFGL.abs(y)
+    dcl num temp to MathBFGL.abs(x) + MathBFGL.abs(y)
     set x to x/temp
     set y to y/temp
   end
