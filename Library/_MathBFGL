@@ -4,6 +4,12 @@ import java.util.Random;
 
 public class _MathBFGL{
 
+    public static float _abs(float input){
+        float result;
+        result = Math.abs(input);
+        return result;
+    }
+
     public static float _roundDown(float input){
         float result;
         int temp = (int)input;

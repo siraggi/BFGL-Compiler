@@ -14,8 +14,8 @@ class Player is Sprite begin
     dcl num vel
 
     OnConstruct() do
-        base(40, Height/2, 20, 150, "Player")
-        set speed to 1
+        base(40, game.height/2, 20, 150, "Player")
+        set speed to 100
         game.Sprites.add(this)
     end
 
@@ -27,17 +27,17 @@ class Player is Sprite begin
         else
             set vel to 0
         end
-        set posY to posY+vel
+        set posY to posY+(vel*speed*(delta/1000))
     end
 end
 
 class Enemy is Sprite begin
-  dcl num speed to 1
+  dcl num speed to 100
   dcl num vel
   dcl Ball ball
   
   OnConstruct() do
-    base(Wight - 40, 100, 20, 150, "Enemy")
+    base(game.width - 40, game.height/2, 20, 150, "Enemy")
     game.Sprites.add(this)
     set ball to new Ball()
   end
@@ -49,7 +49,7 @@ class Enemy is Sprite begin
     else if posY > ball.posY then
       set vel to -speed
     end
-    set posY to posY+vel
+    set posY to posY+(vel*speed*(delta/1000))
   end
 end
 
@@ -58,9 +58,9 @@ class Ball is Sprite begin
   dcl Vector vect
 
   OnConstruct() do
-    base(200, 200, 20,20, "Ball")
+    base(game.width/2, game.height/2, 20,20, "Ball")
     set vect to new Vector(-1,0)
-    set speed to 0.2
+    set speed to 150
     game.Sprites.add(this)
   end
 
@@ -68,14 +68,14 @@ class Ball is Sprite begin
     set vect to GetCenter()
     set vect to vect.DirVector(other.GetCenter())
     vect.Normelise()
-    set speed to 0.01
+    set speed to speed+2
   end
 
-  OnUpdate() do
-    if posY < 0 or posY > Height then
+  OnUpdate(num delta) do
+    if posY < 0 or posY > game.height then
       vect.SetY(-vect.y)
     end
-    set posX to posX+vect.x*speed
-    set posY to posY+vect.y*speed
+    set posX to posX+(vect.x*speed*(delta/1000))
+    set posY to posY+(vect.y*speed*(delta/1000))
   end
 end

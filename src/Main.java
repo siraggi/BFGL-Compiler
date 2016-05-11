@@ -3,7 +3,6 @@ import grammar.ini.lexer.LexerException;
 import grammar.ini.node.Start;
 import grammar.ini.parser.Parser;
 import grammar.ini.parser.ParserException;
-import sun.misc.IOUtils;
 
 import javax.swing.*;
 
@@ -11,20 +10,16 @@ import static java.nio.file.StandardCopyOption.*;
 
 import java.awt.*;
 import java.io.*;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Dictionary;
 
 
 public class Main {
-
-    public static ArrayList<String> ErrorList;
-
+    public static ArrayList<String> ErrorList = new ArrayList<>();
     private static GUI gui;
 
     public static void main(String[] args){
 
-        ErrorList = new ArrayList<>();
 
 
         SwingUtilities.invokeLater(new Runnable() {
@@ -39,10 +34,9 @@ public class Main {
             }
         });
 
-/*
 
-        try{
-            compile(new File("Test", "AggiPingPong.bfgl"));
+        /*try{
+            compile(new File("Test", "BFGLtest.bfgl"));
         }
         catch (Exception ex){
             ex.printStackTrace();
