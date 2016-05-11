@@ -1,6 +1,3 @@
 _Game _game =  new _Game();
 _InputBFGL _input =  new _InputBFGL();
 _MathBFGL _math =  new _MathBFGL();
-float _score1 = 0f;
-float _score2 = 0f;
-_Ball _ball =  new _Ball();
