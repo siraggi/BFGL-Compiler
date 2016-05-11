@@ -1,23 +1,30 @@
 Main begin
     dcl Player player to new Player()
     dcl Block block to new Block()
-    dcl num x to 5
-    set x to x + 5
-    dcl num y to player.g
-    set y to x * 2
+
+    player.result()
+
+
 
 end
 
 class Player is Sprite begin
-    dcl num g to 5
     OnConstruct() do
         base(100, math.getRandomNum(100), 100, 10, "Player")
 
         game.Sprites.add(this)
     end
-
-    dcl func f(num n) begin
-        set g to n
+    dcl num n to 0
+    dcl func f() begin
+        set n to n + 1
+    end
+    dcl func g() begin
+        set n to n * 2
+    end
+    dcl func result() begin
+    f()
+    g()
+        dcl Label l to new Label("" + n, 100, 100)
     end
 
     OnUpdate() do
