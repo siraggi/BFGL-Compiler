@@ -9,15 +9,15 @@ class Player is Sprite begin
 
     OnConstruct() do
         base(40, game.height/2, 20, 150, "Player")
-        set speed to 100
+        set speed to 150
         game.Sprites.add(this)
     end
 
     OnUpdate(num delta) do
         if input.key.W.isDown then
-             set vel to -speed
+             set vel to -1
         else if input.key.S.isDown then
-             set vel to speed
+             set vel to 1
         else
             set vel to 0
         end
@@ -26,22 +26,26 @@ class Player is Sprite begin
 end
 
 class Enemy is Sprite begin
-  dcl num speed to 100
+  dcl num speed
   dcl num vel
   dcl Ball ball
+
   
   OnConstruct() do
     base(game.width - 40, game.height/2, 20, 150, "Enemy")
     game.Sprites.add(this)
     set ball to new Ball()
+    set speed to 150
+
   end
 
-  OnUpdate(num delta) do                           /* A event as explained in the previous section       */
-    if posY < ball.posY then                /* Use the reference obtained earlier, to move the enemy accordingly */
-      set vel to speed
+  OnUpdate(num delta) do
+    dcl Vector vectCenter to GetCenter()
+    if vectCenter.y < ball.posY then
+      set vel to 1
 
-    else if posY > ball.posY then
-      set vel to -speed
+    else if vectCenter.y > ball.posY then
+      set vel to -1
     end
     set posY to posY+(vel*speed*(delta/1000))
   end
@@ -49,25 +53,46 @@ end
 
 class Ball is Sprite begin
   dcl num speed
+  dcl num score1
+  dcl num score2
   dcl Vector vect
+  dcl Label point1
+  dcl Label point2
 
   OnConstruct() do
     base(game.width/2, game.height/2, 20,20, "Ball")
     set vect to new Vector(-1,0)
-    set speed to 150
+    set speed to 200
     game.Sprites.add(this)
+    set point1 to new Label("0",(game.width/2-50),50)
+    set point2 to new Label("0",(game.width/2+50),50)
+    point1.draw()
+    point2.draw()
   end
 
   OnCollision(Sprite other) do
     set vect to GetCenter()
     set vect to vect.DirVector(other.GetCenter())
     vect.Normelise()
-    set speed to speed+2
+    set speed to speed+10
   end
 
   OnUpdate(num delta) do
-    if posY < 0 or posY > game.height then
+    if posY < 0 or posY+sizeY > game.height then
       vect.SetY(-vect.y)
+    end
+    if posX < 0 then
+      set score1 to score1+1
+      point1.updateText(""+score1)
+      set posX to game.width/2
+      set posY to game.height/2
+      set speed to 200
+    else if posX > game.width then
+      set score2 to score2+1
+      point2.updateText(""+score2)
+      set posX to game.width/2
+      set posY to game.height/2
+      set speed to 200
     end
     set posX to posX+(vect.x*speed*(delta/1000))
     set posY to posY+(vect.y*speed*(delta/1000))
