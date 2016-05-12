@@ -17,13 +17,14 @@ class Player is Sprite begin
     dcl num n to 0
     dcl func f() begin
         set n to n + 1
+        return 1
     end
     dcl func g() begin
         set n to n * 2
+        return 1
     end
     dcl func result() begin
-    f()
-    g()
+    dcl num ggg to g() + f()
         dcl Label l to new Label("" + n, 100, 100)
     end
 
