@@ -1,0 +1,10 @@
+Main begin
+
+
+end
+
+class Player is Sprite begin
+  OnConstruct(num posX, num posY) do
+
+  end
+end
