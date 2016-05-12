@@ -250,10 +250,6 @@ class List begin
 
     end
 
-    dcl func size() begin
-
-    end
-
     dcl func get(num index) begin
 
     end
