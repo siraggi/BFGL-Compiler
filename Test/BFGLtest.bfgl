@@ -14,7 +14,9 @@ class Player is Sprite begin
 
         game.Sprites.add(this)
     end
+
     dcl num n to 0
+    dcl num ggg
     dcl func f() begin
         set n to n + 1
         return 1
@@ -23,9 +25,25 @@ class Player is Sprite begin
         set n to n * 2
         return 1
     end
+    dcl func q() begin
+        set n to n + 2
+        return 1
+    end
+    dcl func w() begin
+        set n to n / 2
+        return 1
+    end
+
     dcl func result() begin
-    dcl num ggg to g() + f()
-        dcl Label l to new Label("" + n, 100, 100)
+        set n to 0
+        set ggg to f() + g()
+        dcl Label l to new Label("" + n, 100, 100) // exp: 2
+        set n to 0
+        set ggg to g() + f()
+        dcl Label l1 to new Label("" + n, 100, 120) // exp: 1
+        set n to 0
+        set ggg to q() + w()
+        dcl Label l2 to new Label("" + n, 100, 140) // exp: 1
     end
 
     OnUpdate() do
