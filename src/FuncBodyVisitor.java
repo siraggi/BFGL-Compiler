@@ -87,9 +87,9 @@ public class FuncBodyVisitor extends VisitorBase {
         if (!node.visited && !(node.parent().parent() instanceof AVarasgPdcl) && !(node.parent().parent() instanceof AAssignmentStmt)) {
             node.visited = true;
 
-            if(node.parent() instanceof AClassCall){
+            if(node.parent() instanceof ADotCall){
                 LinkedList<PCall> temp = new LinkedList<>();
-                AClassCall c = (AClassCall) node.parent();
+                ADotCall c = (ADotCall) node.parent();
 
                 temp.add(c.getFirst());
                 temp.addAll(c.getRest());
@@ -179,7 +179,7 @@ public class FuncBodyVisitor extends VisitorBase {
         }
     }
 
-    public void inAClassCall(AClassCall node) {
+    public void inADotCall(ADotCall node) {
         if (!node.visited) {
             node.visited = true;
 

@@ -496,7 +496,7 @@ public class TypeChecker extends DepthFirstAdapter {
         addType(node, typeTable.get(node.getVal()));
     }
 
-    public void inAClassCall(AClassCall node) {
+    public void inADotCall(ADotCall node) {
         openScope(getNode(getType(((AVarCall) node.getFirst()).getId().getText())), true);
 
         for (int i = 0; i < node.getRest().size() - 1; i++) {
@@ -506,7 +506,19 @@ public class TypeChecker extends DepthFirstAdapter {
 
     }
 
-    public void outAClassCall(AClassCall node) {
+    /*
+    public void inAClassCall(AClassCall node) {
+        openScope(getNode(getType(((AVarCall) node.getFirst()).getId().getText())), true);
+
+        for (int i = 0; i < node.getRest().size() - 1; i++) {
+            openScope(getNode(getType(((AVarCall) node.getRest().get(i)).getId().getText())), true);
+        }
+
+
+    }
+    */
+
+    public void outADotCall(ADotCall node) {
         Node n = node.getRest().getLast();
 
 
@@ -523,20 +535,29 @@ public class TypeChecker extends DepthFirstAdapter {
     }
 
     public void outAFuncCall(AFuncCall node) {
-        AFuncPdcl dcl = (AFuncPdcl) getNode(node.getId().getText());
+        try {
+            AFuncPdcl dcl = (AFuncPdcl) getNode(node.getId().getText());
 
-        if (dcl != null) {
-            if (node.getParams().size() != dcl.getParams().size()) {
-                ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : " + node.getId().getText() + ", takes " + dcl.getParams().size() + " not " + node.getParams().size() + ".");
-            } else
-                for (int i = 0; i < node.getParams().size(); i++) {
-                    if (!compareType(node.getParams().get(i), ((AFormalParam) dcl.getParams().get(i)).getType().toString().trim())) {
-                        ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : parameter " + i + " is not of type " + ((AFormalParam) dcl.getParams().get(i)).getType().toString().trim() + ".");
+            if (dcl != null) {
+                if (node.getParams().size() != dcl.getParams().size()) {
+                    ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : " + node.getId().getText() + ", takes " + dcl.getParams().size() + " not " + node.getParams().size() + ".");
+                } else
+                    for (int i = 0; i < node.getParams().size(); i++) {
+                        if (!compareType(node.getParams().get(i), ((AFormalParam) dcl.getParams().get(i)).getType().toString().trim())) {
+                            ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : parameter " + i + " is not of type " + ((AFormalParam) dcl.getParams().get(i)).getType().toString().trim() + ".");
+                        }
                     }
-                }
+            }
+
+            addType(node, getType(node.getId().getText()));
+
+        }
+        catch (ClassCastException ex){
+            ErrorList.add("ERROR line " + lineAndPos.getLine(node) + " pos " + lineAndPos.getPos(node) + " : '" + node.getId().getText() + "' is not a function.");
+            addType(node, ERRORTYPE);
         }
 
-        addType(node, getType(node.getId().getText()));
+
     }
 
     public void outACallExpr(ACallExpr node) {
@@ -765,6 +786,11 @@ public class TypeChecker extends DepthFirstAdapter {
         }
     }
 
+    public void outAFuncdotcallStmt(AFuncdotcallStmt node) {
+        addType(node, typeTable.get(node.getCall()));
+    }
+
+    /*
     public void outAClasscallStmt(AClasscallStmt node) {
         addType(node, typeTable.get(node.getCall()));
     }
@@ -772,6 +798,7 @@ public class TypeChecker extends DepthFirstAdapter {
     public void outAFunccallStmt(AFunccallStmt node) {
         addType(node, typeTable.get(node.getCall()));
     }
+    */
 
     public void outAVardclStmt(AVardclStmt node) {
         addType(node, typeTable.get(node.getPdcl()));

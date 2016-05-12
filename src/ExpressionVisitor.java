@@ -233,7 +233,7 @@ public class ExpressionVisitor extends VisitorBase {
         }
     }
 
-    public void inAClassCall(AClassCall node) {
+    public void inADotCall(ADotCall node) {
         if (!node.visited) {
             node.visited = true;
 

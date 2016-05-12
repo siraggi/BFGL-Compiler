@@ -249,6 +249,14 @@ class List begin
     dcl func remove(Object o) begin
 
     end
+
+    dcl func size() begin
+
+    end
+
+    dcl func get(num index) begin
+
+    end
 end
 
 class Vector begin
@@ -269,13 +277,13 @@ class Vector begin
   end
 
   dcl func Normelise() begin
-    dcl num temp to MathBFGL.abs(x)+MathBFGL.abs(y)
-    set x to x/temp
-    set y to y/temp
+    dcl num temp to math.abs(x) + math.abs(y)
+    set x to x / temp
+    set y to y / temp
   end
 
   dcl func DirVector(Vector point) begin
-    dcl Vector temp to new Vector(x-point.x, y-point.y)
+    dcl Vector temp to new Vector(x - point.x, y - point.y)
     return temp
   end
 

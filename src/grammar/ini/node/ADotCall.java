@@ -6,17 +6,17 @@ import java.util.*;
 import grammar.ini.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AClassCall extends PCall
+public final class ADotCall extends PCall
 {
     private PCall _first_;
     private final LinkedList<PCall> _rest_ = new LinkedList<PCall>();
 
-    public AClassCall()
+    public ADotCall()
     {
         // Constructor
     }
 
-    public AClassCall(
+    public ADotCall(
         @SuppressWarnings("hiding") PCall _first_,
         @SuppressWarnings("hiding") List<?> _rest_)
     {
@@ -30,7 +30,7 @@ public final class AClassCall extends PCall
     @Override
     public Object clone()
     {
-        return new AClassCall(
+        return new ADotCall(
             cloneNode(this._first_),
             cloneList(this._rest_));
     }
@@ -38,7 +38,7 @@ public final class AClassCall extends PCall
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAClassCall(this);
+        ((Analysis) sw).caseADotCall(this);
     }
 
     public PCall getFirst()

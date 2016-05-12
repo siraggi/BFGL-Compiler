@@ -5,46 +5,46 @@ package grammar.ini.node;
 import grammar.ini.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AParenExpr extends PExpr
+public final class AFuncdotcallStmt extends PStmt
 {
-    private PExpr _expr_;
+    private PCall _call_;
 
-    public AParenExpr()
+    public AFuncdotcallStmt()
     {
         // Constructor
     }
 
-    public AParenExpr(
-        @SuppressWarnings("hiding") PExpr _expr_)
+    public AFuncdotcallStmt(
+        @SuppressWarnings("hiding") PCall _call_)
     {
         // Constructor
-        setExpr(_expr_);
+        setCall(_call_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AParenExpr(
-            cloneNode(this._expr_));
+        return new AFuncdotcallStmt(
+            cloneNode(this._call_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAParenExpr(this);
+        ((Analysis) sw).caseAFuncdotcallStmt(this);
     }
 
-    public PExpr getExpr()
+    public PCall getCall()
     {
-        return this._expr_;
+        return this._call_;
     }
 
-    public void setExpr(PExpr node)
+    public void setCall(PCall node)
     {
-        if(this._expr_ != null)
+        if(this._call_ != null)
         {
-            this._expr_.parent(null);
+            this._call_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AParenExpr extends PExpr
             node.parent(this);
         }
 
-        this._expr_ = node;
+        this._call_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expr_);
+            + toString(this._call_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expr_ == child)
+        if(this._call_ == child)
         {
-            this._expr_ = null;
+            this._call_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AParenExpr extends PExpr
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expr_ == oldChild)
+        if(this._call_ == oldChild)
         {
-            setExpr((PExpr) newChild);
+            setCall((PCall) newChild);
             return;
         }
 

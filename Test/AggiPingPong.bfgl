@@ -21,7 +21,7 @@ class Player is Sprite begin
     dcl Label p1 to new Label("Player 1 : " + score1, 100, 100)
 
     OnConstruct() do
-        base(40, 200, 20, 150, "Player")
+        base(10, 200, 100, 150, "Player")
         set speed to 200
         set texture to "Resources/redfighter0006.png"
         game.Sprites.add(this)
@@ -52,7 +52,7 @@ end
 class Enemy is Sprite begin
   dcl num speed to 100
   dcl num vel
-    dcl Label p2 to new Label("Player 2 : " + score2, 400, 100)
+  dcl Label p2 to new Label("Player 2 : " + score2, 400, 100)
 
   OnConstruct() do
     base(600, 100, 20, 150, "Enemy")
@@ -69,6 +69,9 @@ class Enemy is Sprite begin
     set posY to posY+vel  * (delta / 1000)
     p2.updateText("Player 2 : " + score2)
   end
+
+
+
 end
 
 class Ball is Sprite begin
