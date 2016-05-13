@@ -560,9 +560,21 @@ public class Scene extends BasicGame{
         	Global._input._key._RWIN._isDown = false;
         }
 
+        for(int i = 0; i < Global._game._Sprites.size(); i++) {
+            _Sprite s = Global._game._Sprites.get(i);
 
+            for(int j = 0; j < Global._game._Sprites.size(); j++) {
+                _Sprite other = Global._game._Sprites.get(j);
 
+                if(!s.equals(other) && (new Rectangle(s._posX, s._posY, s._sizeX, s._sizeY)).intersects(new Rectangle(other._posX, other._posY, other._sizeX, other._sizeY))){
+                    s._collision(other);
+                }
+            }
 
+            s._update(delta);
+        }
+
+        /*
         for(_Sprite s : Global._game._Sprites) {
             for(_Sprite other : Global._game._Sprites){
                 if(!s.equals(other) && (new Rectangle(s._posX, s._posY, s._sizeX, s._sizeY)).intersects(new Rectangle(other._posX, other._posY, other._sizeX, other._sizeY))){
@@ -572,6 +584,7 @@ public class Scene extends BasicGame{
 
             s._update(delta);
         }
+        */
 
         for(_Label l : Global._game._Labels) {
             l._update(delta);

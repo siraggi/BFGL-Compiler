@@ -95,6 +95,8 @@ class Ball is Sprite begin
             set xspeed to -xspeed
             set dir to math.getRandomNum(200) + 50
 
+            game.Sprites.remove(this)
+
             if dir = 1 then
                 set yspeed to dir
             else
