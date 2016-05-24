@@ -11,7 +11,7 @@ Main begin
         set ball to new Ball()
     end
 
-    game.SetBackground("Resources/arena.png")
+    game.SetBackground("Resources/arena.jpg")
 end
 
 class Player is Sprite begin
@@ -21,9 +21,8 @@ class Player is Sprite begin
     dcl Label p1 to new Label("Player 1 : " + score1, 100, 100)
 
     OnConstruct() do
-        base(10, 200, 100, 150, "Player")
+        base(10, 200, 20, 150, "Player")
         set speed to 200
-        set texture to "Resources/redfighter0006.png"
         game.Sprites.add(this)
     end
 
@@ -83,7 +82,7 @@ class Ball is Sprite begin
 
   OnConstruct() do
     base(200, 200, 20,20, "Ball")
-    set texture to "Resources/pokeball.png"
+    set texture to "Resources/SoccerBall_0.png"
 
     set speed to 300
     set xspeed to speed
@@ -94,8 +93,6 @@ class Ball is Sprite begin
         if not (other.id = "Ball") then
             set xspeed to -xspeed
             set dir to math.getRandomNum(200) + 50
-
-            game.Sprites.remove(this)
 
             if dir = 1 then
                 set yspeed to dir
