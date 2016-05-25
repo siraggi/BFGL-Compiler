@@ -8,6 +8,11 @@ import org.apache.tools.ant.ProjectHelper;
 /**
  * @author srccodes.com
  * @version 1.0
+ *
+ *Borrowed from this adress: http://www.srccodes.com/p/article/9/Invoke-and-Execute-Hello-World-Ant-Script-Programmatically-using-Java-Code
+ * Used to execute the build process on the source BFGL file, and handle creation of an executable jar, and any libraries
+ *
+ *
  */
 public class AntExecutor {
     /**

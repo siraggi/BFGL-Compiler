@@ -19,7 +19,8 @@ public class JavaCodeGenerator {
 
         for (File file : outDir.listFiles()) file.delete();
 
-        addLibrary("Scene", "Scene"); //Because the topvisitor aka the codegen needs to have the scenefile before doign its run
+        addLibrary("Scene", "Scene"); //Because the CODEGEN phase needs to know about scene before running its typechecks
+
 
         node.apply(new TopVisitor(typeTable, superTable));
 
@@ -32,7 +33,7 @@ public class JavaCodeGenerator {
     public static void addLibrary(String in, String out) throws IOException {
         FileInputStream instream = null;
         FileOutputStream outstream = null;
-
+//Adds in the specified BFGL library. Added as a seperate function to aid implementation
         try {
             File infile = new File("Library", in);
             File outfile = new File("Output", out + ".java");

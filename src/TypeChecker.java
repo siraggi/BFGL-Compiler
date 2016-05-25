@@ -8,6 +8,10 @@ import grammar.ini.node.*;
 import java.util.*;
 
 public class TypeChecker extends DepthFirstAdapter {
+    //Starts the typechecking phase. it handles scopes and types, and keeps a list of errors that appear during this phase.
+    //It has in and out functions for most nodes that exist in BFGL.
+
+
     private static final String BOOL = "bool";
     private static final String NUM = "num";
     private static final String TEXT = "text";
@@ -88,6 +92,7 @@ public class TypeChecker extends DepthFirstAdapter {
         typeTable.put(node, (type != null ? type.trim() : "null"));
     }
 
+    //This starts the process of getting the type of a specified ID.
     private String getType(String id) {
         TypeChecker typeChecker;
         String type = "";

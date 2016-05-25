@@ -12,6 +12,8 @@ import java.util.List;
  */
 public class TopVisitor extends VisitorBase {
 
+    //TopVisitor takes care of the top level of the program. This includes Classses Main and the entry point of a program.
+
     public TopVisitor(Hashtable<Node, String> typeTable, Hashtable<String, String> superTable) {
         super(null, typeTable, superTable);
     }
@@ -146,7 +148,7 @@ public class TopVisitor extends VisitorBase {
 
             for (int linepos = 0; linepos < lines.size(); linepos++) {
 
-                if (lines.get(linepos).contains("/*TAGPUTMAINHERE*/")) {
+                if (lines.get(linepos).contains("/*TAGPUTMAINHERE*/")) { //Where this tag is located, is where the main of the BFGL source file is put. This tag is located in Scene.java
                     node.apply(new FuncBodyVisitor(bw, typeTable, superTable));
                 } else {
                     bw.write(lines.get(linepos));

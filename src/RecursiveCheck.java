@@ -15,6 +15,8 @@ public class RecursiveCheck extends DepthFirstAdapter {
         this.dcl = dcl;
     }
 
+
+    //BFGL does not allow for recursion, and RecursiveCheck checks if any recursion exists in the source BFGL file.
     public void defaultOut(Node node) {
         AFuncCall expr;
 

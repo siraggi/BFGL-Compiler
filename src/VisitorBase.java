@@ -8,6 +8,9 @@ import java.util.List;
 
 /**
  * Created by august on 18/04/16.
+ * A base Class for all classes that need to perform analysis of the AST. Used in nearly every Visitor class.
+ * It contains emit functions to emit Java code as specified by the different wisitors
+ *
  */
 
 public class VisitorBase extends DepthFirstAdapter {
@@ -20,6 +23,7 @@ public class VisitorBase extends DepthFirstAdapter {
         this.typeTable = typeTable;
         this.superTable = superTable;
     }
+
 
     protected void emitnl(String s) {
 
@@ -40,6 +44,7 @@ public class VisitorBase extends DepthFirstAdapter {
         }
     }
 
+    //Adding in an exhaustive list of namespaces that MIGHT be needed in the generated Java files
     protected void AddNameSpaces() {
         emitnl("import java.lang.*;");
         emitnl("import java.util.*;");
@@ -68,7 +73,7 @@ public class VisitorBase extends DepthFirstAdapter {
         //        return true;
         //    }
         //}
-        return false;
+        return false; //obsolete
     }
 
     public static void addLibrary(String in, String out) throws IOException {

@@ -13,6 +13,13 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 
 public class Scene extends BasicGame{
+
+    /*Scene is a basic component of a Slick game. It contains a list of all the textures to be drawn on the screen,
+    as well as logic for runnind update methods on all the custom Sprites created by the BFGL user.
+    Inside the Init function is where the "Main" from the source BFGL file is injected.
+    */
+
+}
     private Hashtable<String, Image> textures;
     private File resourceFolder;
 

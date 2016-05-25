@@ -9,6 +9,7 @@ public class Main {
 	{
 		try
 		{
+		    //Setup for Slick to work with BFGL
 			AppGameContainer appgc;
 			appgc = new AppGameContainer(new Scene("BFGL - Game"));
 			appgc.setDisplayMode(640, 480, false);

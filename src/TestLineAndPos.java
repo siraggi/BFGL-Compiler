@@ -13,6 +13,9 @@ import java.io.*;
  */
 public class TestLineAndPos {
 
+
+    //unfinished
+
     private static boolean setUpIsDone = false;
     Start tree;
 

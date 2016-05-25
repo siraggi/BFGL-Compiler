@@ -182,7 +182,7 @@ public class FuncBodyVisitor extends VisitorBase {
     public void inADotCall(ADotCall node) {
         if (!node.visited) {
             node.visited = true;
-
+            //for handling global var/method
             if (node.getFirst() instanceof AFuncCall) {
                 AFuncCall f = (AFuncCall) node.getFirst();
 
@@ -219,7 +219,7 @@ public class FuncBodyVisitor extends VisitorBase {
             }
 
             emit(".");
-
+            //for handling non global
             for (Node n : node.getRest()) {
                 if (n instanceof AVarCall) {
                     AVarCall v = (AVarCall) n;

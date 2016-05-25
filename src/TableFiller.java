@@ -9,19 +9,20 @@ import java.util.Stack;
  * Created by august on 24/03/16.
  */
 public class TableFiller extends DepthFirstAdapter {
+    //When you meet for example a class, tablefiller is applied, and fills up all the different tables with content
     private static final String BOOL = "bool";
     private static final String NUM = "num";
     private static final String TEXT = "text";
     private static final String LIST = "List";
     private static final String VOID = "void";
-    private static final String ERRORTYPE = "9";
+    private static final String ERRORTYPE = "9"; //this was chosen randomly. Some other solution would be good, as this is not secure.
 
 
-    public Stack<Hashtable<String, Node>> symStack;
+    public Stack<Hashtable<String, Node>> symStack; //Basically a scopestack. top scope on the stack is the current scope
     public Hashtable<String, Node> symbolTable;
     public Hashtable<Node, String> typeTable;
     public ArrayList<String> ErrorList;
-    public Hashtable<String, String> superTable;
+    public Hashtable<String, String> superTable; //holding the superclasses of the currently analysed class
 
     private Node node;
     private LineAndPos lineAndPos;

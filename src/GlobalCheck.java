@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Stack;
 
+//Globalcheck handles scopechecking and typechecking of all the global variables declared in the source BFGL file.
+//it checks first if something has been declared, if it has been, it checks if the variable exists anywhere else than global in the program
+//if it does not exist anywhere else, it assumes it is a global variable
+
 public class GlobalCheck extends DepthFirstAdapter {
     private String id;
     private Node nodeToCheck;

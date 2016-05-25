@@ -236,7 +236,7 @@ public class ExpressionVisitor extends VisitorBase {
     public void inADotCall(ADotCall node) {
         if (!node.visited) {
             node.visited = true;
-
+            //First part checks if there is a global call
             if (node.getFirst() instanceof AFuncCall) {
                 AFuncCall f = (AFuncCall) node.getFirst();
 
@@ -271,7 +271,7 @@ public class ExpressionVisitor extends VisitorBase {
             }
 
             emit(".");
-
+            //for normal non global variables and methods
             for (Node n : node.getRest()) {
                 if (n instanceof AFuncCall) {
                     AFuncCall f = (AFuncCall) n;

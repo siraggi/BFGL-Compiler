@@ -21,7 +21,7 @@ public class Main {
     public static void main(String[] args){
 
 
-
+        //Simple GUI
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 gui = new GUI();
@@ -47,7 +47,7 @@ public class Main {
 
     public static void compile(File inFile)
             throws ParserException, LexerException, IOException {
-
+        //start compilation process
         TypeChecker typeChecker = new TypeChecker();
         File file = inFile;
         Start tree = null;
@@ -55,7 +55,7 @@ public class Main {
         try {
             PushbackReader pushbackReader = new PushbackReader(new FileReader(addLibrary(file)));
             Parser parser = new Parser(new Lexer(pushbackReader));
-            tree = parser.parse();
+            tree = parser.parse(); //tree is the final AST to be analysed in the semantic phase
         }
         catch(LexerException | ParserException ex){
             if(ex instanceof LexerException){
@@ -88,9 +88,10 @@ public class Main {
                 System.out.println(s);
             }
         } else {
-            new JavaCodeGenerator(typeChecker.typeTable, typeChecker.superTable, tree);
-            AntExecutor AEx = new AntExecutor();
-            AEx.executeAntTask("CompileBFGL.xml", "jar");
+            new JavaCodeGenerator(typeChecker.typeTable, typeChecker.superTable, tree); // starting codegen phase
+            AntExecutor AEx = new AntExecutor(); //compiles and executes the produced java code, into an executable file
+            AEx.executeAntTask("CompileBFGL.xml", "jar"); //this also copies libraries into the right folders, to actuall let the game run properly.
+            //These libraries has to be contained in the same folder as the game Jar.
         }
         Desktop.getDesktop().open(new File("CompiledGame/"));
         //gui.showGameButton();

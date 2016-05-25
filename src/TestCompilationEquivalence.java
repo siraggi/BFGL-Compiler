@@ -27,6 +27,7 @@ public class TestCompilationEquivalence {
     protected File[] compOutFilesList = compOutFolder.listFiles();
     private static boolean setUpIsDone = false;
 
+    //Testing for the Compiler. See TestSuite
 
     @Before
     public void setUp(){

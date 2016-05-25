@@ -12,6 +12,8 @@ public class LineAndPos extends ReversedDepthFirstAdapter {
     private Map<Node, Integer> lines = new HashMap<Node, Integer>();
     private Map<Node, Integer> positions = new HashMap<Node, Integer>();
 
+    //Used to find the line and position in the source BFGL file when an error appears during the semantic analysis phase.
+
     private int line, pos;
 
 
@@ -37,7 +39,6 @@ public class LineAndPos extends ReversedDepthFirstAdapter {
             positions.put(node, pos);
         }
     }
-
     public void defaultOut(Node node) {
         lines.put(node, line);
         positions.put(node, pos);

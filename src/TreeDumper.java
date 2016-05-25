@@ -16,6 +16,8 @@ public class TreeDumper extends DepthFirstAdapter {
         this.out = out;
     }
 
+    //TreeDumper is for printing out the Tree if needed during debugging.
+
     public void defaultCase(Node node) {
         indent();
         out.println(((Token) node).getText());
